@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import React from 'react';
+import LoginModal from "../Modals/LoginModal";
 
 const ResponsiveNav = styled.div`
   padding: 20px;
@@ -80,6 +82,8 @@ const NavbarMobile = () => {
   const handleCloseButton = () => {
     setIsOpen(!isOpen);
   };
+  const [modalShow, setModalShow] = React.useState(false);
+
 
   return (
     <>
@@ -93,21 +97,24 @@ const NavbarMobile = () => {
           &times;
         </CloseButton>
         <ul>
-          <li>
-            <a href="#aboutme">Principal</a>
+          <li >
+            <Link to="/">Inicio</Link>
           </li>
 
-          <li>
-            <a href="#skills">Planes</a>
+          <li >
+            <Link to="/servicios">Servicios</Link>
+          </li>
+          <li >
+            <Link to="/nosotros">Nosotros</Link>
+          </li>
+          <li >
+            <Link to="/contacto">Contacto</Link>
+          </li>
+          <li onClick={() => setModalShow(true)}>
+            <Link to="#">Ingreso</Link>
           </li>
 
-          <li>
-            <a href="#projects">Soporte Tecnico</a>
-          </li>
-
-          <li>
-            <a href="#contact">Contacto</a>
-          </li>
+          <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
         </ul>
       </ResponsiveNav>
     </>

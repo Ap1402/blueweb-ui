@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 
 const ClientTopBar = ({ userInfo }) => {
   return (
@@ -12,9 +13,9 @@ const ClientTopBar = ({ userInfo }) => {
 
       <ul className="navbar-nav ml-auto">
         <li className="nav-item dropdown no-arrow d-sm-none">
-          <a
+          <Link
             className="nav-link dropdown-toggle"
-            href="#"
+            to="#"
             id="searchDropdown"
             role="button"
             data-toggle="dropdown"
@@ -22,7 +23,7 @@ const ClientTopBar = ({ userInfo }) => {
             aria-expanded="false"
           >
             <i className="fas fa-search fa-fw"></i>
-          </a>
+          </Link>
           <div
             className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
             aria-labelledby="searchDropdown"
@@ -49,9 +50,9 @@ const ClientTopBar = ({ userInfo }) => {
         <div className="topbar-divider d-none d-sm-block"></div>
 
         <li className="nav-item dropdown no-arrow">
-          <a
+          <Link
             className="nav-link dropdown-toggle"
-            href="#"
+            to="#"
             id="userDropdown"
             role="button"
             data-toggle="dropdown"
@@ -64,31 +65,32 @@ const ClientTopBar = ({ userInfo }) => {
             <img
               className="img-profile rounded-circle"
               src="https://source.unsplash.com/QAB-WJcbgJk/60x60"
+              alt="User"
             />
-          </a>
+          </Link>
           <div
             className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="userDropdown"
           >
-            <a className="dropdown-item" href="#">
+            <Link className="dropdown-item" to="#">
               <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
               Perfil
-            </a>
-            <a className="dropdown-item" href="#">
+            </Link>
+            <Link className="dropdown-item" to="#">
               <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
               Configuración
-            </a>
+            </Link>
 
             <div className="dropdown-divider"></div>
-            <a
+            <Link
               className="dropdown-item"
-              href="#"
+              to="#"
               data-toggle="modal"
               data-target="#logoutModal"
             >
               <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               Salir
-            </a>
+            </Link>
           </div>
         </li>
       </ul>

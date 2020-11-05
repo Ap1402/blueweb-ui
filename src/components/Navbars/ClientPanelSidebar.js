@@ -18,10 +18,10 @@ const ClientPanelSidebar = () => {
       <hr className="sidebar-divider my-0" />
 
       <li className="nav-item active">
-        <a className="nav-link" href="index.html">
+        <Link className="nav-link" to="index.html">
           <i className="fas fa-fw fa-tachometer-alt"></i>
           <span>Inicio</span>
-        </a>
+        </Link>
       </li>
 
       <hr className="sidebar-divider" />
@@ -29,9 +29,9 @@ const ClientPanelSidebar = () => {
       <div className="sidebar-heading">Clientes</div>
 
       <li className="nav-item">
-        <a
+        <Link
           className="nav-link collapsed"
-          href="#"
+          to="#"
           data-toggle="collapse"
           data-target="#collapseTwo"
           aria-expanded="true"
@@ -39,7 +39,7 @@ const ClientPanelSidebar = () => {
         >
           <i className="fas fa-plus-square "></i>
           <span>Creacion/edición</span>
-        </a>
+        </Link>
         <div
           id="collapseTwo"
           className="collapse"

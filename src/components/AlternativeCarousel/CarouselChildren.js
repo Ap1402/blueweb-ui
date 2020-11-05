@@ -23,7 +23,7 @@ const StyledCarouselChildren = styled.div`
 const CarouselChildren = () => {
   return (
     <StyledCarouselChildren>
-      <img src="/images/Banner.jpg" />
+      <img src="/images/Banner.jpg" alt="CarouselItem"/>
       <Slide>
         <h1>TEST</h1>
       </Slide>

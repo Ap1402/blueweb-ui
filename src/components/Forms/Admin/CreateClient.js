@@ -33,7 +33,7 @@ const CreateClient = ({ registerClient }) => {
         state: Yup.string().required("Este campo es necesario")
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        const result = await registerClient(values);
+        await registerClient(values);
         setSubmitting(false);
       }}
     >

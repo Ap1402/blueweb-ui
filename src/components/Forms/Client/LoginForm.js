@@ -26,7 +26,7 @@ const LoginForm = ({ loginRequest }) => {
       })}
       
       onSubmit={async (values, { setSubmitting}) => {
-        const result = await loginRequest(values);
+        await loginRequest(values);
         setSubmitting(false);
       }}
     >

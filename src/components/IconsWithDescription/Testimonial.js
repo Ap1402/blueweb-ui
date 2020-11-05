@@ -49,7 +49,7 @@ const Testimonial = () => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
-      <img src="/images/user2.png"></img>
+      <img src="/images/user2.png"alt="User"></img>
       <p className="testimonial-name">- Juan Rodriguez</p>
     </StyledWrapper>
   );

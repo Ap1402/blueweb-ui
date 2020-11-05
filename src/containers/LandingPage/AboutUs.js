@@ -72,8 +72,8 @@ const AboutUs = () => {
     <StyledAboutUs id="aboutUs">
      
       <TwoSectionsDivider
-      
-        leftComponent={<img src="/images/blue-web.png"></img>}
+
+        leftComponent={<img src="/images/blue-web.png" alt="AboutUs"></img>}
         rightComponent={
           <>
             <h2>¿Qué nos caracteriza?</h2>

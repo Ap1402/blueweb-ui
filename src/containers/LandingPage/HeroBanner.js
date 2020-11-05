@@ -142,8 +142,7 @@ const HeroBanner = () => {
           <button>Contactar Ya</button>
 
 
-          <img className="first-image" src="/images/circle.png"></img>
-          <img className="second-image" src="/images/circle.png"></img>
+          <img className="first-image" alt="circle" src="/images/circle.png"></img>
         </Fade>
       </AlternativeCarousel>
     </HeroBannerStyled>

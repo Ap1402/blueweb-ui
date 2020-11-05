@@ -33,7 +33,6 @@ function LocationMarker({ changeCoordenades, coordenades }) {
         );
       }
     },
-
   });
 
   return position === null ? null : (
