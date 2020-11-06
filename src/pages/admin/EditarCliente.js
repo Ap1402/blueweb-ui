@@ -1,29 +1,27 @@
-import React from 'react'
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const EditarCliente = (props) => {
+  const [data, setData] = useState(null);
 
-    return (
-        <div>
-            
-            {console.log(props)}
-        </div>
-    )
-}
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const clientId = this.props.location.query.clientId;
 
-clientUpdate.getInitialProps = async (ctx)=>{
-    try {
-        const { clientId} = ctx.query;
         const result = await axios
-          .get("http://localhost:4000/api/clients/"+clientId)
+          .get("http://localhost:4000/api/clients/" + clientId)
           .catch((err) => {
             console.log(err);
           });
-        return {
-          client: result.data,
-        };
-      } catch (err) {
-      }
-}
+        setData(result.data);
+        return;
+      } catch (err) {}
+    };
+    getData();
+  }, []);
 
-export default EditarCliente
+  return <div>{console.log(data)}</div>;
+};
+
+export default EditarCliente;

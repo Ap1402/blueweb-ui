@@ -1,11 +1,26 @@
-import React, { useState, useMemo } from "react";
-import AdminPanelLayout from "../../../containers/Layouts/AdminPanelLayout";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useTable } from "react-table";
-import Link from "next/link";
+import Table from "../../components/Table/Table";
+import { Link } from "react-router-dom";
 
-const crear = (props) => {
-  const data = React.useMemo(() => props.clients, []);
+const VerClientes = () => {
+  const [data, setData] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const result = await axios
+          .get("http://localhost:4000/api/clients/")
+          .catch((err) => {
+            console.log(err);
+          });
+        setData(result.data);
+        return;
+      } catch (err) {}
+    };
+    getData();
+  }, []);
 
   const columns = React.useMemo(
     () => [
@@ -31,7 +46,10 @@ const crear = (props) => {
           return (
             <div>
               <Link href={"/admin/clientes/editar/" + data.row.original.id}>
-                <button className="btn btn-primary mx-1">
+                <button
+                  className="btn btn-primary mx-1"
+                  onClick={() => setModalShow(true)}
+                >
                   <i className="fas fa-eye" />
                 </button>
               </Link>
@@ -47,15 +65,7 @@ const crear = (props) => {
     ],
     []
   );
-
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({ columns, data });
-
+  
   return (
     <div>
       <div className="container-fluid">
@@ -72,37 +82,7 @@ const crear = (props) => {
                 </h6>
               </div>
               <div className="card-body">
-                <div className="table-responsive">
-                  <table {...getTableProps()} className="table">
-                    <thead>
-                      {headerGroups.map((headerGroup) => (
-                        <tr {...headerGroup.getHeaderGroupProps()}>
-                          {headerGroup.headers.map((column) => (
-                            <th {...column.getHeaderProps()} scope="col">
-                              {column.render("Header")}
-                            </th>
-                          ))}
-                        </tr>
-                      ))}
-                    </thead>
-                    <tbody {...getTableBodyProps()}>
-                      {rows.map((row) => {
-                        prepareRow(row);
-                        return (
-                          <tr {...row.getRowProps()}>
-                            {row.cells.map((cell) => {
-                              return (
-                                <td {...cell.getCellProps()}>
-                                  {cell.render("Cell")}
-                                </td>
-                              );
-                            })}
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
+                {data && <Table columns={columns} data={data}></Table>}
               </div>
             </div>
           </div>
@@ -112,17 +92,4 @@ const crear = (props) => {
   );
 };
 
-
-crear.getInitialProps = async () => {
-  try {
-    const result = await axios
-      .get("http://localhost:4000/api/clients/")
-      .catch((err) => {
-        console.log(err);
-      });
-    return {
-      clients: result.data,
-    };
-  } catch (err) {}
-};
-export default crear;
+export default VerClientes;
