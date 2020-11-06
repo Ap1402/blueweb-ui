@@ -11,7 +11,7 @@ const EditarCliente = (props) => {
     )
 }
 
-clientUpdate.getInitialProps = async (ctx)=>{
+EditarCliente.getInitialProps = async (ctx)=>{
     try {
         const { clientId} = ctx.query;
         const result = await axios

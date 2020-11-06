@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ParallaxBackground from "../../components/Backgrounds/ParallaxBackground";
+import ParallaxBackground from "../../components/ParallaxBackground/ParallaxBackground";
 import TwoSectionsDivider from "../../components/Dividers/TwoSectionsDivider";
 import Button from "react-bootstrap/Button";
 

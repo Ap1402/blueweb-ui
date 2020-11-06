@@ -1,6 +1,6 @@
 import Slide  from "react-reveal/Slide";
 import styled from "styled-components";
-import ParallaxBackground from "../../components/Backgrounds/ParallaxBackground";
+import ParallaxBackground from "../../components/ParallaxBackground/ParallaxBackground";
 import PreFooter from "../../containers/LandingPage/PreFooter";
 import PreFooterItems from "../../components/IconsWithDescription/IconWithDescription";
 import FactibilidadFormContainer from '../../containers/Clientpanel/FactibilidadFormContainer';

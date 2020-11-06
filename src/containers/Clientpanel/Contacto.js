@@ -1,7 +1,7 @@
 import Slide  from "react-reveal/Slide";
 import styled from "styled-components";
 import ContactForm from "../../components/Forms/Client/ContactForm";
-import ParallaxBackground from "../../components/Backgrounds/ParallaxBackground";
+import ParallaxBackground from "../../components/ParallaxBackground/ParallaxBackground";
 import PreFooter from "../../containers/LandingPage/PreFooter";
 import PreFooterItems from "../../containers/LandingPage/PreFooterItems";
 
