@@ -1,6 +1,6 @@
 import TwoSectionsDivider from "../../components/Dividers/TwoSectionsDivider";
 import styled from "styled-components";
-import ParallaxBackground from "../../components/Backgrounds/ParallaxBackground";
+import ParallaxBackground from "../../components/ParallaxBackground/ParallaxBackground";
 import PreFooter from "../../containers/LandingPage/PreFooter";
 import PreFooterItems from "../../containers/LandingPage/PreFooterItems";
 
