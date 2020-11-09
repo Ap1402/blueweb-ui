@@ -3,15 +3,14 @@ import TwoSectionsDivider from "../../components/Dividers/TwoSectionsDivider";
 
 const StyledAboutUs = styled.section`
   color: white;
-  width: 100%;
   padding: 50px;
   text-align: center;
 
   .left {
-    width: 50%;
+    width: 100%;
   }
   .right {
-    width: 50%;
+    width: 100%;
     color: black;
     font-size: 25px;
     text-align: left;
@@ -37,7 +36,7 @@ const StyledAboutUs = styled.section`
       margin-top: 3rem;
       list-style: none;
       li {
-        margin: 2rem;
+        margin-bottom: 2rem;
       }
     }
   }

@@ -67,6 +67,7 @@ const OpenButton = styled.button`
 
   @media screen and (min-width: 700px) {
     display: none;
+    align-self:flex-end;
   }
 
   div {

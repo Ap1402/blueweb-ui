@@ -23,7 +23,7 @@ const Children = styled.div`
   width: ${width};
   position: relative;
   height: ${height};
-  background-color: ${({ theme }) => theme.colors.blue};
+  background-color: black;
   overflow: hidden;
 
   h1 {
@@ -141,8 +141,6 @@ const HeroBanner = () => {
           <h2>Ofrecemos una de las mejores conexiones del mercado</h2>
           <button>Contactar Ya</button>
 
-
-          <img className="first-image" alt="circle" src="/images/circle.png"></img>
         </Fade>
       </AlternativeCarousel>
     </HeroBannerStyled>

@@ -5,6 +5,7 @@ import SupportBanner from "../containers/LandingPage/SupportBanner";
 import {Link} from 'react-router-dom'
 import AboutUs from '../containers/LandingPage/AboutUs'
 import Testimonials from "../containers/LandingPage/Testimonials";
+import Ventajas from "../containers/LandingPage/Ventajas";
 
 const StyledBackgroundColorWrapper = styled.div`
   display: flex;
@@ -105,6 +106,7 @@ const Home = ()=> {
       <HeroBanner></HeroBanner>
       <SupportBanner></SupportBanner>
       <AboutUs></AboutUs>
+      <Ventajas></Ventajas>
       <Testimonials></Testimonials>
       
       <StyledBackgroundColorWrapper backgroundColor="white">

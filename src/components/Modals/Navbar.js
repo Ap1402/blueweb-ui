@@ -7,9 +7,9 @@ const NavbarStyle = styled.ul`
   list-style-type: none;
   display: inline-block;
   font-family: 'Lato', sans-serif;
+  color:inherit;
   text-transform: uppercase;
-  margin-top: auto;
-    margin-bottom: auto;
+
   li {
     display: inline-block;
   }
@@ -18,32 +18,31 @@ const NavbarStyle = styled.ul`
     display: block;
     padding: 5px;
     text-decoration: none;
-    font-weight: 700;
     margin: 0 10px;
-    color: inherit;
-
+    color:inherit;
   }
   & li,
   & li a:after,
   & li a:before {
-    transition: all 0.3s linear, font-size 1ms linear;
+    transition: all 0.5s linear, font-size 1ms linear;
   }
 
   /* SHIFT */
-  .common-nav {
+  li {
     position: relative;
     z-index: 1;
   }
-  .common-nav a:hover {
+  li a:hover {
     color: white;
   }
-  .common-nav a:after {
+  li a:after {
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
+    border-radius: 20px;
     margin: auto;
     width: 100%;
     height: 1px;
@@ -56,7 +55,7 @@ const NavbarStyle = styled.ul`
     opacity: 0;
     z-index: -1;
   }
-  .common-nav a:hover:after {
+  li a:hover:after {
     opacity: 1;
     visibility: visible;
     height: 100%;
@@ -72,19 +71,6 @@ const NavbarStyle = styled.ul`
     }
   }
 
-  .highlighted a {
-    background-color: ${({ theme }) => theme.colors.blue};
-    color: white;
-    font-size:18px;
-    border-radius:15px;
-    transition: all 0.2s linear;
-
-  }
-
-  .highlighted a:hover {
-    background-color: ${({ theme }) => theme.colors.blue};
-    color: black;
-  }
 `;
 
 const Navbar = () => {
@@ -92,18 +78,18 @@ const Navbar = () => {
 
   return (
     <NavbarStyle>
-      <li className="common-nav">
-        <Link to="/">Inicio</Link>
+      <li >
+        <Link to="/">INICIO</Link>
       </li>
 
-      <li className="common-nav">
-        <Link to="/servicios">Servicios</Link>
+      <li >
+        <Link to="/servicios">SERVICIOS</Link>
       </li>
-      <li className="common-nav">
-        <Link to="/nosotros">Nosotros</Link>
+      <li >
+        <Link to="/nosotros">NOSOTROS</Link>
       </li>
-      <li className="common-nav">
-        <Link to="/contacto">Contacto</Link>
+      <li >
+        <Link to="/contacto">CONTACTO</Link>
       </li>
     {/*   <li className="highlighted" onClick={() => setModalShow(true)}>
       <Link to="#">Ingreso</Link>

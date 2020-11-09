@@ -17,9 +17,11 @@ const StyledWrapper = styled.div`
   .divider-block {
     display: flex;
     flex-direction: row;
-
+    .text{
+      margin-top:0;
+    }
     h4 {
-      font-size: 25px;
+      font-size: 20px;
     }
     i {
       font-size: 50px;
@@ -28,28 +30,30 @@ const StyledWrapper = styled.div`
     p {
       font-size: 20px;
     }
+
+    @media (min-width:720px){
+    h1{
+      font-size:30px;
+    }
+
+    h4 {
+      font-size: 25px;
+    }
+    i {
+      font-size: 60px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
   }
   h1 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
     position: relative;
   }
-  h1:before {
-    content: "";
-    position: absolute;
-    display: inline-block;
-    background: white;
-    bottom: -11px;
-    width: 150px;
-    height: 4px;
-    left: 50%;
-    right: auto;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-  }
-  .carousel {
-    width: 100%;
-  }
+
+
 `;
 
 const SupportBanner = () => {

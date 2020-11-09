@@ -22,6 +22,10 @@ const StyledAboutUs = styled.section`
   }
   .right {
     width: 100%;
+    img {
+      width: 300px;
+    }
+    
   }
 
   @media (min-width: 720px) {
@@ -38,6 +42,9 @@ const StyledAboutUs = styled.section`
     }
     .right {
       width: 50%;
+      img {
+        width: 500px;
+      }
     }
   }
 `;

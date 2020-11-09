@@ -13,10 +13,11 @@ import VerClientes from "./pages/admin/VerClientes";
 import VerFactibilidadSolicitudes from "./pages/admin/VerFactibilidadSolicitudes";
 import VerMensajesContacto from "./pages/admin/VerMensajesContacto";
 import VerMensajesRevisados from "./pages/admin/VerMensajesRevisados";
-import $ from 'jquery'; 
 
 const theme = {
   colors: {
+    primaryBackground: "#276ef1",
+    secondaryBackgrund: "white",
     primary: "#0070f3",
     blue: "#276ef1",
   },
