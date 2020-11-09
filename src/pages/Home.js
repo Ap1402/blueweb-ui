@@ -2,8 +2,8 @@ import HeroBanner from "../containers/LandingPage/HeroBanner";
 import { Col, Container, Row } from "react-bootstrap";
 import styled from "styled-components";
 import SupportBanner from "../containers/LandingPage/SupportBanner";
-import {Link} from 'react-router-dom'
-import AboutUs from '../containers/LandingPage/AboutUs'
+import { Link } from "react-router-dom";
+import AboutUs from "../containers/LandingPage/AboutUs";
 import Testimonials from "../containers/LandingPage/Testimonials";
 import Ventajas from "../containers/LandingPage/Ventajas";
 
@@ -99,16 +99,14 @@ const StyledBackgroundColorWrapper = styled.div`
   }
 `;
 
-const Home = ()=> {
-
+const Home = () => {
   return (
     <>
       <HeroBanner></HeroBanner>
       <SupportBanner></SupportBanner>
-      <AboutUs></AboutUs>
       <Ventajas></Ventajas>
       <Testimonials></Testimonials>
-      
+
       <StyledBackgroundColorWrapper backgroundColor="white">
         <div class="custom-shape-divider-top-1604333882">
           <svg
@@ -169,6 +167,6 @@ const Home = ()=> {
       </StyledBackgroundColorWrapper>
     </>
   );
-}
+};
 
 export default Home;

@@ -3,10 +3,26 @@ import TwoSectionsDivider from "../../components/Dividers/TwoSectionsDivider";
 
 const StyledAboutUs = styled.section`
   color: white;
-  padding: 50px;
+  padding: 40px;
   text-align: center;
+  width: 100%;
 
-  .left {
+  display: flex; 
+  flex-direction: column;
+  justify-content:center;
+  .logo-aboutUs{
+    align-self:center;
+    height:100px;
+    width:500px;
+  }
+
+  h2{
+    margin-top:50px;
+    color: black;
+    font-size:40px;
+    font-weight: 800;
+  }
+/*   .left {
     width: 100%;
   }
   .right {
@@ -63,36 +79,19 @@ const StyledAboutUs = styled.section`
   p {
     margin: 5rem;
     font-size: 20px;
-  }
+  } */
 `;
 
 const AboutUs = () => {
   return (
     <StyledAboutUs id="aboutUs">
-     
-      <TwoSectionsDivider
+    
+      <img className="logo-aboutUs" src="/images/blue-web.png" alt="AboutUs"></img>
+        
+        <h2>¿Qué nos caracteriza?</h2>
+       
+          
 
-        leftComponent={<img src="/images/blue-web.png" alt="AboutUs"></img>}
-        rightComponent={
-          <>
-            <h2>¿Qué nos caracteriza?</h2>
-            <ul>
-              <li>
-                Plataforma de alta Tecnología que nos permite brindarle el mejor
-                servicio.
-              </li>
-              <li>
-                Personal profesionalmente capacitado para atender sus
-                necesidades.
-              </li>
-              <li>
-                Disponibilidad inmediata de nuestros servicios, con soporte
-                técnico las 24 horas
-              </li>
-            </ul>
-          </>
-        }
-      ></TwoSectionsDivider>
     </StyledAboutUs>
   );
 };

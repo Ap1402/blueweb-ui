@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Component, useState } from "react";
+
 import Header from "./Header";
 import Footer from "./Footer";
 import { Helmet } from "react-helmet";
@@ -23,9 +24,43 @@ export const FetchedComponent = dynamic(
   }
 ); */
 
+const ScrollToTop = () => {
+  const [is_visible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("scroll", function (e) {
+      toggleVisibility();
+    });
+  });
+
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <div className="scroll-to-top" style={{position:'fixed', bottom:'5%', right:'2%'}}>
+      {is_visible && (
+        <div onClick={() => scrollToTop()}>
+          <i className="fas fa-arrow-circle-up" style={{fontSize:'40px', zIndex:1000, color:'#276ef1'}}></i>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const LandingPageLayout = ({ children }) => {
   useEffect(() => {
-  
     var s1 = document.createElement("script"),
       s0 = document.getElementsByTagName("script")[0];
     s1.async = true;
@@ -34,7 +69,7 @@ const LandingPageLayout = ({ children }) => {
     s1.setAttribute("crossorigin", "*");
     s0.parentNode.insertBefore(s1, s0);
     var Tawk_API = Tawk_API || {},
-    Tawk_LoadStart = new Date();
+      Tawk_LoadStart = new Date();
   }, []);
   return (
     <>
@@ -68,6 +103,7 @@ const LandingPageLayout = ({ children }) => {
       </Helmet>
       <Header></Header>
       {children}
+      <ScrollToTop></ScrollToTop>
       <Footer></Footer>
     </>
   );

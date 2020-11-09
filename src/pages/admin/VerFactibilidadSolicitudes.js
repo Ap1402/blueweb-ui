@@ -3,8 +3,22 @@ import axios from "axios";
 import Table from "../../components/Table/Table";
 import SeeContactMessageInfo from "../../components/Modals/SeeContactMessageInfo";
 import { Link } from "react-router-dom";
+import Axios from "axios";
+import MaterialTable from "material-table";
 
 const VerFactibilidadSolicitudes = () => {
+  const [modalShow, setModalShow] = useState(false);
+
+  const [showData, setShowData] = useState({
+    id: null,
+    name: null,
+    reason: null,
+    message: null,
+    phone: null,
+    email: null,
+    wasAnswered: null,
+  });
+
   
 /*   const [data, setData] = useState(null);
 
@@ -69,6 +83,104 @@ const VerFactibilidadSolicitudes = () => {
     []
   ); */
 
+  
+  function RefreshData() {
+
+    const tableRef = React.createRef();
+
+    return (
+      <MaterialTable
+        title="Solicitudes de factibilidad"
+        tableRef={tableRef}
+        localization={{
+          pagination: {
+            labelDisplayedRows: "{from}-{to} de {count} páginas",
+          },
+          toolbar: {
+            nRowsSelected: "{0} filas(s) seleccionadas",
+          },
+          header: {
+            actions: "Acciones",
+          },
+          pagination: {
+            labelRowsSelect:"filas"
+          },
+          body: {
+            emptyDataSourceMessage: "No hay registros para mostrar",
+            filterRow: {
+              filterTooltip: "Filtro",
+            },
+          },
+        }}
+        columns={[
+          {
+            title: "Coordenadas",
+            field: "coordenades",
+          },
+          { title: "Solicitante", field: "requesterName" },
+          { title: "Correo", field: "requesterEmail" },
+          { title: "Teléfono", field: "requesterPhone" },
+         /*  {
+            title: "Revisado",
+            field: "wasAnswered",
+            render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
+          }, */
+        ]}
+        options={{
+          headerStyle: {
+            backgroundColor: "#01579b",
+            color: "#FFF",
+            padding:'20px'
+          },
+        }}
+        data={(query) =>
+          new Promise((resolve, reject) => {
+            let url = "http://localhost:4000/api/factibility/";
+          Axios.get(url, {
+              params: {
+                page: query.page,
+                size: query.pageSize,
+                wasEvaluated:0
+              },
+            }).then((result) => {
+              resolve({
+                page: result.data.currentPage,
+                data: result.data.data,
+                totalCount: result.data.totalItems
+              });
+            });
+          })
+        }
+        actions={[
+          {
+            icon: "refresh",
+            tooltip: "Refrescar datos",
+            isFreeAction: true,
+            onClick: () => tableRef.current && tableRef.current.onQueryChange(),
+          },
+
+          {
+            icon: "visibility",
+            tooltip: "Ver información",
+            onClick: (event, rowData) => {
+              /* setShowData({
+                id: rowData.id,
+                name: rowData.name,
+                reason: rowData.reason,
+                message: rowData.message,
+                phone: rowData.phone,
+                email: rowData.email,
+                wasAnswered: rowData.wasAnswered,
+              }); */
+              setModalShow(true);
+              // Do save operation
+            },
+          },
+        ]}
+      />
+    );
+  }
+
   return (
     <div>
       <div className="container-fluid">
@@ -85,12 +197,12 @@ const VerFactibilidadSolicitudes = () => {
                 </h6>
               </div>
               <div className="card-body">
-             {/*    {data && <Table columns={columns} data={data}></Table>}
+              <RefreshData></RefreshData>
 
                 <SeeContactMessageInfo
                   show={modalShow}
                   onHide={() => setModalShow(false)}
-                /> */}
+                />
               </div>
             </div>
           </div>

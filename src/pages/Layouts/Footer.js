@@ -3,18 +3,19 @@ import styled from "styled-components";
 
 const StyledFooter = styled.footer`
   width: 100%;
-  background-color: #e3e3e3;
+  background-color:#ededed;
   margin: 0;
   padding: 3rem;
   color: black;
 `;
 
 const StyledDivForFooter = styled.div`
-  margin: 0 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: left;
+  justify-content:space-between;
+
   .red {
     font-size: 35px;
     margin-right: 20px;
@@ -39,13 +40,18 @@ const StyledDivForFooter = styled.div`
   .aboutUsWrapper {
     align-self: flex-start;
     p {
-      font-size: 0.9rem;
+      font-size: 15px;
+      text-align: justify;
     }
     h2 {
       font-weight: 600;
     }
     @media (min-width: 760px) {
       width: 30%;
+    }
+    .logo-footer{
+      width: 200px;
+      margin-bottom:20px;
     }
   }
   .logoWrapper {
@@ -75,6 +81,7 @@ const StyledDivForFooter = styled.div`
         margin-bottom: 0.3rem;
       }
     }
+  
     .direction {
       font-size: 0.8rem;
     }
@@ -86,7 +93,7 @@ const StyledDivForFooter = styled.div`
 
   @media (min-width: 760px) {
     flex-direction: row;
-    margin-left: 6rem;
+    margin:0 4rem;
   }
 `;
 const Footer = () => {
@@ -94,7 +101,8 @@ const Footer = () => {
     <StyledFooter>
       <StyledDivForFooter>
         <div className="aboutUsWrapper">
-          <h2>BlueWeb</h2>
+        <img src="/images/blue-web.png" alt="BlueWeb" className="logo-footer"></img>
+
           <p>
             The following is the stress test for the chosen effect. A 100
             paragraphs of lorem ipsum text will be revealed as you scroll down.
@@ -106,9 +114,9 @@ const Footer = () => {
           <i className="fab fa-facebook red"></i>
           <i className="fab fa-instagram-square red"></i>
         </div>
-        <div className="logoWrapper">
+      {/*   <div className="logoWrapper">
           <img src="/images/Logo.png" alt="BlueWeb"></img>
-        </div>
+        </div> */}
         <div className="contactWrapper">
           <h2>Datos de Contacto</h2>
           <p>Telefono: 555-55555</p>

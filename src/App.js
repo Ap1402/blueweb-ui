@@ -9,10 +9,14 @@ import Factibilidad from "./pages/landing/Factibilidad";
 import Nosotros from "./pages/landing/Nosotros";
 import servicios from "./pages/landing/Servicios";
 import AdminPanelLayout from "./pages/Layouts/AdminPanelLayout";
+import ClientPanelLayout from "./pages/Layouts/ClientPanelLayout";
+
 import VerClientes from "./pages/admin/VerClientes";
 import VerFactibilidadSolicitudes from "./pages/admin/VerFactibilidadSolicitudes";
 import VerMensajesContacto from "./pages/admin/VerMensajesContacto";
 import VerMensajesRevisados from "./pages/admin/VerMensajesRevisados";
+import HistorialPago from "./containers/Clientpanel/HistorialPago";
+import PerfilCliente from "./containers/Clientpanel/PerfilCliente";
 
 const theme = {
   colors: {
@@ -57,6 +61,24 @@ function App() {
               </Switch>
             </AdminPanelLayout>
           </Route>
+
+          <Route path="/clients/:path?">
+            <ClientPanelLayout>
+            <Switch>
+                <Route
+                  path="/clients/historial"
+                  exact
+                  component={HistorialPago}
+                />
+                <Route
+                  path="/clients/perfil"
+                  exact
+                  component={PerfilCliente}
+                />
+              </Switch>
+            </ClientPanelLayout>
+          </Route>
+
           <Route>
             <LandingPageLayout>
               <Switch>

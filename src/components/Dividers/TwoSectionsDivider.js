@@ -49,10 +49,13 @@ const StyledAboutUs = styled.section`
   }
 `;
 
-const TwoSectionsDivider = ({ leftComponent, rightComponent }) => {
+const TwoSectionsDivider = ({ leftComponent, rightComponent, fadeDirection}) => {
+  const getFadeDirection = (direction)=>{
+    return fadeDirection===direction?true:false;
+  }
   return (
     <StyledAboutUs>
-      <Fade duration={2500} left>
+      <Fade duration={2500} right={getFadeDirection('right')} left={getFadeDirection('left')}  >
         <div className="left">{leftComponent}</div>
         <div className="right">{rightComponent}</div>
       </Fade>

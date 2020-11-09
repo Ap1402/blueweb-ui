@@ -5,7 +5,22 @@ import { Link } from "react-router-dom";
 import SeeContactMessageInfo from "../../components/Modals/SeeContactMessageInfo";
 import MaterialTable from "material-table";
 import Axios from "axios";
+import styled from "styled-components";
 
+const StyledModalContent = styled.div`
+
+  color: black;
+  h4 {
+    font-size: 20px;
+  }
+  p {
+    font-size: 15px;
+    margin-left: 30px;
+  }
+  button {
+    text-align: center;
+  }
+`;
 
 const VerMensajesContacto = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -19,32 +34,34 @@ const VerMensajesContacto = () => {
     email: null,
     wasAnswered: null,
   });
-
   function RefreshData({}) {
     const tableRef = React.createRef();
-  
+
     return (
       <MaterialTable
-        title="Tabla de Mensajes"
+        title="Tabla de Mensajes por atender"
         tableRef={tableRef}
         localization={{
           pagination: {
-              labelDisplayedRows: '{from}-{to} De {count}'
+            labelDisplayedRows: "{from}-{to} de {count} páginas",
           },
           toolbar: {
-              nRowsSelected: '{0} filas(s) seleccionadas',
+            nRowsSelected: "{0} filas(s) seleccionadas",
+          },
 
+          pagination: {
+            labelRowsSelect: "filas",
           },
           header: {
-              actions: 'Acciones'
+            actions: "Acciones",
           },
           body: {
-              emptyDataSourceMessage: 'No hay registros para mostrar',
-              filterRow: {
-                  filterTooltip: 'Filtro'
-              }
-          }
-      }}
+            emptyDataSourceMessage: "No hay registros para mostrar",
+            filterRow: {
+              filterTooltip: "Filtro",
+            },
+          },
+        }}
         columns={[
           {
             title: "Nombre",
@@ -57,23 +74,30 @@ const VerMensajesContacto = () => {
             title: "Revisado",
             field: "wasAnswered",
             render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
-          }
+          },
         ]}
-  
         options={{
           headerStyle: {
             backgroundColor: "#01579b",
-            color: "#FFF",
+            color: "white",
+            fontWeight: 400,
+            padding: "20px",
           },
         }}
-  
-  
         data={(query) =>
           new Promise((resolve, reject) => {
             let url = "http://localhost:4000/api/clients/ContactMessage";
-            Axios.get(url).then((result) => {
+            Axios.get(url, {
+              params: {
+                page: query.page,
+                size: query.pageSize,
+                wasAnswered: 0,
+              },
+            }).then((result) => {
               resolve({
+                page: result.data.currentPage,
                 data: result.data.data,
+                totalCount: result.data.totalItems,
               });
             });
           })
@@ -85,10 +109,10 @@ const VerMensajesContacto = () => {
             isFreeAction: true,
             onClick: () => tableRef.current && tableRef.current.onQueryChange(),
           },
-  
+
           {
-            icon: 'visibility',
-            tooltip: 'Ver información',
+            icon: "visibility",
+            tooltip: "Ver información",
             onClick: (event, rowData) => {
               setShowData({
                 id: rowData.id,
@@ -98,11 +122,11 @@ const VerMensajesContacto = () => {
                 phone: rowData.phone,
                 email: rowData.email,
                 wasAnswered: rowData.wasAnswered,
-              })
+              });
               setModalShow(true);
               // Do save operation
-            }
-          }
+            },
+          },
         ]}
       />
     );
@@ -143,7 +167,7 @@ const VerMensajesContacto = () => {
             <div className="card shadow mb-4">
               <div className="card-header py-3">
                 <h6 className="m-0 font-weight-bold text-primary">
-                  Tabla de mensajes por atender
+                  Mensajes por atender
                 </h6>
               </div>
               <div className="card-body">
@@ -153,22 +177,26 @@ const VerMensajesContacto = () => {
                   show={modalShow}
                   onHide={() => setModalShow(false)}
                 >
-                  <h2>Nombre:</h2>
-                  <h3>{showData.name}</h3>
-                  <h4>Correo:</h4>
-                  <h5>{showData.email}</h5>
-                  <h4>Teléfono:</h4>
-                  <h5>{showData.phone}</h5>
-                  <h4>Mensaje:</h4>
-                  <p>{showData.message}</p>
-                  <button
-                    className="btn btn-primary"
-                    onClick={(e) => handleClick(e, showData.id)}
-                  >
-                    {showData.wasAnswered
-                      ? "Respondido"
-                      : "Marcar como respondido"}
-                  </button>
+                  <StyledModalContent>
+                    <div className="block-info">
+                      <h4>Nombre:</h4>
+                      <p>{showData.name}</p>
+                    </div>
+                    <h4>Correo:</h4>
+                    <p>{showData.email}</p>
+                    <h4>Teléfono:</h4>
+                    <p>{showData.phone}</p>
+                    <h4>Mensaje:</h4>
+                    <p>{showData.message}</p>
+                    <button
+                      className="btn btn-primary btn-block"
+                      onClick={(e) => handleClick(e, showData.id)}
+                    >
+                      {showData.wasAnswered
+                        ? "Respondido"
+                        : "Marcar como respondido"}
+                    </button>
+                  </StyledModalContent>
                 </SeeContactMessageInfo>
               </div>
             </div>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import NavbarMobile from "../../components/Navbars/NavbarMobile";
 import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
+import LoginModal from "../../components/Modals/LoginModal";
 
 const HeaderStyle = styled.header`
   width: 100%;
@@ -84,6 +85,7 @@ const HeaderStyle = styled.header`
 
 const Header = () => {
   const [barClassName, setbarClassName] = useState("");
+  const [modalShow, setModalShow] = React.useState(false);
 
   useEffect(() => {
     window.onscroll = () => {
@@ -103,14 +105,18 @@ const Header = () => {
         </Link>
         <div className="desktop-bar">
           <Navbar></Navbar>
-          <Button variant="contained" color="primary" disableElevation>
+          <Button onClick={() => setModalShow(true)} variant="contained" color="primary" disableElevation>
             Ingresar
-          </Button>{" "}
+          </Button>
         </div>
         <div className="mobile-navbar">
-          <NavbarMobile></NavbarMobile>
+          <NavbarMobile ></NavbarMobile>
         </div>
       </div>
+      <LoginModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </HeaderStyle>
   );
 };

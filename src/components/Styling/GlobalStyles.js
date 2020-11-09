@@ -9,6 +9,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Poppins', sans-serif;
     scroll-behavior:smooth;
     background-color: white;
-    
   }
+  body > #root {
+  height: 100vh;
+}
   `;

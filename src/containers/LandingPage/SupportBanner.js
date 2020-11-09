@@ -1,6 +1,7 @@
 import { Slide } from "react-reveal";
 import styled from "styled-components";
-import {Link} from 'react-router-dom';
+import { Button } from "@material-ui/core";
+import Link from '@material-ui/core/Link';
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ const StyledWrapper = styled.div`
       margin-top:0;
     }
     h4 {
+      
       font-size: 20px;
     }
     i {
@@ -29,6 +31,7 @@ const StyledWrapper = styled.div`
     }
     p {
       font-size: 20px;
+      margin-left:10px;
     }
 
     @media (min-width:720px){
@@ -64,7 +67,7 @@ const SupportBanner = () => {
           <i className="fas fa-phone"></i>
           <div className="text">
             <h4>Atención al cliente</h4>
-            <p>xxx-xxxxxx</p>
+            <p>555-555555</p>
           </div>
         </div>
         <div className="divider-block">
@@ -79,10 +82,11 @@ const SupportBanner = () => {
           <i className="fas fa-question"></i>
           <div className="text">
             <h4>Revisión de factibilidad</h4>
-            <Link to="/contacto/factibilidad">
-              <button className="btn btn-light btn-block">
+            <Link to="/contacto/factibilidad" style={{textDecoration:'none'}}>
+              <Button  variant="contained" style={{width:'100%'}} >
                 Realizar solicitud
-              </button>
+              </Button>
+           
             </Link>
           </div>
         </div>

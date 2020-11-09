@@ -5,7 +5,7 @@ function SeeContactMessageInfo(props) {
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter centered">
-          Información del mensaje
+          Información
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>{props.children}</Modal.Body>
