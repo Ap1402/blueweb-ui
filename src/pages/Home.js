@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import AboutUs from "../containers/LandingPage/AboutUs";
 import Testimonials from "../containers/LandingPage/Testimonials";
 import Ventajas from "../containers/LandingPage/Ventajas";
+import ClientsCarousel from "../containers/LandingPage/ClientsCarousel";
 
 const StyledBackgroundColorWrapper = styled.div`
   display: flex;

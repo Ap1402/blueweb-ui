@@ -21,11 +21,13 @@ const StyledAboutUs = styled.section`
     }
   }
   .right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     img {
       width: 300px;
     }
-    
   }
 
   @media (min-width: 720px) {
@@ -41,6 +43,9 @@ const StyledAboutUs = styled.section`
       }
     }
     .right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 50%;
       img {
         width: 500px;
@@ -49,13 +54,21 @@ const StyledAboutUs = styled.section`
   }
 `;
 
-const TwoSectionsDivider = ({ leftComponent, rightComponent, fadeDirection}) => {
-  const getFadeDirection = (direction)=>{
-    return fadeDirection===direction?true:false;
-  }
+const TwoSectionsDivider = ({
+  leftComponent,
+  rightComponent,
+  fadeDirection,
+}) => {
+  const getFadeDirection = (direction) => {
+    return fadeDirection === direction ? true : false;
+  };
   return (
     <StyledAboutUs>
-      <Fade duration={2500} right={getFadeDirection('right')} left={getFadeDirection('left')}  >
+      <Fade
+        duration={2500}
+        right={getFadeDirection("right")}
+        left={getFadeDirection("left")}
+      >
         <div className="left">{leftComponent}</div>
         <div className="right">{rightComponent}</div>
       </Fade>

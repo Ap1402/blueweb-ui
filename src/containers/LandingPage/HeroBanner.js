@@ -5,8 +5,27 @@ import Fade from "react-reveal/Fade";
 
 const HeroBannerStyled = styled.section`
   width: 100%;
+  height: 100vh;
+  background-image: url("/images/Banner-2.png");
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 500px;
+  box-sizing: border-box;
+  user-select: none;
+  background-size: 100% 100%;
+
+  &:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(57, 49, 49, 0.4);
+    z-index: 1;
+    content: "";
+  }
 `;
 
+/*
 const width = "100%",
   height = "450px";
 
@@ -131,20 +150,10 @@ const Carousel = makeCarousel(CarouselUI);
 
 const AlternativeCarousel = ({ children }) => {
   return <Carousel>{children}</Carousel>;
-};
+}; */
 
 const HeroBanner = () => {
-  return (
-    <HeroBannerStyled>
-      <AlternativeCarousel>
-        <Fade>
-          <h2>Ofrecemos una de las mejores conexiones del mercado</h2>
-          <button>Contactar Ya</button>
-
-        </Fade>
-      </AlternativeCarousel>
-    </HeroBannerStyled>
-  );
+  return <HeroBannerStyled></HeroBannerStyled>;
 };
 
 export default HeroBanner;

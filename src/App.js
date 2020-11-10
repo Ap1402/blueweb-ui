@@ -17,6 +17,7 @@ import VerMensajesContacto from "./pages/admin/VerMensajesContacto";
 import VerMensajesRevisados from "./pages/admin/VerMensajesRevisados";
 import HistorialPago from "./containers/Clientpanel/HistorialPago";
 import PerfilCliente from "./containers/Clientpanel/PerfilCliente";
+import CrearCliente from "./pages/admin/CrearCliente";
 
 const theme = {
   colors: {
@@ -37,10 +38,12 @@ function App() {
           <Route path="/admin/:path?">
             <AdminPanelLayout>
               <Switch>
+                <Route path="/admin/clientes" exact component={VerClientes} />
+
                 <Route
-                  path="/admin/clientes"
+                  path="/admin/clientes/crear"
                   exact
-                  component={VerClientes}
+                  component={CrearCliente}
                 />
                 <Route
                   path="/admin/factibilidad/"
@@ -64,17 +67,13 @@ function App() {
 
           <Route path="/clients/:path?">
             <ClientPanelLayout>
-            <Switch>
+              <Switch>
                 <Route
                   path="/clients/historial"
                   exact
                   component={HistorialPago}
                 />
-                <Route
-                  path="/clients/perfil"
-                  exact
-                  component={PerfilCliente}
-                />
+                <Route path="/clients/perfil" exact component={PerfilCliente} />
               </Switch>
             </ClientPanelLayout>
           </Route>

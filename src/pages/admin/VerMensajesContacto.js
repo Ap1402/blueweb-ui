@@ -6,9 +6,9 @@ import SeeContactMessageInfo from "../../components/Modals/SeeContactMessageInfo
 import MaterialTable from "material-table";
 import Axios from "axios";
 import styled from "styled-components";
+import adminService from "../../services/admin.service";
 
 const StyledModalContent = styled.div`
-
   color: black;
   h4 {
     font-size: 20px;
@@ -85,20 +85,16 @@ const VerMensajesContacto = () => {
           },
         }}
         data={(query) =>
-          new Promise((resolve, reject) => {
-            let url = "http://localhost:4000/api/clients/ContactMessage";
-            Axios.get(url, {
-              params: {
-                page: query.page,
-                size: query.pageSize,
-                wasAnswered: 0,
-              },
-            }).then((result) => {
-              resolve({
-                page: result.data.currentPage,
-                data: result.data.data,
-                totalCount: result.data.totalItems,
-              });
+          new Promise(async (resolve, reject) => {
+            const result = await adminService.getMessages({
+              page: query.page,
+              size: query.pageSize,
+              wasAnswered: 0,
+            });
+            resolve({
+              page: result.data.currentPage,
+              data: result.data.data,
+              totalCount: result.data.totalItems,
             });
           })
         }

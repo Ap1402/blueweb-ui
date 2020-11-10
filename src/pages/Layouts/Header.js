@@ -19,7 +19,7 @@ const HeaderStyle = styled.header`
     img {
       align-self: flex-start;
       padding: 5px 0 5px 50px;
-      height: 70px;
+      height: 50px;
     }
     @media (max-width: 700px) {
       justify-content: space-between;

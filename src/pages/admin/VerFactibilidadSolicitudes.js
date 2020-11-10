@@ -5,6 +5,7 @@ import SeeContactMessageInfo from "../../components/Modals/SeeContactMessageInfo
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import MaterialTable from "material-table";
+import adminService from "../../services/admin.service";
 
 const VerFactibilidadSolicitudes = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -134,23 +135,19 @@ const VerFactibilidadSolicitudes = () => {
           },
         }}
         data={(query) =>
-          new Promise((resolve, reject) => {
-            let url = "http://localhost:4000/api/factibility/";
-          Axios.get(url, {
-              params: {
-                page: query.page,
-                size: query.pageSize,
-                wasEvaluated:0
-              },
-            }).then((result) => {
+          new Promise(async (resolve, reject) => {
+            const result = await adminService.getFactibilityRequests({
+              page: query.page,
+              size: query.pageSize,
+              wasEvaluated: 0,
+            });
               resolve({
                 page: result.data.currentPage,
                 data: result.data.data,
                 totalCount: result.data.totalItems
               });
-            });
-          })
-        }
+            })
+          }
         actions={[
           {
             icon: "refresh",

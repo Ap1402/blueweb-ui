@@ -17,25 +17,31 @@ const StyledTextDiv = styled.div`
   justify-content: center;
   //background-color:#1d6ecc ;
   padding: 30px;
+
   h1 {
+    font-size:32px;
+    margin-bottom:20px;
     font-weight: 800;
   }
+  p{
+    text-align:center;
+    font-size:18px;
+  }
+
   @media (min-width: 720px) {
     margin: 30px;
   }
-  a  button {
+  a button {
     margin: 20px;
     padding: 20px;
-    color:white;
+    color: white;
     background-color: #1d6ecc;
     font-family: "Poppins", sans-serif;
-    &:hover{
-      color:black;
+    &:hover {
+      color: black;
+
+      background-color: white;
     }
-  }
-  h4,
-  h5 {
-    text-align: left;
   }
 `;
 const Ventajas = () => {
@@ -46,16 +52,18 @@ const Ventajas = () => {
         leftComponent={
           <StyledTextDiv>
             <h1>Fibra óptica y señal inalámbrica</h1>
-            <h4>Con nosotros podrás elegir el tipo de conexión que desees </h4>
-            <h5>
-              Nuestros agentes están listos para evaluar la factibilidad de tu
-              zona
-            </h5>
+            <p>
+              The following is the stress test for the chosen effect. A 100
+              paragraphs of lorem ipsum text will be revealed as you scroll
+              down. To reset the test select an option from the button toolbar
+              above. The following whitespace is intentionally left blank.
+             
+            </p>
             <Link
               to="/contacto/factibilidad"
               style={{ textDecoration: "none" }}
             >
-              <Button variant="contained" style={{ width: "100%" }}>
+              <Button variant="contained" color="primary">
                 Consultar factibilidad
               </Button>
             </Link>
@@ -68,15 +76,18 @@ const Ventajas = () => {
         rightComponent={
           <StyledTextDiv>
             <h1>Soporte técnico las 24 horas</h1>
-            <h4>
-              Nuestros agentes están listos para atender tus necesidades las 24
-              horas del día
-            </h4>
+            <p>
+              The following is the stress test for the chosen effect. A 100
+              paragraphs of lorem ipsum text will be revealed as you scroll
+              down. To reset the test select an option from the button toolbar
+              above. The following whitespace is intentionally left blank.
+             
+            </p>
             <Link
               to="/contacto/factibilidad"
               style={{ textDecoration: "none" }}
             >
-              <Button variant="contained" style={{ width: "100%" }}>
+              <Button variant="contained" color="primary">
                 Contactar
               </Button>
             </Link>

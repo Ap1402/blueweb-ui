@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CreateClient from "../../components/Forms/Admin/CreateClient";
-import axios from "axios";
+import adminService from "../../services/admin.service";
 
 const CrearCliente = () => {
   const [requestStatus, setRequestStatus] = useState({
@@ -11,23 +11,20 @@ const CrearCliente = () => {
 
   const createClient = async (client) => {
     try {
-      const result = await axios
-        .post("http://localhost:4000/api/clients/register", client)
-        .catch((err) => {
-          setRequestStatus({
-            success: false,
-            message: err.response.data,
-            sent: true,
-          });
-        });
+      const result = await adminService.registerClient(client);
       if (result.status === 201) {
         setRequestStatus({
           success: true,
           message: "Cliente registrado correctamente",
           sent: true,
         });
+      } else {
+        setRequestStatus({
+          success: false,
+          message: result.data.message,
+          sent: true,
+        });
       }
-      return result;
     } catch (err) {}
   };
 
