@@ -111,7 +111,6 @@ const Home = () => {
       <Ventajas></Ventajas>
       {/*       <ClientsCarousel></ClientsCarousel>
        */}{" "}
-       {PrivateRoute()}
       <Testimonials></Testimonials>
       <StyledBackgroundColorWrapper backgroundColor="white">
         <div class="custom-shape-divider-top-1604333882">
