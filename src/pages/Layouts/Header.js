@@ -8,12 +8,16 @@ import LoginModal from "../../components/Modals/LoginModal";
 
 const HeaderStyle = styled.header`
   width: 100%;
-  z-index: 10000;
+  z-index: 4;
   .bar {
     font-size: 15px;
     align-items: center;
     width: 100%;
     display: flex;
+    z-index: 1000;
+
+    background-color:white;
+
     flex-direction: row;
     justify-content: space-between;
     img {
@@ -30,8 +34,10 @@ const HeaderStyle = styled.header`
   }
 
   .desktop-bar {
+    z-index: 4;
+
     display: none;
-    color: #424242;
+    color: black;
     @media (min-width: 700px) {
       display: inline;
       margin-left: auto;

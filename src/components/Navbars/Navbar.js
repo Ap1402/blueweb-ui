@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import LoginModal from "../Modals/LoginModal";
-import React from 'react';
-import {Link} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const NavbarStyle = styled.ul`
   list-style-type: none;
   display: inline-block;
-  font-family: 'Lato', sans-serif;
   text-transform: uppercase;
   margin-top: auto;
-    margin-bottom: auto;
+  margin-bottom: auto;
   li {
     display: inline-block;
   }
@@ -21,7 +20,6 @@ const NavbarStyle = styled.ul`
     font-weight: 700;
     margin: 0 10px;
     color: inherit;
-
   }
   & li,
   & li a:after,
@@ -75,10 +73,9 @@ const NavbarStyle = styled.ul`
   .highlighted a {
     background-color: ${({ theme }) => theme.colors.blue};
     color: white;
-    font-size:18px;
-    border-radius:15px;
+    font-size: 18px;
+    border-radius: 15px;
     transition: all 0.2s linear;
-
   }
 
   .highlighted a:hover {
@@ -105,7 +102,7 @@ const Navbar = () => {
       <li className="common-nav">
         <Link to="/contacto">Contacto</Link>
       </li>
-    {/*   <li className="highlighted" onClick={() => setModalShow(true)}>
+      {/*   <li className="highlighted" onClick={() => setModalShow(true)}>
       <Link to="#">Ingreso</Link>
       </li>
 

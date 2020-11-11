@@ -1,28 +1,82 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 import makeCarousel from "react-reveal/makeCarousel";
 import Fade from "react-reveal/Fade";
+import anime from "animejs/lib/anime.es.js";
 
 const HeroBannerStyled = styled.section`
   width: 100%;
-  height: 100vh;
-  background-image: url("/images/Banner-2.png");
   position: relative;
+  box-sizing: border-box;
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
   min-height: 500px;
-  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
-  background-size: 100% 100%;
+  height: calc(100vh - 40px);
+  background-image: url("/images/Banner-2.png");
 
-  &:after {
+  &:before {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(57, 49, 49, 0.4);
+    background-color: rgba(57, 49, 49, 0.65);
     z-index: 1;
     content: "";
   }
+`;
+
+const StyledBannerInner = styled.div`
+  position: absolute;
+  z-index: 2;
+  width: 50%;
+  left: 25%;
+
+  padding: 0 30px;
+  box-sizing: border-box;
+  top: 50%;
+  color: #ffffff;
+  text-align: center;
+  margin-top: -110px;
+  h1 {
+    font-size: 44px;
+    color: #ffffff;
+    line-height: 1.5;
+    letter-spacing: 0;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-size: 20px;
+    line-height: 1.6;
+    letter-spacing: 0;
+    font-weight: 400;
+    margin: 0 auto 10px;
+  }
+  a {
+    padding: 0 34px;
+    margin: 72px auto 25px;
+    line-height: 56px;
+    border-radius: 6px;
+    height: 56px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background: transparent;
+    display: inline-block;
+    color: white;
+    border: solid 2px white;
+    font-weight:bold;
+    transition: 0.3s;
+    text-align: center;
+    &:hover{
+      cursor:pointer;
+      color:black;
+
+    }
+  }
+
 `;
 
 /*
@@ -153,7 +207,18 @@ const AlternativeCarousel = ({ children }) => {
 }; */
 
 const HeroBanner = () => {
-  return <HeroBannerStyled></HeroBannerStyled>;
+  return (
+    <HeroBannerStyled>
+      <StyledBannerInner>
+        <h1>Built for Internet Service</h1>
+        <h2>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua quis.
+        </h2>
+        <a href="/start">Get Started for Free</a>
+      </StyledBannerInner>
+    </HeroBannerStyled>
+  );
 };
 
 export default HeroBanner;
