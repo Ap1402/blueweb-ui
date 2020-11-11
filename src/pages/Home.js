@@ -7,6 +7,8 @@ import AboutUs from "../containers/LandingPage/AboutUs";
 import Testimonials from "../containers/LandingPage/Testimonials";
 import Ventajas from "../containers/LandingPage/Ventajas";
 import ClientsCarousel from "../containers/LandingPage/ClientsCarousel";
+import ThreeComponents from "../containers/LandingPage/ThreeComponents";
+import PrivateRoute from "../helpers/PrivateRoute";
 
 const StyledBackgroundColorWrapper = styled.div`
   display: flex;
@@ -105,9 +107,12 @@ const Home = () => {
     <>
       <HeroBanner></HeroBanner>
       <SupportBanner></SupportBanner>
+      <ThreeComponents></ThreeComponents>
       <Ventajas></Ventajas>
+      {/*       <ClientsCarousel></ClientsCarousel>
+       */}{" "}
+       {PrivateRoute()}
       <Testimonials></Testimonials>
-
       <StyledBackgroundColorWrapper backgroundColor="white">
         <div class="custom-shape-divider-top-1604333882">
           <svg

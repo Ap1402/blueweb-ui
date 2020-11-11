@@ -1,17 +1,15 @@
-import React, { useEffect, useState} from 'react';
-import { Route, Redirect } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import isAuthenticated from './isAuthenticated';
+import isAuthenticated from "./isAuthenticated";
 
-function PrivateRoute({ component: Component, ...children }) {
+function PrivateRoute() {
+  isAuthenticated();
 
-
-
-    if (isAuthenticated === true) {
+  /* if (isAuthenticated === true) {
       return <Route {...children} render={props => <Component {...props} />} />;
-    }
-    return <Redirect to="login" />;
-  }
-  
-  export default PrivateRoute;
-  
+    } */
+  //return <Redirect to="login" />;
+}
+
+export default PrivateRoute;

@@ -37,8 +37,10 @@ const StyledWrapper = styled.div`
     p {
       font-size: 20px;
     }
-    button {
-      font-size: 10px;
+    button, a {
+      font-size: 18px;
+      font-family:  Helvetica,"Arimo", sans-serif; 
+      font-weight:500;
     }
 
     @media (min-width: 720px) {

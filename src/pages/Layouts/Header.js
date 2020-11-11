@@ -3,8 +3,9 @@ import Navbar from "../../components/Navbars/Navbar";
 import styled from "styled-components";
 import NavbarMobile from "../../components/Navbars/NavbarMobile";
 import { Link } from "react-router-dom";
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
 import LoginModal from "../../components/Modals/LoginModal";
+import RegisterModal from "../../components/Modals/RegisterModal";
 
 const HeaderStyle = styled.header`
   width: 100%;
@@ -16,7 +17,7 @@ const HeaderStyle = styled.header`
     display: flex;
     z-index: 1000;
 
-    background-color:white;
+    background-color: white;
 
     flex-direction: row;
     justify-content: space-between;
@@ -43,8 +44,15 @@ const HeaderStyle = styled.header`
       margin-left: auto;
       margin-right: 70px;
       button {
-        margin-left: 30px;
-        background-color:#3470df;
+        margin-left: 20px;
+      }
+      .login {
+        background-color: #3470df;
+      }
+      .register {
+        background-color: white;
+        color: black;
+        border: solid black 1.5px;
       }
     }
   }
@@ -92,6 +100,7 @@ const HeaderStyle = styled.header`
 const Header = () => {
   const [barClassName, setbarClassName] = useState("");
   const [modalShow, setModalShow] = React.useState(false);
+  const [modalRegister, setModalRegisterShow] = React.useState(false);
 
   useEffect(() => {
     window.onscroll = () => {
@@ -111,18 +120,31 @@ const Header = () => {
         </Link>
         <div className="desktop-bar">
           <Navbar></Navbar>
-          <Button onClick={() => setModalShow(true)} variant="contained" color="primary" disableElevation>
+          <Button
+            className="login"
+            onClick={() => setModalShow(true)}
+            variant="contained"
+            color="primary"
+            disableElevation
+          >
             Ingresar
+          </Button>
+          <Button
+            variant="outlined"
+            className="register"
+            onClick={() => setModalRegisterShow(true)}
+            color="primary"
+            disableElevation
+          >
+            Registro
           </Button>
         </div>
         <div className="mobile-navbar">
-          <NavbarMobile ></NavbarMobile>
+          <NavbarMobile></NavbarMobile>
         </div>
       </div>
-      <LoginModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+      <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
+      <RegisterModal show={modalRegister} onHide={() => setModalRegisterShow(false)} />
     </HeaderStyle>
   );
 };

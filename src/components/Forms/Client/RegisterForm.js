@@ -2,9 +2,6 @@ import * as Yup from "yup";
 import FormGroup from "../FormGroup";
 import { Formik, Form } from "formik";
 import styled from "styled-components";
-import authService from "../../../services/auth.service";
-import createAlert from "../../../helpers/createAlert";
-import { useState } from "react";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -13,61 +10,48 @@ const StyledForm = styled(Form)`
   align-items: center;
 `;
 
-const LoginForm = () => {
-  const [requestStatus, setRequestStatus] = useState({
-    message: "",
-    success: false,
-    sent: false,
-  });
-
-  const loginUser = async (userData) => {
-    try {
-      const result = await authService.login(userData);
-      if (result.status === 200) {
-        setRequestStatus({
-          success: true,
-          message: "Datos correctos",
-          sent: true,
-        });
-      } else {
-        setRequestStatus({
-          success: false,
-          message: result.data.message,
-          sent: true,
-        });
-      }
-    } catch (err) {}
-  };
-
+const RegisterForm = ({ registerRequest }) => {
   return (
     <Formik
       initialValues={{
         email: "",
         password: "",
+        confirmPassword: "",
+        dni: "",
       }}
       validationSchema={Yup.object({
         password: Yup.string().required("Este campo es necesario"),
+        confirmPassword: Yup.string().oneOf(
+          [Yup.ref("password"), null],
+          "Las contraseñas deben coincidir"
+        ),
+        dni: Yup.string().required("Este campo es necesario"),
         email: Yup.string()
           .email("Debe ser un email válido")
           .required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        await loginUser(values);
+        await registerRequest(values);
         setSubmitting(false);
       }}
     >
       {({ isSubmitting }) => (
         <StyledForm>
           <div className="row ">
-            <div className="col-12">{createAlert(requestStatus)}</div>
             <div className="col-10 mx-auto">
+              <FormGroup label="Cedula" name="dni" type="text"></FormGroup>
               <FormGroup label="Correo" name="email" type="text"></FormGroup>
             </div>
             <div className="col-10 mx-auto">
               <FormGroup
                 label="Contraseña"
                 name="password"
-                type="password"
+                type="text"
+              ></FormGroup>
+              <FormGroup
+                label="Confirmar contraseña"
+                name="confirmPassword"
+                type="text"
               ></FormGroup>
             </div>
           </div>
@@ -78,7 +62,7 @@ const LoginForm = () => {
                 className=" btn-primary btn "
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Por favor espere" : "Ingresar"}
+                {isSubmitting ? "Por favor espere" : "Registrar"}
               </button>
             </div>
           </div>
@@ -88,4 +72,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

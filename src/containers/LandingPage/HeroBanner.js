@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled, { css } from "styled-components";
 import makeCarousel from "react-reveal/makeCarousel";
 import Fade from "react-reveal/Fade";
-import anime from "animejs/lib/anime.es.js";
 
 const HeroBannerStyled = styled.section`
   width: 100%;
@@ -32,15 +31,15 @@ const HeroBannerStyled = styled.section`
 const StyledBannerInner = styled.div`
   position: absolute;
   z-index: 2;
-  width: 50%;
-  left: 25%;
-
+  width: 100%;
+  left: 0;
   padding: 0 30px;
   box-sizing: border-box;
   top: 50%;
   color: #ffffff;
   text-align: center;
   margin-top: -110px;
+
   h1 {
     font-size: 44px;
     color: #ffffff;
@@ -56,27 +55,40 @@ const StyledBannerInner = styled.div`
     margin: 0 auto 10px;
   }
   a {
-    padding: 0 34px;
+    padding: 10px 30px;
     margin: 72px auto 25px;
-    line-height: 56px;
+    line-height: 30px;
     border-radius: 6px;
-    height: 56px;
-    font-size: 16px;
+    font-size: 20px;
     box-sizing: border-box;
     background: transparent;
     display: inline-block;
     color: white;
     border: solid 2px white;
-    font-weight:bold;
+    font-weight: 400;
     transition: 0.3s;
     text-align: center;
-    &:hover{
-      cursor:pointer;
-      color:black;
-
+    &:hover {
+      cursor: pointer;
+      color: black;
+      text-decoration: none;
+      background-color: white;
     }
   }
 
+  @media (max-width: 720px) {
+    padding: 0 8%;
+    top: 30%;
+    h2 {
+      font-size: 20px;
+    }
+    h1 {
+      font-size: 36px;
+    }
+    a {
+      margin: 20px 20px;
+    }
+  }
 `;
 
 /*
@@ -215,7 +227,7 @@ const HeroBanner = () => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua quis.
         </h2>
-        <a href="/start">Get Started for Free</a>
+        <a href="/start">Contactar</a>
       </StyledBannerInner>
     </HeroBannerStyled>
   );
