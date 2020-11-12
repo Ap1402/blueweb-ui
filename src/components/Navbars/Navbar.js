@@ -17,7 +17,7 @@ const NavbarStyle = styled.ul`
     display: block;
     padding: 5px;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 500;
     margin: 0 10px;
     color: inherit;
   }

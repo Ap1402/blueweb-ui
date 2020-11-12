@@ -9,6 +9,7 @@ import Ventajas from "../containers/LandingPage/Ventajas";
 import ClientsCarousel from "../containers/LandingPage/ClientsCarousel";
 import ThreeComponents from "../containers/LandingPage/ThreeComponents";
 import PrivateRoute from "../helpers/PrivateRoute";
+import ContactUs from "../containers/LandingPage/ContactUs";
 
 const StyledBackgroundColorWrapper = styled.div`
   display: flex;
@@ -170,6 +171,7 @@ const Home = () => {
           </Row>
         </Container>
       </StyledBackgroundColorWrapper>
+        <ContactUs></ContactUs>
     </>
   );
 };

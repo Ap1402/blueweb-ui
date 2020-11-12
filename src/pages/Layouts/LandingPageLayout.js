@@ -3,6 +3,9 @@ import React, { useEffect, Component, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Helmet } from "react-helmet";
+import isAuthenticated from "../../helpers/isAuthenticated";
+import { CircularProgress } from "@material-ui/core";
+import Spinner from "../../components/Spinner/Spinner";
 
 /* function importExternal(url) {
   return new Promise((resolve, reject) => {
@@ -49,10 +52,16 @@ const ScrollToTop = () => {
   };
 
   return (
-    <div className="scroll-to-top" style={{position:'fixed', bottom:'5%', right:'2%'}}>
+    <div
+      className="scroll-to-top"
+      style={{ position: "fixed", bottom: "5%", right: "2%" }}
+    >
       {is_visible && (
         <div onClick={() => scrollToTop()}>
-          <i className="fas fa-arrow-circle-up" style={{fontSize:'40px', zIndex:1000, color:'#276ef1'}}></i>
+          <i
+            className="fas fa-arrow-circle-up"
+            style={{ fontSize: "40px", zIndex: 1000, color: "#276ef1" }}
+          ></i>
         </div>
       )}
     </div>
@@ -60,6 +69,17 @@ const ScrollToTop = () => {
 };
 
 const LandingPageLayout = ({ children }) => {
+  const [loading, setLoading] = useState(true);
+  const [isAuth, setIsAuth] = useState (false);
+  useEffect(() => {
+    const isUserAuth = async () => {
+      const result = await isAuthenticated();
+      setIsAuth(result);
+      setLoading(!loading);
+    };
+    isUserAuth();
+  }, []);
+
   useEffect(() => {
     var s1 = document.createElement("script"),
       s0 = document.getElementsByTagName("script")[0];
@@ -71,42 +91,48 @@ const LandingPageLayout = ({ children }) => {
     var Tawk_API = Tawk_API || {},
       Tawk_LoadStart = new Date();
   }, []);
-  return (
-    <>
-      <Helmet>
-        <title>Blue Web</title>
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-          crossOrigin="anonymous"
-        />
+  if (!loading) {
+    console.log(isAuth)
+    return (
+      <>
+        <Helmet>
+          <title>Blue Web</title>
+          <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+            integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+            crossOrigin="anonymous"
+          />
 
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-          rel="stylesheet"
-        />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet"
+          />
 
-        <link rel="icon" href="/favicon.ico" />
-        <meta charSet="utf-8" />
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossorigin=""
-        />
-        <script
-          src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-          crossorigin=""
-        ></script>
-      </Helmet>
-      <Header></Header>
-      {children}
-      <ScrollToTop></ScrollToTop>
-      <Footer></Footer>
-    </>
-  );
+          <link rel="icon" href="/favicon.ico" />
+          <meta charSet="utf-8" />
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""
+          />
+          <script
+            src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""
+          ></script>
+        </Helmet>
+        <Header isAuth={isAuth}></Header>
+        {children}
+        <ScrollToTop></ScrollToTop>
+        <Footer></Footer>
+      </>
+    );
+  } else {
+    return <Spinner></Spinner>
+    ;
+  }
 };
 
 export default LandingPageLayout;

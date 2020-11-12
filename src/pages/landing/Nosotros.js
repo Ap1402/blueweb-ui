@@ -42,6 +42,14 @@ const StyledBanner = styled.div`
   }
 `;
 
+const StyledRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align:center;
+  justify-content:center;
+
+`;
+
 const Nosotros = () => {
   return (
     <>
@@ -52,9 +60,11 @@ const Nosotros = () => {
       </ParallaxBackground>
       <StyledWrapper backgroundColor="white">
         <TwoSectionsDivider
-          leftComponent={<img src="/images/aboutUsComputer.jpg" alt="AboutUs"></img>}
+          leftComponent={
+            <img src="/images/aboutUsComputer.jpg" alt="AboutUs"></img>
+          }
           rightComponent={
-            <>
+            <StyledRight>
               <p>
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -64,8 +74,8 @@ const Nosotros = () => {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum."
               </p>
-              <Button size="lg">Ver nuestros servicios</Button>
-            </>
+              <Button size="sm">Ver nuestros servicios</Button>
+            </StyledRight>
           }
         ></TwoSectionsDivider>
       </StyledWrapper>

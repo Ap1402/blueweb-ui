@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "../helpers/getAuthToken";
 import setAuthToken from "../helpers/setAuthToken";
 
 const API_URL = "http://localhost:4000/api/auth/";
@@ -25,8 +26,20 @@ const login = async (userData) => {
   return result;
 };
 
-const logout = () => {
-  localStorage.removeItem("user");
+const logout = async () => {
+  const result = await axios
+    .get("http://localhost:4000/api/users/"+"logout", {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .catch((err) => {
+
+      return err.response;
+    });
+    if(result.status===200){
+      localStorage.removeItem("token");
+    }
 };
 
 const getCurrentUser = () => {

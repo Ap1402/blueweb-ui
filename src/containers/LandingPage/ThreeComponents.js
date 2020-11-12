@@ -72,7 +72,7 @@ const ThreeComponents = () => {
         <Row>
           <Col sm={12}>
             <h1 className="home-title">
-             How can we you to speed up your connection?
+             How can we help you to speed up your connection?
             </h1>
           </Col>
         </Row>

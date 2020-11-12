@@ -1,9 +1,12 @@
 export default function authHeader() {
-  const token = JSON.parse(localStorage.getItem("token"));
-
-  if (token) {
-    return token;
-  } else {
-    return {};
+  try {
+    const token = JSON.parse(localStorage.getItem("token"));
+    if (token) {
+      return token;
+    } else {
+      return {};
+    }
+  } catch (err) {
+    localStorage.remove("token");
   }
 }

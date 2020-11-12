@@ -34,7 +34,7 @@ const LogoutModal = () => {
             >
               Cancelar
             </button>
-            <a className="btn btn-primary" href="login.html">
+            <a className="btn btn-primary" href="/">
               Salir
             </a>
           </div>

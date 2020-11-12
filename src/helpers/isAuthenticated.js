@@ -10,6 +10,8 @@ export default async function isAuthenticated() {
       },
     }
   ).catch((err) => {
+    localStorage.removeItem("token");
+
     return false;
   });
   if (result.status === 200) {

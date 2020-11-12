@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import LoginModal from "../../components/Modals/LoginModal";
 import RegisterModal from "../../components/Modals/RegisterModal";
+import ClientLogoutModal from "../../components/Modals/ClientLogoutModal";
 
 const HeaderStyle = styled.header`
   width: 100%;
@@ -38,13 +39,14 @@ const HeaderStyle = styled.header`
     z-index: 4;
 
     display: none;
-    color: black;
+    color: #6b6969;
     @media (min-width: 700px) {
       display: inline;
       margin-left: auto;
       margin-right: 70px;
       button {
-        margin-left: 20px;
+        margin-left: 10px;
+        border-radius: 0;
       }
       .login {
         background-color: #3470df;
@@ -97,10 +99,11 @@ const HeaderStyle = styled.header`
   }
 `;
 
-const Header = () => {
+const Header = ({ isAuth }) => {
   const [barClassName, setbarClassName] = useState("");
-  const [modalShow, setModalShow] = React.useState(false);
-  const [modalRegister, setModalRegisterShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [modalRegister, setModalRegisterShow] = useState(false);
+  const [modalLogout, setModalLogoutShow] = useState(false);
 
   useEffect(() => {
     window.onscroll = () => {
@@ -112,14 +115,10 @@ const Header = () => {
     };
   }, []);
 
-  return (
-    <HeaderStyle>
-      <div className={"bar " + barClassName}>
-        <Link to="/">
-          <img src="/images/Logo.png" alt="BlueWeb"></img>
-        </Link>
-        <div className="desktop-bar">
-          <Navbar></Navbar>
+  const createAuthButtons = (isAuth) => {
+    if (!isAuth) {
+      return (
+        <>
           <Button
             className="login"
             onClick={() => setModalShow(true)}
@@ -138,13 +137,48 @@ const Header = () => {
           >
             Registro
           </Button>
+          <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
+          <RegisterModal
+            show={modalRegister}
+            onHide={() => setModalRegisterShow(false)}
+          ></RegisterModal>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Button
+            variant="outlined"
+            className="register"
+            color="primary"
+            disableElevation
+            onClick={() => setModalLogoutShow(true)}
+          >
+            Cliente
+          </Button>
+          <ClientLogoutModal
+            show={modalLogout}
+            onHide={() => setModalLogoutShow(false)}
+          ></ClientLogoutModal>
+        </>
+      );
+    }
+  };
+  return (
+    <HeaderStyle>
+      <div className={"bar " + barClassName}>
+        <Link to="/">
+          <img src="/images/Logo.png" alt="BlueWeb"></img>
+        </Link>
+        <div className="desktop-bar">
+          <Navbar></Navbar>
+          {createAuthButtons(isAuth)}
         </div>
+
         <div className="mobile-navbar">
           <NavbarMobile></NavbarMobile>
         </div>
       </div>
-      <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
-      <RegisterModal show={modalRegister} onHide={() => setModalRegisterShow(false)} />
     </HeaderStyle>
   );
 };
