@@ -2,6 +2,7 @@ import { Modal } from "react-bootstrap";
 import LoginForm from "../Forms/Client/LoginForm";
 
 function LoginModal(props) {
+
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>

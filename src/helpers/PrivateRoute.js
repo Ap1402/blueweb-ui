@@ -1,15 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
 import isAuthenticated from "./isAuthenticated";
+import Spinner from "../components/Spinner/Spinner";
 
-async function PrivateRoute({component: Component, children}) {
-  const hola = await isAuthenticated();
+function PrivateRoute({
+  component: Component,
+  children,
+  layout: Layout,
+  ...rest
+}) {
+  const [loading, setLoading] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
 
-  if (hola === true) {
-    return <Route {...children} render={(props) => <Component {...props} />} />;
-  }
-  return <Redirect to="login" />;
+  useEffect(() => {
+    const getData = async () => {
+      const result = await isAuthenticated();
+      setIsAuth(result);
+      setLoading(false);
+    };
+    getData();
+  }, []);
+
+  return (
+    <Route
+      {...rest}
+      render={(matchProps) =>
+        !loading ? (
+          isAuth ? (
+            <Layout>
+              <Component {...matchProps} />
+            </Layout>
+          ) : (
+            <Redirect to="/login" />
+          )
+        ) : (
+          <Spinner></Spinner>
+        )
+      }
+    />
+  );
 }
-
 export default PrivateRoute;

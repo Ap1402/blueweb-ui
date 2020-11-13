@@ -16,6 +16,7 @@ function ClientLogoutModal(props) {
           className="btn btn-secondary"
           type="button"
           data-dismiss="modal"
+          onClick={()=>props.handleClose(false)}
         >
           Cancelar
         </button>

@@ -5,6 +5,8 @@ import styled from "styled-components";
 import authService from "../../../services/auth.service";
 import createAlert from "../../../helpers/createAlert";
 import { useState } from "react";
+import { withRouter } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -12,8 +14,7 @@ const StyledForm = styled(Form)`
   justify-content: center;
   align-items: center;
 `;
-
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
@@ -42,18 +43,19 @@ const LoginForm = () => {
   return (
     <Formik
       initialValues={{
-        email: "",
+        username: "",
         password: "",
       }}
       validationSchema={Yup.object({
         password: Yup.string().required("Este campo es necesario"),
-        email: Yup.string()
-          .email("Debe ser un email válido")
-          .required("Este campo es necesario"),
+        username: Yup.string().required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         await loginUser(values);
         setSubmitting(false);
+        setTimeout(function () {
+          props.history.push("/clients/historial");
+        }, 2000);
       }}
     >
       {({ isSubmitting }) => (
@@ -61,7 +63,7 @@ const LoginForm = () => {
           <div className="row ">
             <div className="col-12">{createAlert(requestStatus)}</div>
             <div className="col-10 mx-auto">
-              <FormGroup label="Correo" name="email" type="text"></FormGroup>
+              <FormGroup label="Usuario" name="username" type="text"></FormGroup>
             </div>
             <div className="col-10 mx-auto">
               <FormGroup
@@ -88,4 +90,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default withRouter(LoginForm);

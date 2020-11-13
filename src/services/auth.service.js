@@ -28,18 +28,16 @@ const login = async (userData) => {
 
 const logout = async () => {
   const result = await axios
-    .get("http://localhost:4000/api/users/"+"logout", {
+    .get("http://localhost:4000/api/users/" + "logout", {
       headers: {
         "x-auth-token": authHeader(),
       },
     })
     .catch((err) => {
-
+      localStorage.removeItem("token");
       return err.response;
     });
-    if(result.status===200){
-      localStorage.removeItem("token");
-    }
+  localStorage.removeItem("token");
 };
 
 const getCurrentUser = () => {

@@ -3,12 +3,9 @@ import { Col, Container, Row } from "react-bootstrap";
 import styled from "styled-components";
 import SupportBanner from "../containers/LandingPage/SupportBanner";
 import { Link } from "react-router-dom";
-import AboutUs from "../containers/LandingPage/AboutUs";
 import Testimonials from "../containers/LandingPage/Testimonials";
 import Ventajas from "../containers/LandingPage/Ventajas";
-import ClientsCarousel from "../containers/LandingPage/ClientsCarousel";
 import ThreeComponents from "../containers/LandingPage/ThreeComponents";
-import PrivateRoute from "../helpers/PrivateRoute";
 import ContactUs from "../containers/LandingPage/ContactUs";
 
 const StyledBackgroundColorWrapper = styled.div`
@@ -20,6 +17,7 @@ const StyledBackgroundColorWrapper = styled.div`
   text-align: center;
   padding: 20px;
   position: relative;
+
   .custom-shape-divider-top-1604333882 {
     position: absolute;
     top: 0;
@@ -111,7 +109,7 @@ const Home = () => {
       <ThreeComponents></ThreeComponents>
       <Ventajas></Ventajas>
       {/*       <ClientsCarousel></ClientsCarousel>
-       */}{" "}
+       */}
       <Testimonials></Testimonials>
       <StyledBackgroundColorWrapper backgroundColor="white">
         <div class="custom-shape-divider-top-1604333882">
@@ -171,7 +169,7 @@ const Home = () => {
           </Row>
         </Container>
       </StyledBackgroundColorWrapper>
-        <ContactUs></ContactUs>
+      <ContactUs></ContactUs>
     </>
   );
 };

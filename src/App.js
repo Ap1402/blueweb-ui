@@ -19,6 +19,7 @@ import HistorialPago from "./containers/Clientpanel/HistorialPago";
 import PerfilCliente from "./containers/Clientpanel/PerfilCliente";
 import CrearCliente from "./pages/admin/CrearCliente";
 import PrivateRoute from "./helpers/PrivateRoute";
+import ActualizarDatos from "./containers/Clientpanel/ActualizarDatos";
 
 const theme = {
   colors: {
@@ -66,18 +67,25 @@ function App() {
             </AdminPanelLayout>
           </Route>
 
-          <Route path="/clients/:path?">
-            <ClientPanelLayout>
-              <Switch>
-                <PrivateRoute
-                  path="/clients/historial"
-                  exact
-                  component={HistorialPago}
-                ><HistorialPago></HistorialPago></PrivateRoute>
-                <Route path="/clients/perfil" exact component={PerfilCliente} />
-              </Switch>
-            </ClientPanelLayout>
-          </Route>
+          <PrivateRoute
+            layout={ClientPanelLayout}
+            path="/clients/historial"
+            component={HistorialPago}
+            exact
+          />
+
+          <PrivateRoute
+            layout={ClientPanelLayout}
+            path="/clients/perfil"
+            component={PerfilCliente}
+            exact
+          />
+          <PrivateRoute
+            layout={ClientPanelLayout}
+            path="/clients/actualizar"
+            component={ActualizarDatos}
+            exact
+          />
 
           <Route>
             <LandingPageLayout>

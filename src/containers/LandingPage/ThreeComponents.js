@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Slide } from "pure-react-carousel";
+import { Fade } from "react-reveal";
 
 const StyledBackgroundColorWrapper = styled.div`
   display: flex;
@@ -69,48 +71,50 @@ const ThreeComponents = () => {
   return (
     <StyledBackgroundColorWrapper backgroundColor="white">
       <Container>
-        <Row>
-          <Col sm={12}>
-            <h1 className="home-title">
-             How can we help you to speed up your connection?
-            </h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={12} md={4}>
-            <div className="cuadrado">
-              <i class="fas fa-headset"></i>
-              <h4>Mockup Text</h4>
-              <h5>
-                Create a more connected product design workflow. Bring
-                designers, product managers, and front-end developers to work
-                better and together.
-              </h5>
-            </div>
-          </Col>
-          <Col sm={12} md={4}>
-            <div className="cuadrado">
-              <i class="far fa-comment-dots"></i>
-              <h4>Mockup Text</h4>
-              <h5>
-                Create a more connected product design workflow. Bring
-                designers, product managers, and front-end developers to work
-                better and together.
-              </h5>
-            </div>
-          </Col>
-          <Col sm={12} md={4}>
-            <div className="cuadrado">
-              <i class="fas fa-network-wired"></i>
-              <h4>Mockup Text</h4>
-              <h5>
-                Create a more connected product design workflow. Bring
-                designers, product managers, and front-end developers to work
-                better and together.
-              </h5>
-            </div>
-          </Col>
-        </Row>
+        <Fade bottom cascade>
+          <Row>
+            <Col sm={12}>
+              <h1 className="home-title">
+                How can we help you to speed up your connection?
+              </h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={12} md={4}>
+              <div className="cuadrado">
+                <i class="fas fa-headset"></i>
+                <h4>Mockup Text</h4>
+                <h5>
+                  Create a more connected product design workflow. Bring
+                  designers, product managers, and front-end developers to work
+                  better and together.
+                </h5>
+              </div>
+            </Col>
+            <Col sm={12} md={4}>
+              <div className="cuadrado">
+                <i class="far fa-comment-dots"></i>
+                <h4>Mockup Text</h4>
+                <h5>
+                  Create a more connected product design workflow. Bring
+                  designers, product managers, and front-end developers to work
+                  better and together.
+                </h5>
+              </div>
+            </Col>
+            <Col sm={12} md={4}>
+              <div className="cuadrado">
+                <i class="fas fa-network-wired"></i>
+                <h4>Mockup Text</h4>
+                <h5>
+                  Create a more connected product design workflow. Bring
+                  designers, product managers, and front-end developers to work
+                  better and together.
+                </h5>
+              </div>
+            </Col>
+          </Row>
+        </Fade>
       </Container>
     </StyledBackgroundColorWrapper>
   );

@@ -42,14 +42,12 @@ const AdminPanelLayout = ({ children }) => {
       <Helmet>
         <title>BlueWeb Admin Panel</title>
         <meta charSet="utf-8" />
-
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
           integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
           crossOrigin="anonymous"
         />
-
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
           rel="stylesheet"
@@ -69,13 +67,11 @@ const AdminPanelLayout = ({ children }) => {
           integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
           crossorigin=""
         ></script>
-
         <link rel="icon" href="/favicon.ico" />
         <script src="/vendor/jquery-easing/jquery.easing.min.js" />
         <script src="/js/sb-admin-2.min.js" />
         <link href="/css/sb-admin-2.min.css" rel="stylesheet" />.
         <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js" />
-
       </Helmet>
 
       <div id="wrapper">

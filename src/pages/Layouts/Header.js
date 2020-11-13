@@ -154,11 +154,12 @@ const Header = ({ isAuth }) => {
             disableElevation
             onClick={() => setModalLogoutShow(true)}
           >
-            Cliente
+            Salir
           </Button>
           <ClientLogoutModal
             show={modalLogout}
             onHide={() => setModalLogoutShow(false)}
+            handleClose={setModalLogoutShow}
           ></ClientLogoutModal>
         </>
       );

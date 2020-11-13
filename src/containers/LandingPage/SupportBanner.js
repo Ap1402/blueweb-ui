@@ -7,8 +7,8 @@ const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   align-items: center;
   position: relative;
   color: white;
@@ -45,7 +45,7 @@ const StyledWrapper = styled.div`
 
     @media (min-width: 720px) {
       h1 {
-        font-size: 24px;
+        font-size: 20px;
       }
 
       h4 {

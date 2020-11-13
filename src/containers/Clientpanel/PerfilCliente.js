@@ -1,5 +1,8 @@
-import React from "react";
+import Axios from "axios";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import Spinner from "../../components/Spinner/Spinner";
+import authHeader from "../../helpers/getAuthToken";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -27,7 +30,24 @@ const StyledContainer = styled.div`
 `;
 
 const PerfilCliente = () => {
-  return (
+  const [userData, setUserData] = useState();
+  const [loading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const result = await Axios.get("http://localhost:4000/api/clients/self", {
+        headers: {
+          "x-auth-token": authHeader(),
+        },
+      }).catch((err) => {
+        console.log(err.response);
+      });
+      setUserData(result.data);
+      setIsLoading(false);
+    };
+    getUserData();
+  }, []);
+  return !loading ? (
     <>
       <div className="card">
         <div className="card-body">
@@ -35,27 +55,32 @@ const PerfilCliente = () => {
             <h1 className="seccion-header">Datos del cliente</h1>
             <div className="info">
               <p>
-                Cedula: <span>V-55555</span>
+  Cedula: <span>{userData.dni}</span>
               </p>
               <p>
-                Primer Nombre: <span>Xxxxx</span>
+                Primer Nombre: <span>{userData.firstName}</span>
               </p>
               <p>
-                Segundo Nombre: <span>Xxxxx</span>
+                Segundo Nombre: <span>{userData.secondName}</span>
               </p>
               <p>
-                Primer Apellido: <span>Xxxxx</span>
+                Primer Apellido: <span>{userData.firstLastName}</span>
               </p>
               <p>
-                Segundo Apellido: <span>Xxxxx</span>
+                Segundo Apellido: <span>{userData.secondLastName}</span>
               </p>
             </div>
             <div className="info">
               <p>
                 Direccion:
                 <span>
-                  AV.74 Entre Calle 105 Y Av 75 Al lado de Toyoclub, Avenida
-                  Intercomunal Don Julio Centeno, San Diego 2006, Carabobo
+                  {userData.address}
+                </span>
+              </p>
+              <p>
+                Teléfono:
+                <span>
+                  {userData.phone}
                 </span>
               </p>
             </div>
@@ -63,6 +88,8 @@ const PerfilCliente = () => {
         </div>
       </div>
     </>
+  ) : (
+    <Spinner></Spinner>
   );
 };
 
