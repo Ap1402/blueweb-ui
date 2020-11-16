@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import isAuthenticated from "./isAuthenticated";
 import Spinner from "../components/Spinner/Spinner";
 
-function PrivateRoute({
+function PrivateSupportRoute({
   component: Component,
   children,
   layout: Layout,
@@ -11,11 +11,14 @@ function PrivateRoute({
 }) {
   const [loading, setLoading] = useState(true);
   const [isAuth, setIsAuth] = useState(false);
+  const [role, setRole] = useState();
 
   useEffect(() => {
     const getData = async () => {
       const result = await isAuthenticated();
+      console.log(result)
       setIsAuth(result.isAuth);
+      setRole(result.role);
       setLoading(false);
     };
     getData();
@@ -26,12 +29,12 @@ function PrivateRoute({
       {...rest}
       render={(matchProps) =>
         !loading ? (
-          isAuth ? (
+          isAuth & (role === "admin" || role === "support") ? (
             <Layout>
               <Component {...matchProps} />
             </Layout>
           ) : (
-            <Redirect to="/login" />
+            <Redirect to="/" />
           )
         ) : (
           <Spinner></Spinner>
@@ -40,4 +43,5 @@ function PrivateRoute({
     />
   );
 }
-export default PrivateRoute;
+
+export default PrivateSupportRoute;

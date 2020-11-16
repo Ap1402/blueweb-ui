@@ -3,7 +3,7 @@ import authHeader from "./getAuthToken";
 
 export default async function isAuthenticated() {
   const result = await Axios.get(
-    "http://localhost:4000/api/users/validateToken",
+    "http://localhost:4000/api/auth/validateToken",
     {
       headers: {
         "x-auth-token": authHeader(),
@@ -13,7 +13,12 @@ export default async function isAuthenticated() {
     localStorage.removeItem("token");
     return false;
   });
+
   if (result.status === 200) {
-    return true;
+    return {
+      isAuth: true,
+      role: result.data.user.role,
+      id: result.data.user.id,
+    };
   }
 }

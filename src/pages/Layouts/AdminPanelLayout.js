@@ -4,6 +4,7 @@ import LogoutModal from "../../components/Modals/LogoutModal";
 import ClientPanelSidebar from "../../components/Navbars/ClientPanelSidebar";
 import { Helmet } from "react-helmet";
 import Axios from "axios";
+import authHeader from "../../helpers/getAuthToken";
 
 const AdminPanelLayout = ({ children }) => {
   const [data, setData] = useState({
@@ -15,13 +16,23 @@ const AdminPanelLayout = ({ children }) => {
     const getData = async () => {
       try {
         const pendingMessages = await Axios.get(
-          "http://localhost:4000/api/clients/countMessages"
+          "http://localhost:4000/api/clients/messsages/count",
+          {
+            headers: {
+              "x-auth-token": authHeader(),
+            },
+          }
         ).catch((err) => {
           console.log(err);
         });
 
         const pendingFactibilityRequests = await Axios.get(
-          "http://localhost:4000/api/factibility/countPendingRequests"
+          "http://localhost:4000/api/factibility/countPendingRequests",
+          {
+            headers: {
+              "x-auth-token": authHeader(),
+            },
+          }
         ).catch((err) => {
           console.log(err);
         });

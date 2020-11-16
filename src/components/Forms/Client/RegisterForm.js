@@ -17,10 +17,13 @@ const RegisterForm = ({ registerRequest }) => {
         email: "",
         password: "",
         confirmPassword: "",
+        username: "",
         dni: "",
       }}
       validationSchema={Yup.object({
         password: Yup.string().required("Este campo es necesario"),
+        username: Yup.string().required("Este campo es necesario"),
+
         confirmPassword: Yup.string().oneOf(
           [Yup.ref("password"), null],
           "Las contraseñas deben coincidir"
@@ -41,17 +44,23 @@ const RegisterForm = ({ registerRequest }) => {
             <div className="col-10 mx-auto">
               <FormGroup label="Cedula" name="dni" type="text"></FormGroup>
               <FormGroup label="Correo" name="email" type="text"></FormGroup>
+
+              <FormGroup
+                label="Nombre de usuario"
+                name="username"
+                type="text"
+              ></FormGroup>
             </div>
             <div className="col-10 mx-auto">
               <FormGroup
                 label="Contraseña"
                 name="password"
-                type="text"
+                type="password"
               ></FormGroup>
               <FormGroup
                 label="Confirmar contraseña"
                 name="confirmPassword"
-                type="text"
+                type="password"
               ></FormGroup>
             </div>
           </div>

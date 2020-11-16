@@ -17,7 +17,7 @@ const register = async (userData) => {
 
 const login = async (userData) => {
   const result = await axios
-    .post("http://localhost:4000/api/users/" + "login", userData)
+    .post("http://localhost:4000/api/auth/" + "login", userData)
     .catch((err) => {
       console.log(err.response);
       return err.response;
@@ -28,7 +28,7 @@ const login = async (userData) => {
 
 const logout = async () => {
   const result = await axios
-    .get("http://localhost:4000/api/users/" + "logout", {
+    .get("http://localhost:4000/api/auth/" + "logout", {
       headers: {
         "x-auth-token": authHeader(),
       },

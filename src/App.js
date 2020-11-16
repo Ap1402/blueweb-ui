@@ -20,6 +20,7 @@ import PerfilCliente from "./containers/Clientpanel/PerfilCliente";
 import CrearCliente from "./pages/admin/CrearCliente";
 import PrivateRoute from "./helpers/PrivateRoute";
 import ActualizarDatos from "./containers/Clientpanel/ActualizarDatos";
+import PrivateSupportRoute from "./helpers/PrivateSupportRoute";
 
 const theme = {
   colors: {
@@ -38,33 +39,38 @@ function App() {
 
         <Switch>
           <Route path="/admin/:path?">
-            <AdminPanelLayout>
-              <Switch>
-                <Route path="/admin/clientes" exact component={VerClientes} />
-
-                <Route
-                  path="/admin/clientes/crear"
-                  exact
-                  component={CrearCliente}
-                />
-                <Route
-                  path="/admin/factibilidad/"
-                  exact
-                  component={VerFactibilidadSolicitudes}
-                />
-
-                <Route
-                  path="/admin/mensajes/"
-                  exact
-                  component={VerMensajesContacto}
-                />
-                <Route
-                  path="/admin/mensajes/revisados"
-                  exact
-                  component={VerMensajesRevisados}
-                />
-              </Switch>
-            </AdminPanelLayout>
+            <Switch>
+              <PrivateSupportRoute
+                layout={AdminPanelLayout}
+                path="/admin/clientes"
+                component={VerClientes}
+                exact
+              />
+              <PrivateSupportRoute
+                layout={AdminPanelLayout}
+                path="/admin/clientes/crear"
+                exact
+                component={CrearCliente}
+              />
+              <PrivateSupportRoute
+                layout={AdminPanelLayout}
+                path="/admin/factibilidad/"
+                exact
+                component={VerFactibilidadSolicitudes}
+              />
+              <PrivateSupportRoute
+                layout={AdminPanelLayout}
+                path="/admin/mensajes/"
+                exact
+                component={VerMensajesContacto}
+              />
+              <PrivateSupportRoute
+                layout={AdminPanelLayout}
+                path="/admin/mensajes/revisados"
+                exact
+                component={VerMensajesRevisados}
+              />
+            </Switch>
           </Route>
 
           <PrivateRoute

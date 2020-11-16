@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHeader from "../helpers/getAuthToken";
 
 const API_URL = "http://localhost:4000/api/clients/";
 
@@ -11,11 +12,14 @@ const registerClient = async (client) => {
 
 const getMessages = async (query) => {
   const result = await axios
-    .get(API_URL + "ContactMessage", {
+    .get(API_URL + "messages", {
       params: {
         page: query.page,
         size: query.size,
         wasAnswered: query.wasAnswered,
+      },
+      headers: {
+        "x-auth-token": authHeader(),
       },
     })
     .catch((err) => {
@@ -23,7 +27,6 @@ const getMessages = async (query) => {
     });
   return result;
 };
-
 
 const getFactibilityRequests = async (query) => {
   const result = await axios
@@ -31,7 +34,10 @@ const getFactibilityRequests = async (query) => {
       params: {
         page: query.page,
         size: query.size,
-        wasEvaluated: query.wasEvaluated
+        wasEvaluated: query.wasEvaluated,
+      },
+      headers: {
+        "x-auth-token": authHeader(),
       },
     })
     .catch((err) => {
@@ -40,34 +46,8 @@ const getFactibilityRequests = async (query) => {
   return result;
 };
 
-const login = (username, password) => {
-  return axios
-    .post(API_URL + "signin", {
-      username,
-      password,
-    })
-    .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
-
-      return response.data;
-    });
-};
-
-const logout = () => {
-  localStorage.removeItem("user");
-};
-
-const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
-};
-
 export default {
   registerClient,
-  login,
-  logout,
-  getCurrentUser,
   getMessages,
-  getFactibilityRequests
+  getFactibilityRequests,
 };
