@@ -12,13 +12,13 @@ const HeaderStyle = styled.header`
   width: 100%;
   z-index: 4;
   .bar {
+    color: white;
+
     font-size: 15px;
     align-items: center;
     width: 100%;
     display: flex;
     z-index: 1000;
-
-    background-color: white;
 
     flex-direction: row;
     justify-content: space-between;
@@ -27,10 +27,15 @@ const HeaderStyle = styled.header`
       padding: 5px 0 5px 50px;
       height: 50px;
     }
+    a{
+      z-index: 1000;
+
+    }
     @media (max-width: 700px) {
       justify-content: space-between;
       img {
         padding: 5px 0 5px 10px;
+        z-index: 1000;
       }
     }
   }
@@ -39,7 +44,6 @@ const HeaderStyle = styled.header`
     z-index: 4;
 
     display: none;
-    color: #6b6969;
     @media (min-width: 700px) {
       display: inline;
       margin-left: auto;
@@ -61,7 +65,7 @@ const HeaderStyle = styled.header`
 
   .scroll {
     background-color: white;
-
+    color: #6b6969;
     position: fixed;
     z-index: 1000;
     top: 0;

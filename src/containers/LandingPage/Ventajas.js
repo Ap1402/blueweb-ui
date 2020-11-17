@@ -48,7 +48,7 @@ const Ventajas = () => {
   return (
     <StyledDiv>
       <TwoSectionsDivider
-        rightComponent={<img src="/images/Signal.png" alt="moon"></img>}
+        rightComponent={<img src="/images/landingPage/WirelessAndFiber.png"></img>}
         leftComponent={
           <StyledTextDiv>
             <h1>Fibra óptica y señal inalámbrica</h1>
@@ -93,7 +93,7 @@ const Ventajas = () => {
             </Link>
           </StyledTextDiv>
         }
-        leftComponent={<img src="/images/WorkSupport.png" alt="support"></img>}
+        leftComponent={<img src="/images/landingPage/Support.png"></img>}
         fadeDirection="right"
       ></TwoSectionsDivider>
     </StyledDiv>

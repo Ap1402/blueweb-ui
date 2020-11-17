@@ -46,10 +46,13 @@ const StyledBackgroundColorWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px;
+    padding: 0px 20px;
     border-radius: 10px;
-    margin: 10px;
+    margin: 5px;
     color: black;
+    img {
+      height: 85px;
+    }
     i {
       color: inherit;
       font-size: 50px;
@@ -57,7 +60,7 @@ const StyledBackgroundColorWrapper = styled.div`
     h4 {
       font-size: 18px;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 5px;
     }
     h5 {
       max-width: 310px;
@@ -82,7 +85,7 @@ const ThreeComponents = () => {
           <Row>
             <Col sm={12} md={4}>
               <div className="cuadrado">
-                <i class="fas fa-headset"></i>
+                <img src="/images/icons/Internet.png"></img>
                 <h4>Mockup Text</h4>
                 <h5>
                   Create a more connected product design workflow. Bring
@@ -93,7 +96,7 @@ const ThreeComponents = () => {
             </Col>
             <Col sm={12} md={4}>
               <div className="cuadrado">
-                <i class="far fa-comment-dots"></i>
+                <img src="/images/icons/Wire.png"></img>
                 <h4>Mockup Text</h4>
                 <h5>
                   Create a more connected product design workflow. Bring
@@ -104,7 +107,7 @@ const ThreeComponents = () => {
             </Col>
             <Col sm={12} md={4}>
               <div className="cuadrado">
-                <i class="fas fa-network-wired"></i>
+                <img src="/images/icons/Signal.png"></img>
                 <h4>Mockup Text</h4>
                 <h5>
                   Create a more connected product design workflow. Bring

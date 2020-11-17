@@ -11,7 +11,11 @@ export default async function isAuthenticated() {
     }
   ).catch((err) => {
     localStorage.removeItem("token");
-    return false;
+    return {
+      isAuth: false,
+      role: null,
+      id: null,
+    };
   });
 
   if (result.status === 200) {
@@ -20,5 +24,7 @@ export default async function isAuthenticated() {
       role: result.data.user.role,
       id: result.data.user.id,
     };
+  } else {
+    return result;
   }
 }

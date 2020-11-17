@@ -16,7 +16,7 @@ function PrivateSupportRoute({
   useEffect(() => {
     const getData = async () => {
       const result = await isAuthenticated();
-      console.log(result)
+      console.log(result);
       setIsAuth(result.isAuth);
       setRole(result.role);
       setLoading(false);

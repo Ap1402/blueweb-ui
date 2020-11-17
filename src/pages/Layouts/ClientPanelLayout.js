@@ -33,6 +33,7 @@ const ClientPanelLayout = ({ children }) => {
   const [loading, setIsLoading] = useState(true);
   const [modalShow, setModalShow] = useState(false);
 
+  // Checking if user is client
   useEffect(() => {
     const getUserData = async () => {
       const result = await Axios.get("http://localhost:4000/api/clients/self", {
@@ -52,7 +53,7 @@ const ClientPanelLayout = ({ children }) => {
     return (
       <>
         <Helmet>
-          <title>BlueWeb Panel Clientes</title>
+          <title>BlueWeb Panel de Clientes</title>
           <meta charSet="utf-8" />
           <link
             rel="stylesheet"

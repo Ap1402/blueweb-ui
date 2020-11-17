@@ -10,24 +10,6 @@ const registerClient = async (client) => {
   return result;
 };
 
-const getMessages = async (query) => {
-  const result = await axios
-    .get(API_URL + "messages", {
-      params: {
-        page: query.page,
-        size: query.size,
-        wasAnswered: query.wasAnswered,
-      },
-      headers: {
-        "x-auth-token": authHeader(),
-      },
-    })
-    .catch((err) => {
-      return err.response;
-    });
-  return result;
-};
-
 const getFactibilityRequests = async (query) => {
   const result = await axios
     .get("http://localhost:4000/api/factibility/", {
@@ -48,6 +30,5 @@ const getFactibilityRequests = async (query) => {
 
 export default {
   registerClient,
-  getMessages,
   getFactibilityRequests,
 };

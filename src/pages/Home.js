@@ -7,6 +7,7 @@ import Testimonials from "../containers/LandingPage/Testimonials";
 import Ventajas from "../containers/LandingPage/Ventajas";
 import ThreeComponents from "../containers/LandingPage/ThreeComponents";
 import ContactUs from "../containers/LandingPage/ContactUs";
+import ClientsCarousel from "../containers/LandingPage/ClientsCarousel";
 
 const StyledBackgroundColorWrapper = styled.div`
   display: flex;
@@ -108,10 +109,10 @@ const Home = () => {
       <SupportBanner></SupportBanner>
       <ThreeComponents></ThreeComponents>
       <Ventajas></Ventajas>
-      {/*       <ClientsCarousel></ClientsCarousel>
-       */}
-      <Testimonials></Testimonials>
-      <StyledBackgroundColorWrapper backgroundColor="white">
+            <ClientsCarousel></ClientsCarousel>
+      
+{/*       <Testimonials></Testimonials>
+ */}      {/* <StyledBackgroundColorWrapper backgroundColor="white">
         <div class="custom-shape-divider-top-1604333882">
           <svg
             data-name="Layer 1"
@@ -168,7 +169,7 @@ const Home = () => {
             </Col>
           </Row>
         </Container>
-      </StyledBackgroundColorWrapper>
+      </StyledBackgroundColorWrapper> */}
       <ContactUs></ContactUs>
     </>
   );

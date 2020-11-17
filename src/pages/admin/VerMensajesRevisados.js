@@ -5,6 +5,7 @@ import MaterialTable from "material-table";
 import Axios from "axios";
 import styled from "styled-components";
 import adminService from "../../services/admin.service";
+import messagesService from "../../services/messages.service";
 
 const StyledModalContent = styled.div`
   color: black;
@@ -82,7 +83,7 @@ const VerMensajesContacto = () => {
         }}
         data={(query) =>
           new Promise(async (resolve, reject) => {
-            const result = await adminService.getMessages({
+            const result = await messagesService.getMessages({
               page: query.page,
               size: query.pageSize,
               wasAnswered: 1,

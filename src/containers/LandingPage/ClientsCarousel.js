@@ -1,83 +1,70 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  ButtonBack,
-  ButtonNext,
-  DotGroup,
-} from "pure-react-carousel";
-import "pure-react-carousel/dist/react-carousel.es.css";
+import Carousel from "react-elastic-carousel";
 
 const StyledContainer = styled.section`
   width: 100%;
-  height: 500px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  .container {
-    align-self: center;
-  }
-  .headline {
-    text-align: center;
-    color: $highlight1;
-  }
-  img {
-    height: 60px;
-    width:70px;
-  }
-  .buttons {
-    align-self: center;
+  position: relative;
+  h1 {
+    position: absolute;
+    top: 10%;
+    font-size: 32px;
+    font-weight: 800;
   }
 `;
 
+const StyledContainerDiv = styled.div`
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+`;
+const StyledImg = styled.img`
+  height: 90px;
+`;
+
 const ClientsCarousel = () => {
+  const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 550, itemsToShow: 6 },
+    { width: 850, itemsToShow: 6 },
+    { width: 1150, itemsToShow: 6 },
+    { width: 1450, itemsToShow: 6 },
+    { width: 1750, itemsToShow: 7 },
+  ];
   return (
     <StyledContainer>
-      <div className="container">
-        <CarouselProvider
-          visibleSlides={3}
-          totalSlides={5}
-          step={2}
-          naturalSlideWidth={40}
-          naturalSlideHeight={40}
+      <h1>Empresas que nos recomiendan</h1>
+      <StyledContainerDiv>
+        <Carousel
+          breakPoints={breakPoints}
+          showArrows={false}
+          focusOnSelect={false}
+          enableAutoPlay
+          autoPlaySpeed={2000}
+          pagination={false}
+          itemsToShow={5}
           infinite
         >
-          <h2 className="headline">Infinite Carousel</h2>
-          <p>
-            A carousel that returns to the first slide if the user clicks the
-            Next button while on the last slide and returns to the last slide if
-            the user clicks the Back button while on the first slide. Also
-            behaves similarly with swiping left on the first image or right on
-            the last image.
-          </p>
-          <Slider className="slider">
-            <Slide index={0}>
-              <img src="/images/Gulf_logo.png"></img>
-            </Slide>
-            <Slide index={1}>
-              <img src="/images/Gulf_logo.png"></img>
-            </Slide>
-            <Slide index={2}>
-              <img src="/images/Gulf_logo.png"></img>
-            </Slide>
-            <Slide index={3}>
-              <img src="/images/Gulf_logo.png"></img>
-            </Slide>
-            <Slide index={4}>
-              <img src="/images/Gulf_logo.png"></img>
-            </Slide>
-          </Slider>
-          <div className="buttons">
-            <ButtonBack>Back</ButtonBack>
-            <ButtonNext>Next</ButtonNext>
-          </div>
-          <DotGroup />
-        </CarouselProvider>
-      </div>
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+          <StyledImg src="/images/Gulf_logo.png"></StyledImg>
+        </Carousel>
+      </StyledContainerDiv>
     </StyledContainer>
   );
 };

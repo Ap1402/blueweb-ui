@@ -12,9 +12,8 @@ const StyledForm = styled(Form)`
 `;
 
 const RequestFactibility = ({ registerRequest }) => {
-
   const onSelectCustomerHandler = (coordenades, setFieldValue) => {
-    setFieldValue('coordenades', coordenades);
+    setFieldValue("coordenades", coordenades);
   };
 
   return (
@@ -33,9 +32,9 @@ const RequestFactibility = ({ registerRequest }) => {
           .email("Debe ser un email válido")
           .required("Este campo es necesario"),
       })}
-      onSubmit={async (values, { setSubmitting}) => {
+      onSubmit={async (values, { setSubmitting }) => {
         const result = await registerRequest(values);
-        console.log(result)
+        console.log(result);
         setSubmitting(false);
       }}
     >
@@ -47,7 +46,6 @@ const RequestFactibility = ({ registerRequest }) => {
                 label="Nombre del solicitante"
                 name="requesterName"
                 type="text"
-
               ></FormGroup>
             </div>
             <div className="col-12 col-lg-6">
@@ -76,8 +74,10 @@ const RequestFactibility = ({ registerRequest }) => {
             </div>
           </div>
 
-          <Map 
-          changeCoordenades={coordenades => onSelectCustomerHandler(coordenades, setFieldValue)}
+          <Map
+            changeCoordenades={(coordenades) =>
+              onSelectCustomerHandler(coordenades, setFieldValue)
+            }
           ></Map>
 
           <div className="row text-center my-3">

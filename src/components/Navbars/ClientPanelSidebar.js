@@ -87,11 +87,11 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
             <i className="fas fa-fw fa-table"></i>
             <span>
               Ver solicitudes
-              {pendingRequests !== 0 && (
-                <span class="badge badge-danger badge-counter">
+              {pendingRequests  ? (
+                <span className="badge badge-danger badge-counter">
                   {pendingRequests}
                 </span>
-              )}
+              ):''}
             </span>
           </a>
         </Link>
@@ -105,7 +105,7 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
             <span>
               Ver Mensajes Pendientes
               {pendingMessages !== 0 && (
-                <span class="badge badge-danger badge-counter">
+                <span className="badge badge-danger badge-counter">
                   {pendingMessages}
                 </span>
               )}

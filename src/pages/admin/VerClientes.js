@@ -27,51 +27,6 @@ const VerClientes = () => {
     getData();
   }, []);
 
-  /*  const tableData = useMemo(() => data, []);
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Cédula",
-        accessor: "dni",
-      },
-      {
-        Header: "Nombre",
-        accessor: "firstName",
-      },
-      {
-        Header: "Apellido",
-        accessor: "firstLastName",
-      },
-      {
-        Header: "Teléfono",
-        accessor: "phone",
-      },
-      {
-        Header: "Acciones",
-        Cell: (tableData) => {
-          return (
-            <div>
-              <Link href={"/admin/clientes/editar/" + data.row.original.id}>
-                <button
-                  className="btn btn-primary mx-1"
-                  onClick={() => setModalShow(true)}
-                >
-                  <i className="fas fa-eye" />
-                </button>
-              </Link>
-              <Link href={"/admin/clientes/editar/" + tableData.row.original.id}>
-                <button className="btn btn-danger mx-1">
-                  <i className="fas fa-trash" />
-                </button>
-              </Link>
-            </div>
-          );
-        },
-      },
-    ],
-    []
-  ); */
-
   return (
     <div className="container-fluid">
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -86,9 +41,7 @@ const VerClientes = () => {
                 Tabla de clientes
               </h6>
             </div>
-            <div className="card-body">
-              {/*  {data && <Table columns={columns} data={data}></Table>} */}
-            </div>
+            <div className="card-body"></div>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ const API_URL = "http://localhost:4000/api/auth/";
 
 const register = async (userData) => {
   const result = await axios
-    .post("http://localhost:4000/api/users/register", userData)
+    .post(API_URL + "register", userData)
     .catch((err) => {
       console.log(err.response);
 
@@ -16,19 +16,17 @@ const register = async (userData) => {
 };
 
 const login = async (userData) => {
-  const result = await axios
-    .post("http://localhost:4000/api/auth/" + "login", userData)
-    .catch((err) => {
-      console.log(err.response);
-      return err.response;
-    });
+  const result = await axios.post(API_URL + "login", userData).catch((err) => {
+    console.log(err.response);
+    return err.response;
+  });
   setAuthToken(result.data);
   return result;
 };
 
 const logout = async () => {
   const result = await axios
-    .get("http://localhost:4000/api/auth/" + "logout", {
+    .get(API_URL + "logout", {
       headers: {
         "x-auth-token": authHeader(),
       },

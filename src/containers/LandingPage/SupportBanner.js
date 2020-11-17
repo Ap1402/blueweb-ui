@@ -30,17 +30,18 @@ const StyledWrapper = styled.div`
     h4 {
       font-size: 20px;
     }
-    i {
-      font-size: 40px;
-      margin-right: 20px;
+    img {
+      height: 60px;
+      margin-right: 5px;
     }
     p {
       font-size: 20px;
     }
-    button, a {
+    button,
+    a {
       font-size: 18px;
-      font-family:  Helvetica,"Arimo", sans-serif; 
-      font-weight:500;
+      font-family: Helvetica, "Arimo", sans-serif;
+      font-weight: 500;
     }
 
     @media (min-width: 720px) {
@@ -51,8 +52,8 @@ const StyledWrapper = styled.div`
       h4 {
         font-size: 18px;
       }
-      i {
-        font-size: 50px;
+      img {
+        height: 60px;
       }
       p {
         font-size: 18px;
@@ -70,14 +71,14 @@ const SupportBanner = () => {
     <StyledWrapper>
       <Slide left duration={2100}>
         <div className="divider-block">
-          <i className="fas fa-phone"></i>
+          <img src="/images/icons/Phone.png"></img>
           <div className="text">
             <h4>Atención al cliente</h4>
             <p>555-555555</p>
           </div>
         </div>
         <div className="divider-block">
-          <i class="fas fa-clock"></i>
+          <img src="/images/icons/Clock.png"></img>
 
           <div className="text">
             <h4>Horario de atención</h4>
@@ -85,7 +86,7 @@ const SupportBanner = () => {
           </div>
         </div>
         <div className="divider-block">
-          <i className="fas fa-question"></i>
+          <img src="/images/icons/Support.png"></img>
           <div className="text">
             <h4>Revisión de factibilidad</h4>
             <Link

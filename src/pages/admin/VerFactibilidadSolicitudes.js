@@ -20,75 +20,8 @@ const VerFactibilidadSolicitudes = () => {
     wasAnswered: null,
   });
 
-  
-/*   const [data, setData] = useState(null);
-
-  const [modalShow, setModalShow] = useState(false);
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const result = await axios
-          .get("http://localhost:4000/api/factibility/pending")
-          .catch((err) => {
-            console.log(err);
-          });
-        setData(result.data);
-        return;
-      } catch (err) {}
-    };
-    getData();
-  }, []);
-
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Coordenadas",
-        accessor: "coordenades",
-      },
-      {
-        Header: "Nombre",
-        accessor: "requesterName",
-      },
-      {
-        Header: "Teléfono",
-        accessor: "requesterPhone",
-      },
-      {
-        Header: "Apellido",
-        accessor: "firstLastName",
-      },
-      {
-        Header: "Acciones",
-        Cell: (tableData) => {
-          return (
-            <div>
-              <Link href={"/admin/clientes/editar/" + data.row.original.id}>
-                <button
-                  onClick={() => setModalShow(true)}
-                  className="btn btn-primary mx-1"
-                >
-                  <i className="fas fa-eye" />
-                </button>
-              </Link>
-              <Link href={"/admin/clientes/editar/" + tableData.row.original.id}>
-                <button className="btn btn-danger mx-1">
-                  <i className="fas fa-trash" />
-                </button>
-              </Link>
-            </div>
-          );
-        },
-      },
-    ],
-    []
-  ); */
-
-  
   function RefreshData() {
-
     const tableRef = React.createRef();
-
     return (
       <MaterialTable
         title="Solicitudes de factibilidad"
@@ -104,7 +37,7 @@ const VerFactibilidadSolicitudes = () => {
             actions: "Acciones",
           },
           pagination: {
-            labelRowsSelect:"filas"
+            labelRowsSelect: "filas",
           },
           body: {
             emptyDataSourceMessage: "No hay registros para mostrar",
@@ -121,7 +54,7 @@ const VerFactibilidadSolicitudes = () => {
           { title: "Solicitante", field: "requesterName" },
           { title: "Correo", field: "requesterEmail" },
           { title: "Teléfono", field: "requesterPhone" },
-         /*  {
+          /*  {
             title: "Revisado",
             field: "wasAnswered",
             render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
@@ -131,7 +64,7 @@ const VerFactibilidadSolicitudes = () => {
           headerStyle: {
             backgroundColor: "#01579b",
             color: "#FFF",
-            padding:'20px'
+            padding: "20px",
           },
         }}
         data={(query) =>
@@ -141,13 +74,13 @@ const VerFactibilidadSolicitudes = () => {
               size: query.pageSize,
               wasEvaluated: 0,
             });
-              resolve({
-                page: result.data.currentPage,
-                data: result.data.data,
-                totalCount: result.data.totalItems
-              });
-            })
-          }
+            resolve({
+              page: result.data.currentPage,
+              data: result.data.data,
+              totalCount: result.data.totalItems,
+            });
+          })
+        }
         actions={[
           {
             icon: "refresh",
@@ -194,7 +127,7 @@ const VerFactibilidadSolicitudes = () => {
                 </h6>
               </div>
               <div className="card-body">
-              <RefreshData></RefreshData>
+                <RefreshData></RefreshData>
 
                 <SeeContactMessageInfo
                   show={modalShow}

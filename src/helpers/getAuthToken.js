@@ -5,7 +5,6 @@ export default function authHeader() {
       return token.token;
     }
   } catch (err) {
-    console.log(err);
     localStorage.removeItem("token");
   }
 }

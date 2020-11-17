@@ -4,6 +4,9 @@ import { Formik, Form } from "formik";
 import styled from "styled-components";
 import SelectField from "../SelectField";
 import TextAreaField from "../TextAreaField";
+import messagesService from "../../../services/messages.service";
+import createAlert from "../../../helpers/createAlert";
+import { useState } from "react";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -12,7 +15,12 @@ const StyledForm = styled(Form)`
   align-items: center;
 `;
 
-const RequestFactibility = ({ registerRequest }) => {
+const RequestFactibility = () => {
+  const [requestStatus, setRequestStatus] = useState({
+    message: "",
+    success: false,
+    sent: false,
+  });
   return (
     <Formik
       initialValues={{
@@ -32,13 +40,16 @@ const RequestFactibility = ({ registerRequest }) => {
           .required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        const result = await registerRequest(values);
+        const result = await messagesService.createContactMessage(values);
+        setRequestStatus(result);
         setSubmitting(false);
       }}
     >
       {({ isSubmitting, setFieldValue }) => (
         <StyledForm>
           <div className="row ">
+            <div className="col-12">{createAlert(requestStatus)}</div>
+
             <div className="col-12">
               <FormGroup
                 label="Nombre completo"

@@ -11,11 +11,12 @@ const HeroBannerStyled = styled.section`
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 500px;
+  margin-top:-50px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  height: calc(100vh - 40px);
+  height: calc(100vh);
   background-image: url("/images/Banner-2.png");
 
   &:before {

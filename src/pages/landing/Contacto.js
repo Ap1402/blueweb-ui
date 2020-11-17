@@ -5,7 +5,7 @@ import ParallaxBackground from "../../components/ParallaxBackground/ParallaxBack
 import PreFooter from "../../containers/LandingPage/PreFooter";
 import PreFooterItems from "../../containers/LandingPage/PreFooterItems";
 import { useState } from "react";
-import Axios from "axios";
+import createContactMessage from "../../services/messages.service";
 
 const StyledContacto = styled.div`
   width: 80%;
@@ -123,54 +123,6 @@ const StyledBanner = styled.div`
 `;
 
 const Contacto = () => {
-  const [requestStatus, setRequestStatus] = useState({
-    message: "",
-    success: false,
-    sent: false,
-  });
-
-  const createRequest = async (request) => {
-    try {
-      const result = await Axios
-        .post("http://localhost:4000/api/clients/contactMessage", request)
-        .catch((err) => {
-          setRequestStatus({
-            success: false,
-            message: err.response.data,
-            sent: true,
-          });
-        });
-      if (result.status === 201) {
-        setRequestStatus({
-          success: true,
-          message:
-            "Mensaje registrado correctamente, nos pondremos en contacto con usted",
-          sent: true,
-        });
-      }
-      return result;
-    } catch (err) {
-      return err;
-    }
-  };
-
-  const createAlert = () => {
-    if (requestStatus.sent & !requestStatus.success) {
-      return (
-        <div class="alert alert-danger" role="alert">
-          {requestStatus.message}
-        </div>
-      );
-    }
-    if (requestStatus.sent & requestStatus.success) {
-      return (
-        <div class="alert alert-success" role="alert">
-          {requestStatus.message}
-        </div>
-      );
-    }
-  };
-
   return (
     <>
       <ParallaxBackground imageSrc="/images/Background-contact.jpg">
@@ -183,9 +135,7 @@ const Contacto = () => {
         <StyledContacto>
           <StyledContactoInner contactForm>
             <h1>Contáctanos</h1>
-            {createAlert()}
-
-            <ContactForm registerRequest={createRequest}></ContactForm>
+            <ContactForm></ContactForm>
           </StyledContactoInner>
 
           <StyledContactoInner>

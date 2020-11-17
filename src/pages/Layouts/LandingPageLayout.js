@@ -1,32 +1,11 @@
-import React, { useEffect, Component, useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Helmet } from "react-helmet";
 import isAuthenticated from "../../helpers/isAuthenticated";
-import { CircularProgress } from "@material-ui/core";
 import Spinner from "../../components/Spinner/Spinner";
 
-/* function importExternal(url) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    script.src = url;
-    script.async = true;
-    script.onload = () => resolve(window["external_global_component"]);
-    script.onerror = reject;
-    document.body.appendChild(script);
-  });
-}
-
-export const FetchedComponent = dynamic(
-  () =>
-    importExternal("https://embed.tawk.to/5fa03ec3520b4b7986a09206/default"),
-  {
-    loading: () => "Loading...",
-    ssr: false,
-  }
-); */
-
+//Component for go to top arrow
 const ScrollToTop = () => {
   const [is_visible, setIsVisible] = useState(false);
 
@@ -70,16 +49,19 @@ const ScrollToTop = () => {
 
 const LandingPageLayout = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  const [isAuth, setIsAuth] = useState (false);
+  const [isAuth, setIsAuth] = useState(false);
+
+  //Checking if user is auth so it can show register or logout button
   useEffect(() => {
     const isUserAuth = async () => {
       const result = await isAuthenticated();
-      setIsAuth(result);
+      setIsAuth(result.isAuth);
       setLoading(!loading);
     };
     isUserAuth();
   }, []);
 
+  //Adding live chat script
   useEffect(() => {
     var s1 = document.createElement("script"),
       s0 = document.getElementsByTagName("script")[0];
@@ -91,8 +73,8 @@ const LandingPageLayout = ({ children }) => {
     var Tawk_API = Tawk_API || {},
       Tawk_LoadStart = new Date();
   }, []);
+
   if (!loading) {
-    console.log(isAuth)
     return (
       <>
         <Helmet>
@@ -130,8 +112,7 @@ const LandingPageLayout = ({ children }) => {
       </>
     );
   } else {
-    return <Spinner></Spinner>
-    ;
+    return <Spinner></Spinner>;
   }
 };
 
