@@ -9,27 +9,30 @@ import RegisterModal from "../../components/Modals/RegisterModal";
 import ClientLogoutModal from "../../components/Modals/ClientLogoutModal";
 
 const HeaderStyle = styled.header`
+  position: relative;
   width: 100%;
-  z-index: 4;
+  z-index: 100;
   .bar {
     color: white;
-
-    font-size: 15px;
     align-items: center;
     width: 100%;
     display: flex;
     z-index: 1000;
-
+    font-size: 20px;
+    margin-top: 30px;
+    position: absolute;
+    font-style:italic;
+    font-weight:600;
     flex-direction: row;
     justify-content: space-between;
     img {
       align-self: flex-start;
       padding: 5px 0 5px 50px;
-      height: 50px;
+      height: 70px;
+      display:none;
     }
-    a{
+    a {
       z-index: 1000;
-
     }
     @media (max-width: 700px) {
       justify-content: space-between;
@@ -41,9 +44,9 @@ const HeaderStyle = styled.header`
   }
 
   .desktop-bar {
-    z-index: 4;
-
+    z-index: 1000;
     display: none;
+    font-size: inherit;
     @media (min-width: 700px) {
       display: inline;
       margin-left: auto;
@@ -69,6 +72,8 @@ const HeaderStyle = styled.header`
     position: fixed;
     z-index: 1000;
     top: 0;
+    margin-top: 0;
+
     font-size: 15px;
     -webkit-box-shadow: 0px 4px 7px -8px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 4px 7px -8px rgba(0, 0, 0, 0.75);
@@ -76,6 +81,8 @@ const HeaderStyle = styled.header`
 
     img {
       height: 50px;
+      display:block;
+
     }
     animation-name: slideRight;
     -webkit-animation-name: slideRight;

@@ -10,7 +10,7 @@ const StyledAboutUs = styled.section`
   text-align: center;
   align-items: center;
   justify-content: center;
-
+  background-color: ${(props)=>props.backgroundColor?props.backgroundColor:''};
   .left {
     display: flex;
     align-items: center;
@@ -58,12 +58,13 @@ const TwoSectionsDivider = ({
   leftComponent,
   rightComponent,
   fadeDirection,
+  backgroundColor
 }) => {
   const getFadeDirection = (direction) => {
     return fadeDirection === direction ? true : false;
   };
   return (
-    <StyledAboutUs>
+    <StyledAboutUs backgroundColor={backgroundColor}>
       <Fade
         duration={2500}
         right={getFadeDirection("right")}

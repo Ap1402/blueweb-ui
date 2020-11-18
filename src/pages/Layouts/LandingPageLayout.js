@@ -86,11 +86,6 @@ const LandingPageLayout = ({ children }) => {
             crossOrigin="anonymous"
           />
 
-          <link
-            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-            rel="stylesheet"
-          />
-
           <link rel="icon" href="/favicon.ico" />
           <meta charSet="utf-8" />
           <link

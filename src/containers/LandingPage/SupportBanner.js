@@ -14,7 +14,7 @@ const StyledWrapper = styled.div`
   color: white;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: #2058ab;
+  background-color: #136aca;
 
   h1 {
     font-size: 25px;

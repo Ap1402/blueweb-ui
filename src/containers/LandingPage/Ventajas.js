@@ -5,7 +5,6 @@ import styled from "styled-components";
 import TwoSectionsDivider from "../../components/Dividers/TwoSectionsDivider";
 
 const StyledDiv = styled.section`
-  padding: 40px;
   padding-bottom: 50px;
 `;
 
@@ -15,17 +14,16 @@ const StyledTextDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  //background-color:#1d6ecc ;
   padding: 30px;
 
   h1 {
-    font-size:32px;
-    margin-bottom:20px;
+    font-size: 32px;
+    margin-bottom: 20px;
     font-weight: 800;
   }
-  p{
-    text-align:center;
-    font-size:18px;
+  p {
+    text-align: center;
+    font-size: 18px;
   }
 
   @media (min-width: 720px) {
@@ -48,7 +46,10 @@ const Ventajas = () => {
   return (
     <StyledDiv>
       <TwoSectionsDivider
-        rightComponent={<img src="/images/landingPage/WirelessAndFiber.png"></img>}
+        backgroundColor="#f7f7f7"
+        rightComponent={
+          <img src="/images/landingPage/WirelessAndFiber.png"></img>
+        }
         leftComponent={
           <StyledTextDiv>
             <h1>Fibra óptica y señal inalámbrica</h1>
@@ -57,7 +58,6 @@ const Ventajas = () => {
               paragraphs of lorem ipsum text will be revealed as you scroll
               down. To reset the test select an option from the button toolbar
               above. The following whitespace is intentionally left blank.
-             
             </p>
             <Link
               to="/contacto/factibilidad"
@@ -81,7 +81,6 @@ const Ventajas = () => {
               paragraphs of lorem ipsum text will be revealed as you scroll
               down. To reset the test select an option from the button toolbar
               above. The following whitespace is intentionally left blank.
-             
             </p>
             <Link
               to="/contacto/factibilidad"
