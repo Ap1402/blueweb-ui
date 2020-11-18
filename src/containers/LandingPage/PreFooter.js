@@ -2,14 +2,7 @@ import styled from "styled-components";
 
 const SectionWrapper = styled.section`
   position: relative;
-  background: rgb(55, 98, 176);
-  background: linear-gradient(
-    0deg,
-    rgba(55, 98, 176, 1) 12%,
-    rgba(50, 102, 195, 1) 26%,
-    rgba(46, 105, 210, 1) 55%,
-    rgba(39, 110, 241, 1) 94%
-  );
+  background: #276ef1;
   min-height: 400px;
 
   .custom-shape-divider-top-1603891602 {
@@ -30,7 +23,7 @@ const SectionWrapper = styled.section`
   }
 
   .custom-shape-divider-top-1603891602 .shape-fill {
-    fill:${(props)=>props.fillColor?props.fillColor:"#ffffff"}
+    fill: ${(props) => (props.fillColor ? props.fillColor : "#ffffff")};
   }
 `;
 

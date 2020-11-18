@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import FormGroup from "../FormGroup";
 import * as Yup from "yup";
+import createAlert from "../../../helpers/createAlert";
+import adminService from "../../../services/admin.service";
+import TextAreaField from "../TextAreaField";
 
-const CreateClient = ({ registerClient }) => {
+const CreateClient = () => {
+  const [requestStatus, setRequestStatus] = useState({
+    message: "",
+    success: false,
+    sent: false,
+  });
   return (
     <Formik
-
       initialValues={{
         firstName: "",
         secondName: "",
@@ -14,59 +21,47 @@ const CreateClient = ({ registerClient }) => {
         secondLastName: "",
         email: "",
         phone: "",
-        city:"",
-        municipality:"",
-        state:""
+        city: "",
+        municipality: "",
+        state: "",
       }}
-
       validationSchema={Yup.object({
         dni: Yup.string().required("Este campo es necesario"),
         firstName: Yup.string().required("Este campo es necesario"),
         secondName: Yup.string().required("Este campo es necesario"),
         lastName: Yup.string().required("Este campo es necesario"),
         secondLastName: Yup.string().required("Este campo es necesario"),
-        email: Yup.string().email("Invalid email address").required("Required"),
+        email: Yup.string().email("Tiene que ser una dirección de email válida").required("Este campo es necesario"),
         phone: Yup.string().required("Este campo es necesario"),
         address: Yup.string().required("La dirección es necesaria"),
         city: Yup.string().required("Este campo es necesario"),
         municipality: Yup.string().required("Este campo es necesario"),
-        state: Yup.string().required("Este campo es necesario")
+        state: Yup.string().required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        await registerClient(values);
+        const result = await adminService.registerClient(values);
+        setRequestStatus(result);
         setSubmitting(false);
       }}
     >
       {({ isSubmitting }) => (
-        <Form>
-          <div className="row offset-2">
-            <div className="col-10 col-lg-5">
-              <FormGroup label="Cedula" name="dni" type="text"></FormGroup>
-            </div>
-            <div className="col-10 col-lg-5">
-              <FormGroup label="Estado" name="state" type="text"></FormGroup>
-            </div>
-          </div>
-          <div className="row offset-2">
-            <div className="col-10 col-lg-5">
-              <FormGroup label="Ciudad" name="city" type="text"></FormGroup>
-            </div>
-            <div className="col-10 col-lg-5">
-              <FormGroup label="Municipio" name="municipality" type="text"></FormGroup>
-            </div>
-   
-          </div>
+        <Form className="mx-2">
+          <div className="row">
+            <div className="col-12">{createAlert(requestStatus)}</div>
 
-          <div className="row offset-2">
-            <div className="col-10 col-lg-5">
+            <div className="col12 col-lg-6">
+              <FormGroup label="Cedula (*)" name="dni" type="text"></FormGroup>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12 col-lg-6">
               <FormGroup
-                label="Primer Nombre"
+                label="Primer Nombre (*)"
                 name="firstName"
                 type="text"
               ></FormGroup>
             </div>
-
-            <div className="col-10 col-lg-5">
+            <div className="col-12 col-lg-6">
               <FormGroup
                 label="Segundo Nombre"
                 name="secondName"
@@ -74,15 +69,16 @@ const CreateClient = ({ registerClient }) => {
               ></FormGroup>
             </div>
           </div>
-          <div className="row offset-2">
-            <div className="col-10 col-lg-5">
+
+          <div className="row ">
+            <div className="col-12 col-lg-6">
               <FormGroup
-                label="Apellido"
+                label="Apellido (*)"
                 name="lastName"
                 type="text"
               ></FormGroup>
             </div>
-            <div className="col-10 col-lg-5">
+            <div className="col-12 col-lg-6">
               <FormGroup
                 label="Segundo Apellido"
                 name="secondLastName"
@@ -90,30 +86,42 @@ const CreateClient = ({ registerClient }) => {
               ></FormGroup>
             </div>
           </div>
-          <div className="row offset-2">
-            <div className="col-10 col-lg-5">
+          <div className="row">
+            <div className="col-12 col-lg-6">
               <FormGroup
-                label="Direccion de correo"
+                label="Correo (*)"
                 name="email"
                 type="email"
               ></FormGroup>
             </div>
-            <div className="col-10 col-lg-5">
-              <FormGroup label="Teléfono" name="phone" type="text"></FormGroup>
+            <div className="col-12 col-lg-6">
+              <FormGroup label="Teléfono (*)" name="phone" type="text"></FormGroup>
             </div>
           </div>
-          <div className="row offset-2">
-            <div className="col-10 col-lg-5">
+          <div className="row">
+            <div className="col12 col-lg-4">
+              <FormGroup label="Estado (*)" name="state" type="text"></FormGroup>
+            </div>
+            <div className="col12 col-lg-4">
+              <FormGroup label="Ciudad (*)" name="city" type="text"></FormGroup>
+            </div>
+            <div className="col12 col-lg-4">
               <FormGroup
-                label="Dirección"
-                name="address"
-                type="textarea"
+                label="Municipio (*)"
+                name="municipality"
+                type="text"
               ></FormGroup>
             </div>
-          
+            <div className="col-12 col-lg-6 mx-auto">
+              <TextAreaField
+                label="Dirección"
+                name="address"
+              ></TextAreaField>
+            </div>
           </div>
-          <div className="row offset-2 text-center">
-            <div className="form-group">
+
+          <div className="row">
+                          <div className="form-group  mx-auto">
               <button
                 type="submit"
                 className=" btn-primary btn "

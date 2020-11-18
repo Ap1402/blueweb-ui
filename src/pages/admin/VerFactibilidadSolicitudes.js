@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import MaterialTable from "material-table";
 import adminService from "../../services/admin.service";
+import factibilityService from "../../services/factibility.service";
 
 const VerFactibilidadSolicitudes = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -69,7 +70,7 @@ const VerFactibilidadSolicitudes = () => {
         }}
         data={(query) =>
           new Promise(async (resolve, reject) => {
-            const result = await adminService.getFactibilityRequests({
+            const result = await factibilityService.getFactibilityRequests({
               page: query.page,
               size: query.pageSize,
               wasEvaluated: 0,
@@ -112,8 +113,7 @@ const VerFactibilidadSolicitudes = () => {
   }
 
   return (
-    <div>
-      <div className="container-fluid">
+    <>
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
           <h1 className="h3 mb-0 text-gray-800">Panel de control</h1>
         </div>
@@ -137,8 +137,7 @@ const VerFactibilidadSolicitudes = () => {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </>
   );
 };
 

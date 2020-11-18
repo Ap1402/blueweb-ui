@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Redirect } from "react-router-dom";
-import isAuthenticated from "./isAuthenticated";
 import Spinner from "../components/Spinner/Spinner";
+import authService from "../services/auth.service";
 
 function PrivateSupportRoute({
   component: Component,
@@ -15,7 +15,7 @@ function PrivateSupportRoute({
 
   useEffect(() => {
     const getData = async () => {
-      const result = await isAuthenticated();
+      const result = await authService.isAuthenticated();
       console.log(result);
       setIsAuth(result.isAuth);
       setRole(result.role);

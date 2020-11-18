@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Helmet } from "react-helmet";
-import isAuthenticated from "../../helpers/isAuthenticated";
 import Spinner from "../../components/Spinner/Spinner";
+import authService from "../../services/auth.service";
 
 //Component for go to top arrow
 const ScrollToTop = () => {
@@ -54,7 +54,7 @@ const LandingPageLayout = ({ children }) => {
   //Checking if user is auth so it can show register or logout button
   useEffect(() => {
     const isUserAuth = async () => {
-      const result = await isAuthenticated();
+      const result = await authService.isAuthenticated();
       setIsAuth(result.isAuth);
       setLoading(!loading);
     };

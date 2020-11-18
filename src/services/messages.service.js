@@ -31,6 +31,7 @@ const getMessages = async (query) => {
   return result;
 };
 
+
 export default {
   createContactMessage,
   getMessages,

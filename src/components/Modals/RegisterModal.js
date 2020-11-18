@@ -5,31 +5,6 @@ import authService from "../../services/auth.service";
 import RegisterForm from "../Forms/Client/RegisterForm";
 
 const RegisterModal = (props) => {
-  const [requestStatus, setRequestStatus] = useState({
-    message: "",
-    success: false,
-    sent: false,
-  });
-
-  const createUser = async (userData) => {
-    try {
-      const result = await authService.register(userData);
-      if (result.status === 201) {
-        setRequestStatus({
-          success: true,
-          message: "Cliente registrado correctamente",
-          sent: true,
-        });
-      } else {
-        setRequestStatus({
-          success: false,
-          message: result.data.message,
-          sent: true,
-        });
-      }
-    } catch (err) {}
-  };
-
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
@@ -38,8 +13,7 @@ const RegisterModal = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {createAlert(requestStatus)}
-        <RegisterForm registerRequest={createUser}></RegisterForm>
+        <RegisterForm></RegisterForm>
       </Modal.Body>
     </Modal>
   );

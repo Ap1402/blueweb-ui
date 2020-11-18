@@ -18,10 +18,10 @@ const HeaderStyle = styled.header`
     width: 100%;
     display: flex;
     z-index: 1000;
-    font-size: 20px;
+    font-size: 15px;
     margin-top: 30px;
     position: absolute;
-    font-style:italic;
+    font-style:bold;
     font-weight:600;
     flex-direction: row;
     justify-content: space-between;

@@ -1,8 +1,6 @@
 import HeroBanner from "../containers/LandingPage/HeroBanner";
-import { Col, Container, Row } from "react-bootstrap";
 import styled from "styled-components";
 import SupportBanner from "../containers/LandingPage/SupportBanner";
-import { Link } from "react-router-dom";
 import Testimonials from "../containers/LandingPage/Testimonials";
 import Ventajas from "../containers/LandingPage/Ventajas";
 import ThreeComponents from "../containers/LandingPage/ThreeComponents";

@@ -2,6 +2,10 @@ import * as Yup from "yup";
 import FormGroup from "../FormGroup";
 import { Formik, Form } from "formik";
 import styled from "styled-components";
+import userService from "../../../services/user.service";
+import createAlert from "../../../helpers/createAlert";
+import { useState } from "react";
+import Spinner from '../../Spinner/Spinner';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -10,7 +14,13 @@ const StyledForm = styled(Form)`
   align-items: center;
 `;
 
-const RegisterForm = ({ registerRequest }) => {
+const RegisterForm = () => {
+  const [requestStatus, setRequestStatus] = useState({
+    message: "",
+    success: false,
+    sent: false,
+  });
+
   return (
     <Formik
       initialValues={{
@@ -34,13 +44,16 @@ const RegisterForm = ({ registerRequest }) => {
           .required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        await registerRequest(values);
+        const result = await userService.register(values);
+        setRequestStatus(result);
         setSubmitting(false);
       }}
     >
       {({ isSubmitting }) => (
         <StyledForm>
           <div className="row ">
+            <div className="col-12">{createAlert(requestStatus)}</div>
+
             <div className="col-10 mx-auto">
               <FormGroup label="Cedula" name="dni" type="text"></FormGroup>
               <FormGroup label="Correo" name="email" type="text"></FormGroup>
@@ -66,6 +79,7 @@ const RegisterForm = ({ registerRequest }) => {
           </div>
           <div className="row text-center my-3">
             <div className="form-group">
+              {isSubmitting?<Spinner></Spinner>:''}
               <button
                 type="submit"
                 className=" btn-primary btn "

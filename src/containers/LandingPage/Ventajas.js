@@ -14,12 +14,15 @@ const StyledTextDiv = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px;
-
+  background-color: #ffffff;
+    padding: 50px 50px 35px;
+    box-shadow: 0px 20px 35px rgba(27,48,77,.07);
+    font-family: "Poppins", Arial, Tahoma, sans-serif;
   h1 {
+    font-weight: 700;
+
     font-size: 32px;
     margin-bottom: 20px;
-    font-weight: 800;
   }
   p {
     text-align: center;
@@ -46,7 +49,7 @@ const Ventajas = () => {
   return (
     <StyledDiv>
       <TwoSectionsDivider
-        backgroundColor="#f7f7f7"
+        backgroundColor="#f2f5f9"
         rightComponent={
           <img src="/images/landingPage/WirelessAndFiber.png"></img>
         }

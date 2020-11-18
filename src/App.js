@@ -21,6 +21,7 @@ import CrearCliente from "./pages/admin/CrearCliente";
 import PrivateRoute from "./helpers/PrivateRoute";
 import ActualizarDatos from "./containers/Clientpanel/ActualizarDatos";
 import PrivateSupportRoute from "./helpers/PrivateSupportRoute";
+import CrearUsuario from "./pages/admin/CrearUsuario";
 
 const theme = {
   colors: {
@@ -63,6 +64,12 @@ function App() {
                 path="/admin/mensajes/"
                 exact
                 component={VerMensajesContacto}
+              />
+              <PrivateSupportRoute
+                layout={AdminPanelLayout}
+                path="/admin/usuarios/crear/"
+                exact
+                component={CrearUsuario}
               />
               <PrivateSupportRoute
                 layout={AdminPanelLayout}

@@ -3,10 +3,9 @@ import LogoutModal from "../../components/Modals/LogoutModal";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Axios from "axios";
-import authHeader from "../../helpers/getAuthToken";
 import Spinner from "../../components/Spinner/Spinner";
 import ClientLogoutModal from "../../components/Modals/ClientLogoutModal";
+import userService from "../../services/user.service";
 
 const StyledDiv = styled.div`
   background-color: #2052b0;
@@ -36,14 +35,8 @@ const ClientPanelLayout = ({ children }) => {
   // Checking if user is client
   useEffect(() => {
     const getUserData = async () => {
-      const result = await Axios.get("http://localhost:4000/api/clients/self", {
-        headers: {
-          "x-auth-token": authHeader(),
-        },
-      }).catch((err) => {
-        console.log(err.response);
-      });
-      setUserData(result.data);
+      const result = await userService.getCurrentUserInfo();
+      setUserData(result);
       setIsLoading(false);
     };
     getUserData();
@@ -112,9 +105,9 @@ const ClientPanelLayout = ({ children }) => {
                 </Link>
               </li>
 
-              <li class="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle"
                   href="#"
                   id="navbarDropdown"
                   role="button"

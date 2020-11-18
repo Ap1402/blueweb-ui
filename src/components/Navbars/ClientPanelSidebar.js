@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
+const StyledUl = styled.ul`
+  background-color: #243147;
+
+`;
 const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
   return (
-    <ul
-      className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+    <StyledUl
+      className="navbar-nav  sidebar sidebar-dark accordion"
       id="accordionSidebar"
     >
       <Link to="/admin">
@@ -87,11 +92,13 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
             <i className="fas fa-fw fa-table"></i>
             <span>
               Ver solicitudes
-              {pendingRequests  ? (
+              {pendingRequests ? (
                 <span className="badge badge-danger badge-counter">
                   {pendingRequests}
                 </span>
-              ):''}
+              ) : (
+                ""
+              )}
             </span>
           </a>
         </Link>
@@ -117,18 +124,49 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
         <Link to="/admin/mensajes/revisados">
           <a className="nav-link">
             <i className="fas fa-fw fa-table"></i>
-            <span>
-              Mensajes revisados
-            </span>
+            <span>Mensajes revisados</span>
           </a>
         </Link>
+      </li>
+      <hr className="sidebar-divider d-none d-md-block" />
+
+      <div className="sidebar-heading">Usuarios</div>
+
+      <li className="nav-item">
+        <Link
+          className="nav-link collapsed"
+          to="#"
+          data-toggle="collapse"
+          data-target="#collapseUser"
+          aria-expanded="true"
+          aria-controls="collapseUser"
+        >
+          <i className="fas fa-plus-square "></i>
+          <span>Creacion/edición</span>
+        </Link>
+        <div
+          id="collapseUser"
+          className="collapse"
+          aria-labelledby="headingUser"
+          data-parent="#accordionSidebar"
+        >
+          <div className="bg-white py-2 collapse-inner rounded">
+            <h6 className="collapse-header">Opciones de usuario:</h6>
+            <Link to="/admin/clientes/">
+              <a className="collapse-item">Ver/modificar usuarios</a>
+            </Link>
+            <Link to="/admin/usuarios/crear">
+              <a className="collapse-item">Crear usuario</a>
+            </Link>
+          </div>
+        </div>
       </li>
       <hr className="sidebar-divider d-none d-md-block" />
 
       <div className="text-center d-none d-md-inline">
         <button className="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
-    </ul>
+    </StyledUl>
   );
 };
 

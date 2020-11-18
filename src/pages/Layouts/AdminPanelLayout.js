@@ -96,7 +96,11 @@ const AdminPanelLayout = ({ children }) => {
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
               <ClientTopBar userInfo={{ name: "Username" }} />
+              <div className="container-fluid mx-auto">
+
               {children}
+              </div>
+
             </div>
           </div>
         </div>
