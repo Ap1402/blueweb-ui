@@ -5,24 +5,42 @@ const API_URL = "http://192.168.1.211:4000/api/clients/";
 
 const registerClient = async (client) => {
   const result = await axios
-    .post(API_URL+'register', client, {
+    .post(API_URL + "register", client, {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .then((result) => {
+      return {
+        success: true,
+        message: "Cliente C.I/RIF " + result.data.dni + " creado correctamente",
+        sent: true,
+      };
+    })
+    .catch((err) => {
+      return { success: false, message: err.response.data.message, sent: true };
+    });
+  return result;
+};
+
+const getClients = async (query) => {
+  const result = await axios
+    .get(API_URL, {
+      params: {
+        page: query.page,
+        size: query.size,
+      },
       headers: {
         "x-auth-token": authHeader(),
       },
     })
     .catch((err) => {
-      return { success: false, message: result.response.data, sent: true };
+      return err.response;
     });
-    return {
-      success: true,
-      message: "Cliente creado con exito",
-      data: result.data,
-      sent: true,
-    };
+  return result;
 };
-
-
 
 export default {
   registerClient,
+  getClients,
 };

@@ -7,21 +7,14 @@ import adminService from "../../../services/admin.service";
 import TextAreaField from "../TextAreaField";
 import SelectField from "../SelectField";
 
+
 const CreateClient = () => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
     sent: false,
   });
-  const handleInputChange = (e) => {
-    const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
 
-    this.setState({
-      [name]: value,
-    });
-  };
 
   return (
     <Formik
@@ -47,13 +40,13 @@ const CreateClient = () => {
           .required("Necesario"),
 
         socialReason: Yup.string().when("isEnterprise", {
-          is: "1",
+          is: (value) => value == "1",
           then: Yup.string().required("Este campo es necesario"),
           otherwise: Yup.string(),
         }),
 
         commercialReason: Yup.string().when("isEnterprise", {
-          is: "1",
+          is: (value) => value == "1",
           then: Yup.string().required("Este campo es necesario"),
           otherwise: Yup.string(),
         }),
@@ -73,7 +66,6 @@ const CreateClient = () => {
       onSubmit={async (values, { setSubmitting }) => {
         const result = await adminService.registerClient(values);
         setRequestStatus(result);
-        console.log(values);
         setSubmitting(false);
       }}
     >
@@ -109,7 +101,7 @@ const CreateClient = () => {
             </div>
           )}
           <div className="row">
-            <div className="col-3 col-lg-1">
+            <div className="col-4 col-md-3 col-lg-2">
               <SelectField label="." name="identification">
                 <option value=""></option>
                 <option value="V">V</option>
@@ -118,7 +110,7 @@ const CreateClient = () => {
                 <option value="J">J</option>
               </SelectField>
             </div>
-            <div className="col-9 col-lg-6">
+            <div className="col-8 col-md-4 col-lg-6">
               <FormGroup label="Cedula (*)" name="dni" type="text"></FormGroup>
             </div>
           </div>
