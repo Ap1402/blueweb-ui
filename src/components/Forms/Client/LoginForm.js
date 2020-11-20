@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import styled from "styled-components";
 import authService from "../../../services/auth.service";
 import createAlert from "../../../helpers/createAlert";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 
@@ -29,16 +29,26 @@ const LoginForm = (props) => {
           success: true,
           message: "Datos correctos",
           sent: true,
+          redirect:
+            result.data.user.role === "client"
+              ? "/clients/historial"
+              : "/admin/clientes",
         });
+        return "";
       } else {
         setRequestStatus({
           success: false,
           message: result.data.message,
           sent: true,
         });
+        return "";
       }
     } catch (err) {}
   };
+
+  useEffect(() => {
+    props.history.push(requestStatus.redirect);
+  }, [requestStatus.success]);
 
   return (
     <Formik
@@ -53,9 +63,6 @@ const LoginForm = (props) => {
       onSubmit={async (values, { setSubmitting }) => {
         await loginUser(values);
         setSubmitting(false);
-        setTimeout(function () {
-          props.history.push("/clients/historial");
-        }, 2000);
       }}
     >
       {({ isSubmitting }) => (
@@ -63,7 +70,11 @@ const LoginForm = (props) => {
           <div className="row ">
             <div className="col-12">{createAlert(requestStatus)}</div>
             <div className="col-10 mx-auto">
-              <FormGroup label="Usuario" name="username" type="text"></FormGroup>
+              <FormGroup
+                label="Usuario"
+                name="username"
+                type="text"
+              ></FormGroup>
             </div>
             <div className="col-10 mx-auto">
               <FormGroup

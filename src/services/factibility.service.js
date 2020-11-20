@@ -31,7 +31,22 @@ const getFactibilityRequests = async (query) => {
   return result;
 };
 
+const pendingFactibilityRequestsCount = async ()=>{
+
+ const result=  await axios.get(
+    "http://localhost:4000/api/factibility/count",
+    {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    }
+  ).catch((err) => {
+    return err.response;
+  });
+  return result.data
+}
 export default {
+  pendingFactibilityRequestsCount,
   register,
   getFactibilityRequests
 };

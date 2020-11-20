@@ -34,7 +34,6 @@ const RequestFactibility = ({ registerRequest }) => {
       })}
       onSubmit={async (values, { setSubmitting }) => {
         const result = await registerRequest(values);
-        console.log(result);
         setSubmitting(false);
       }}
     >

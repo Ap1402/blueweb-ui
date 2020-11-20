@@ -48,8 +48,6 @@ const RequestFactibility = () => {
       {({ isSubmitting, setFieldValue }) => (
         <StyledForm>
           <div className="row ">
-            <div className="col-12">{createAlert(requestStatus)}</div>
-
             <div className="col-12">
               <FormGroup
                 label="Nombre completo"
@@ -79,6 +77,8 @@ const RequestFactibility = () => {
 
           <div className="row text-center my-3">
             <div className="form-group">
+            <div className="col-12">{createAlert(requestStatus)}</div>
+
               <button
                 type="submit"
                 className=" btn-primary btn "

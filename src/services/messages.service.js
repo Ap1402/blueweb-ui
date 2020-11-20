@@ -31,8 +31,24 @@ const getMessages = async (query) => {
   return result;
 };
 
+const getPendingMessagesCount = async()=>{
+  
+  const result= await Axios.get(
+    "http://localhost:4000/api/clients/messages/count",
+    {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    }
+  ).catch((err) => {
+    console.error(err.response)
+    return 0;
+  });
+  return result.data;
+};
 
 export default {
+  getPendingMessagesCount,
   createContactMessage,
   getMessages,
 };

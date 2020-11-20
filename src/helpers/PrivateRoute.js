@@ -31,7 +31,7 @@ function PrivateRoute({
               <Component {...matchProps} />
             </Layout>
           ) : (
-            <Redirect to="/login" />
+            <Redirect to="/" />
           )
         ) : (
           <Spinner></Spinner>

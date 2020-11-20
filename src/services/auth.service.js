@@ -6,7 +6,6 @@ const API_URL = "http://192.168.1.211:4000/api/auth/";
 
 const login = async (userData) => {
   const result = await axios.post(API_URL + "login", userData).catch((err) => {
-    console.log(err.response);
     return err.response;
   });
   setAuthToken(result.data);

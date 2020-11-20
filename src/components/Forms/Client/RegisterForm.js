@@ -24,7 +24,6 @@ const RegisterForm = () => {
   return (
     <Formik
       initialValues={{
-        email: "",
         password: "",
         confirmPassword: "",
         username: "",
@@ -38,10 +37,7 @@ const RegisterForm = () => {
           [Yup.ref("password"), null],
           "Las contraseñas deben coincidir"
         ),
-        dni: Yup.string().required("Este campo es necesario"),
-        email: Yup.string()
-          .email("Debe ser un email válido")
-          .required("Este campo es necesario"),
+        dni: Yup.string().required("Este campo es necesario")
       })}
       onSubmit={async (values, { setSubmitting }) => {
         const result = await userService.register(values);
@@ -56,8 +52,6 @@ const RegisterForm = () => {
 
             <div className="col-10 mx-auto">
               <FormGroup label="Cedula" name="dni" type="text"></FormGroup>
-              <FormGroup label="Correo" name="email" type="text"></FormGroup>
-
               <FormGroup
                 label="Nombre de usuario"
                 name="username"

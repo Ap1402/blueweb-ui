@@ -22,6 +22,7 @@ import PrivateRoute from "./helpers/PrivateRoute";
 import ActualizarDatos from "./containers/Clientpanel/ActualizarDatos";
 import PrivateSupportRoute from "./helpers/PrivateSupportRoute";
 import CrearUsuario from "./pages/admin/CrearUsuario";
+import ScrollToTop from "./helpers/ScrollToTop";
 
 const theme = {
   colors: {
@@ -37,85 +38,86 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-
-        <Switch>
-          <Route path="/admin/:path?">
-            <Switch>
-              <PrivateSupportRoute
-                layout={AdminPanelLayout}
-                path="/admin/clientes"
-                component={VerClientes}
-                exact
-              />
-              <PrivateSupportRoute
-                layout={AdminPanelLayout}
-                path="/admin/clientes/crear"
-                exact
-                component={CrearCliente}
-              />
-              <PrivateSupportRoute
-                layout={AdminPanelLayout}
-                path="/admin/factibilidad/"
-                exact
-                component={VerFactibilidadSolicitudes}
-              />
-              <PrivateSupportRoute
-                layout={AdminPanelLayout}
-                path="/admin/mensajes/"
-                exact
-                component={VerMensajesContacto}
-              />
-              <PrivateSupportRoute
-                layout={AdminPanelLayout}
-                path="/admin/usuarios/crear/"
-                exact
-                component={CrearUsuario}
-              />
-              <PrivateSupportRoute
-                layout={AdminPanelLayout}
-                path="/admin/mensajes/revisados"
-                exact
-                component={VerMensajesRevisados}
-              />
-            </Switch>
-          </Route>
-
-          <PrivateRoute
-            layout={ClientPanelLayout}
-            path="/clients/historial"
-            component={HistorialPago}
-            exact
-          />
-
-          <PrivateRoute
-            layout={ClientPanelLayout}
-            path="/clients/perfil"
-            component={PerfilCliente}
-            exact
-          />
-          <PrivateRoute
-            layout={ClientPanelLayout}
-            path="/clients/actualizar"
-            component={ActualizarDatos}
-            exact
-          />
-
-          <Route>
-            <LandingPageLayout>
+        <ScrollToTop>
+          <Switch>
+            <Route path="/admin/:path?">
               <Switch>
-                <Route path="/" exact component={Home} />
-                <Route path="/contacto" exact component={Contacto} />
-                <Route
-                  path="/contacto/factibilidad"
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/clientes"
+                  component={VerClientes}
                   exact
-                  component={Factibilidad}
                 />
-                <Route path="/nosotros" exact component={Nosotros} />
-                <Route path="/servicios" exact component={servicios} />
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/clientes/crear"
+                  exact
+                  component={CrearCliente}
+                />
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/factibilidad/"
+                  exact
+                  component={VerFactibilidadSolicitudes}
+                />
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/mensajes/"
+                  exact
+                  component={VerMensajesContacto}
+                />
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/usuarios/crear/"
+                  exact
+                  component={CrearUsuario}
+                />
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/mensajes/revisados"
+                  exact
+                  component={VerMensajesRevisados}
+                />
               </Switch>
-            </LandingPageLayout>
-          </Route>
-        </Switch>
+            </Route>
+
+            <PrivateRoute
+              layout={ClientPanelLayout}
+              path="/clients/historial"
+              component={HistorialPago}
+              exact
+            />
+
+            <PrivateRoute
+              layout={ClientPanelLayout}
+              path="/clients/perfil"
+              component={PerfilCliente}
+              exact
+            />
+            <PrivateRoute
+              layout={ClientPanelLayout}
+              path="/clients/actualizar"
+              component={ActualizarDatos}
+              exact
+            />
+
+            <Route>
+              <LandingPageLayout>
+                <Switch>
+                  <Route path="/" exact component={Home} />
+                  <Route path="/contacto" exact component={Contacto} />
+                  <Route
+                    path="/contacto/factibilidad"
+                    exact
+                    component={Factibilidad}
+                  />
+                  <Route path="/nosotros" exact component={Nosotros} />
+                  <Route path="/servicios" exact component={servicios} />
+                </Switch>
+              </LandingPageLayout>
+            </Route>
+          </Switch>
+        </ScrollToTop>
       </ThemeProvider>
     </Router>
   );

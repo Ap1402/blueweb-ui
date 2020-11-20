@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import LoginModal from "../Modals/LoginModal";
 import React from "react";
 import { Link } from "react-router-dom";
 

@@ -6,6 +6,8 @@ import { Helmet } from "react-helmet";
 import Axios from "axios";
 import authHeader from "../../helpers/getAuthToken";
 import Spinner from "../../components/Spinner/Spinner";
+import messagesService from "../../services/messages.service";
+import factibilityService from "../../services/factibility.service";
 
 const AdminPanelLayout = ({ children }) => {
   const [data, setData] = useState({});
@@ -16,33 +18,14 @@ const AdminPanelLayout = ({ children }) => {
     const getData = async () => {
       try {
         // Getting pending messages number to show it in sidebar
-        const pendingMessages = await Axios.get(
-          "http://localhost:4000/api/clients/messsages/count",
-          {
-            headers: {
-              "x-auth-token": authHeader(),
-            },
-          }
-        ).catch((err) => {
-          console.log(err);
-          return err;
-        });
+        const pendingMessages = await messagesService.getPendingMessagesCount()
 
         // Getting pending requests number to show it in sidebar
-        const pendingFactibilityRequests = await Axios.get(
-          "http://localhost:4000/api/factibility/count",
-          {
-            headers: {
-              "x-auth-token": authHeader(),
-            },
-          }
-        ).catch((err) => {
-          return err;
-        });
-        console.log(pendingFactibilityRequests.data);
+        const pendingFactibilityRequests = await factibilityService.pendingFactibilityRequestsCount();
+
         setData({
-          pendingFactibilityRequests: pendingFactibilityRequests.data || 0,
-          pendingMessages: pendingMessages.data || 0,
+          pendingFactibilityRequests: pendingFactibilityRequests || 0,
+          pendingMessages: pendingMessages || 0,
         });
         setLoading(!loading);
       } catch (err) {}
