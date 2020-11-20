@@ -23,6 +23,7 @@ import ActualizarDatos from "./containers/Clientpanel/ActualizarDatos";
 import PrivateSupportRoute from "./helpers/PrivateSupportRoute";
 import CrearUsuario from "./pages/admin/CrearUsuario";
 import ScrollToTop from "./helpers/ScrollToTop";
+import ReporteDeAveria from "./pages/landing/Reporte";
 
 const theme = {
   colors: {
@@ -110,6 +111,11 @@ function App() {
                     path="/contacto/factibilidad"
                     exact
                     component={Factibilidad}
+                  />
+                  <Route
+                    path="/reporte"
+                    exact
+                    component={ReporteDeAveria}
                   />
                   <Route path="/nosotros" exact component={Nosotros} />
                   <Route path="/servicios" exact component={servicios} />

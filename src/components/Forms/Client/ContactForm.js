@@ -64,10 +64,10 @@ const RequestFactibility = () => {
             <div className="col-12 ">
               <SelectField label="Razón" name="reason">
                 <option value="">Seleccione una razón</option>
-                <option value="averia">Avería</option>
-                <option value="duda">Pregunta general</option>
-                <option value="factibilidad">Duda sobre factibilidad</option>
-                <option value="otros">Otros</option>
+                <option value="question">Pregunta general</option>
+                <option value="factibility">Duda sobre factibilidad</option>
+                <option value="user">Problemas con usuarios</option>
+                <option value="others">Otros</option>
               </SelectField>
             </div>
             <div className="col-12 ">

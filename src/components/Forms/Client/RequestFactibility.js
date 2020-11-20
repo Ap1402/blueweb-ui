@@ -9,6 +9,9 @@ const StyledForm = styled(Form)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  h2{
+    font-size:20px;
+  }
 `;
 
 const RequestFactibility = ({ registerRequest }) => {
@@ -38,7 +41,7 @@ const RequestFactibility = ({ registerRequest }) => {
       }}
     >
       {({ isSubmitting, setFieldValue }) => (
-        <StyledForm>
+        <StyledForm className="container">
           <div className="row ">
             <div className="col-12 col-lg-6">
               <FormGroup
@@ -72,7 +75,7 @@ const RequestFactibility = ({ registerRequest }) => {
               ></FormGroup>
             </div>
           </div>
-
+          <h2>Busque su ubicación para seleccionar sus coordenadas</h2>
           <Map
             changeCoordenades={(coordenades) =>
               onSelectCustomerHandler(coordenades, setFieldValue)
