@@ -27,7 +27,7 @@ const UpdatePasswordForm = ({ registerRequest }) => {
         ),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        const result = await registerRequest(values);
+         await registerRequest(values);
         setSubmitting(false);
       }}
     >

@@ -36,7 +36,7 @@ const RequestFactibility = ({ registerRequest }) => {
           .required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        const result = await registerRequest(values);
+        await registerRequest(values);
         setSubmitting(false);
       }}
     >

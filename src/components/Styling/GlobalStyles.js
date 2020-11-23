@@ -20,7 +20,6 @@ export const GlobalStyles = createGlobalStyle`
       
     margin: 0;
     padding: 0;
-    height:100vh;
     box-sizing: border-box;
     font-family:  Helvetica,"Arimo", sans-serif; 
 
@@ -28,7 +27,5 @@ export const GlobalStyles = createGlobalStyle`
     background-color: white;
     
   }
-  body > #root {
-  height: 100vh;
-}
+  
   `;

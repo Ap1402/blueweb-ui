@@ -1,6 +1,5 @@
 import { Modal } from "react-bootstrap";
 import authService from "../../services/auth.service";
-import LoginForm from "../Forms/Client/LoginForm";
 
 function ClientLogoutModal(props) {
   return (

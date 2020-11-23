@@ -93,13 +93,13 @@ const Navbar = () => {
       </li>
 
       <li className="common-nav">
-        <Link to="/servicios">Servicios</Link>
+        <Link to="/servicios" href="/servicios">Servicios</Link>
       </li>
       <li className="common-nav">
-        <Link to="/nosotros">Nosotros</Link>
+        <Link to="/nosotros" href="/nosotros">Nosotros</Link>
       </li>
       <li className="common-nav">
-        <Link to="/contacto">Contacto</Link>
+        <Link to="/contacto" href="/contacto">Contacto</Link>
       </li>
       {/*   <li className="highlighted" onClick={() => setModalShow(true)}>
       <Link to="#">Ingreso</Link>

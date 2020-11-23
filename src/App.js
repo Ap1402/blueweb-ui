@@ -12,18 +12,21 @@ import AdminPanelLayout from "./pages/Layouts/AdminPanelLayout";
 import ClientPanelLayout from "./pages/Layouts/ClientPanelLayout";
 
 import VerClientes from "./pages/admin/VerClientes";
+import VerReportesPendientes from "./pages/admin/VerReportesPendientes";
+
 import VerFactibilidadSolicitudes from "./pages/admin/VerFactibilidadSolicitudes";
 import VerMensajesContacto from "./pages/admin/VerMensajesContacto";
 import VerMensajesRevisados from "./pages/admin/VerMensajesRevisados";
-import HistorialPago from "./containers/Clientpanel/HistorialPago";
-import PerfilCliente from "./containers/Clientpanel/PerfilCliente";
 import CrearCliente from "./pages/admin/CrearCliente";
 import PrivateRoute from "./helpers/PrivateRoute";
-import ActualizarDatos from "./containers/Clientpanel/ActualizarDatos";
 import PrivateSupportRoute from "./helpers/PrivateSupportRoute";
 import CrearUsuario from "./pages/admin/CrearUsuario";
 import ScrollToTop from "./helpers/ScrollToTop";
-import ReporteDeAveria from "./pages/landing/Reporte";
+import CrearReporteCliente from "./pages/client/CrearReporteCliente";
+import MisReportes from "./pages/client/MisReportes";
+import PerfilCliente from "./pages/client/PerfilCliente";
+import ActualizarDatos from "./pages/client/ActualizarDatos";
+import HistorialPago from "./pages/client/HistorialPago";
 
 const theme = {
   colors: {
@@ -43,6 +46,12 @@ function App() {
           <Switch>
             <Route path="/admin/:path?">
               <Switch>
+              <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/reportes"
+                  exact
+                  component={VerReportesPendientes}
+                />
                 <PrivateSupportRoute
                   layout={AdminPanelLayout}
                   path="/admin/clientes"
@@ -101,6 +110,18 @@ function App() {
               component={ActualizarDatos}
               exact
             />
+             <PrivateRoute
+              layout={ClientPanelLayout}
+              path="/clients/reportar"
+              component={CrearReporteCliente}
+              exact
+            />
+            <PrivateRoute
+              layout={ClientPanelLayout}
+              path="/clients/misReportes"
+              component={MisReportes}
+              exact
+            />
 
             <Route>
               <LandingPageLayout>
@@ -112,11 +133,7 @@ function App() {
                     exact
                     component={Factibilidad}
                   />
-                  <Route
-                    path="/reporte"
-                    exact
-                    component={ReporteDeAveria}
-                  />
+            
                   <Route path="/nosotros" exact component={Nosotros} />
                   <Route path="/servicios" exact component={servicios} />
                 </Switch>

@@ -6,7 +6,6 @@ import authService from "../../../services/auth.service";
 import createAlert from "../../../helpers/createAlert";
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
 
 const StyledForm = styled(Form)`
   display: flex;

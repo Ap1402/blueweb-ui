@@ -10,7 +10,8 @@ import userService from "../../services/user.service";
 const StyledDiv = styled.div`
   background-color: #2052b0;
   width: 100%;
-  height: 100%;
+  height:auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   .welcome-message {
@@ -104,7 +105,31 @@ const ClientPanelLayout = ({ children }) => {
                   Historial y saldo
                 </Link>
               </li>
-
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Reportes
+                </a>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <Link to="/clients/misReportes" className="dropdown-item" href="#" >
+                    Ver mis reportes
+                  </Link>
+                  <Link
+                    to="/clients/reportar"
+                    className="dropdown-item"
+                    href="#"
+                  >
+                    Crear un reporte
+                  </Link>
+                </div>
+              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
@@ -122,9 +147,9 @@ const ClientPanelLayout = ({ children }) => {
                     Mis datos
                   </Link>
 
-                  <a className="dropdown-item" href="#">
+                  <Link to="/clients/actualizar" className="dropdown-item" href="#">
                     Actualizar mis datos
-                  </a>
+                  </Link>
                 </div>
               </li>
             </ul>
@@ -151,7 +176,7 @@ const ClientPanelLayout = ({ children }) => {
               </h2>
               <p className="client-name">
                 <strong>Bienvenido: </strong>
-                {userData.firstName + " " + userData.firstLastName}
+                {userData.names + " " + userData.lastNames}
               </p>
               <p className="client-code">
                 <strong>Codigo de cliente: </strong>
