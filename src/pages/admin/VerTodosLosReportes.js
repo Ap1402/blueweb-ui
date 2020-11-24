@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import MaterialTable, { MTableCell } from "material-table";
-import adminService from "../../services/admin.service";
+import reportService from "../../services/report.service";
 import { Paper } from "@material-ui/core";
+import dayjs from "dayjs";
+import ReportModal from "../../components/Modals/ReportModal";
+import UpdateReportModal from "../../components/Modals/UpdateReportModal";
 
-const VerClientes = () => {
-  const [data, setData] = useState(null);
+const VerReportesPendientes = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [updateReportModalShow, setUpdateReportModalShow] = useState(false);
+
+  const [reportId, setReportId] = useState();
 
   function RefreshData() {
     const tableRef = React.createRef();
@@ -15,7 +21,7 @@ const VerClientes = () => {
           Container: (props) => <Paper {...props} elevation={0} />,
           Cell: (props) => <MTableCell {...props} align="center" />,
         }}
-        title="Clientes registrados"
+        title="Reportes"
         tableRef={tableRef}
         localization={{
           pagination: {
@@ -43,18 +49,22 @@ const VerClientes = () => {
             field: "id",
           },
           {
-            title: "Cedula / Rif",
-            render: (rowData) => (
-              <p>{rowData.identification + "-" + rowData.dni}</p>
-            ),
-          },
-          { title: "Correo", field: "email" },
-          { title: "Teléfono", field: "phone" },
-          {
-            title: "Empresa",
-            render: (rowData) => <p>{rowData.isEnterprise ? "Sí" : "No"}</p>,
+            title: "Razón",
+            render: (rowData) => rowData.reportCategory.name,
           },
 
+          {
+            title: "Estado",
+            render: (rowData) => rowData.reportStatus.name,
+          },
+          {
+            title: "Fecha de reporte",
+            render: (rowData) => dayjs(rowData.createdAt).format("DD/MM/YYYY"),
+          },
+          {
+            title: "Nivel de prioridad",
+            field: "priorityLevel",
+          },
           /*  {
             title: "Revisado",
             field: "wasAnswered",
@@ -68,46 +78,51 @@ const VerClientes = () => {
             padding: "20px",
             textAlign: "center",
           },
+
           rowStyle: {
             backgroundColor: "#EEE",
+            textAlign: "center",
           },
+
+          cellStyle: {
+            textAlign: "center",
+          },
+
+          search: false,
+
+          actionsColumnIndex: -1,
         }}
         data={(query) =>
           new Promise(async (resolve, reject) => {
-            const result = await adminService.getClients({
+            const result = await reportService.getReports({
               page: query.page,
-              size: query.pageSize,
+              size: query.pageSize
             });
             resolve({
-              page: result.data.currentPage,
-              data: result.data.data,
-              totalCount: result.data.totalItems,
+              page: result.currentPage,
+              data: result.data,
+              totalCount: result.totalItems,
             });
           })
         }
         actions={[
           {
-            icon: "refresh",
-            tooltip: "Refrescar datos",
-            isFreeAction: true,
-            onClick: () => tableRef.current && tableRef.current.onQueryChange(),
-          },
-
-          {
             icon: "visibility",
             tooltip: "Ver información",
             onClick: (event, rowData) => {
-              /* setShowData({
-                id: rowData.id,
-                name: rowData.name,
-                reason: rowData.reason,
-                message: rowData.message,
-                phone: rowData.phone,
-                email: rowData.email,
-                wasAnswered: rowData.wasAnswered,
-              }); */
-              //setModalShow(true);
+              event.preventDefault();
+              setReportId(rowData.id);
+              setModalShow(true);
               // Do save operation
+            },
+          },
+          {
+            icon: "edit",
+            tooltip: "Actualizar reporte",
+            onClick: (event, rowData) => {
+              event.preventDefault();
+              setReportId(rowData.id);
+              setUpdateReportModalShow(true)
             },
           },
         ]}
@@ -126,11 +141,21 @@ const VerClientes = () => {
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">
-                Tabla de clientes
+                Reportes
               </h6>
             </div>
             <div className="card-body">
               <RefreshData></RefreshData>
+              <ReportModal
+                reportId={reportId}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              />
+              <UpdateReportModal
+                reportId={reportId}
+                show={updateReportModalShow}
+                onHide={() => setUpdateReportModalShow(false)}
+              />
             </div>
           </div>
         </div>
@@ -139,4 +164,4 @@ const VerClientes = () => {
   );
 };
 
-export default VerClientes;
+export default VerReportesPendientes;

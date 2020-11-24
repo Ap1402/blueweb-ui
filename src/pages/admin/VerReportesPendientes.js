@@ -5,8 +5,12 @@ import reportService from "../../services/report.service";
 import { Paper } from "@material-ui/core";
 import dayjs from "dayjs";
 import ReportModal from "../../components/Modals/ReportModal";
+import UpdateReportModal from "../../components/Modals/UpdateReportModal";
+
 const VerReportesPendientes = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [updateReportModalShow, setUpdateReportModalShow] = useState(false);
+
   const [reportId, setReportId] = useState();
 
   function RefreshData() {
@@ -58,6 +62,10 @@ const VerReportesPendientes = () => {
             render: (rowData) => dayjs(rowData.createdAt).format("DD/MM/YYYY"),
           },
           {
+            title: "Cliente",
+            render: (rowData) => rowData.client.identification+' - '+rowData.client.dni
+          },
+          {
             title: "Nivel de prioridad",
             field: "priorityLevel",
           },
@@ -67,6 +75,7 @@ const VerReportesPendientes = () => {
             render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
           }, */
         ]}
+
         options={{
           headerStyle: {
             backgroundColor: "#01579b",
@@ -74,17 +83,21 @@ const VerReportesPendientes = () => {
             padding: "20px",
             textAlign: "center",
           },
+
           rowStyle: {
             backgroundColor: "#EEE",
             textAlign: "center",
           },
+
           cellStyle: {
             textAlign: "center",
           },
+
           search: false,
 
           actionsColumnIndex: -1,
         }}
+
         data={(query) =>
           new Promise(async (resolve, reject) => {
             const result = await reportService.getReports({
@@ -104,9 +117,19 @@ const VerReportesPendientes = () => {
             icon: "visibility",
             tooltip: "Ver información",
             onClick: (event, rowData) => {
-                setReportId(rowData.id)
+              event.preventDefault();
+              setReportId(rowData.id);
               setModalShow(true);
               // Do save operation
+            },
+          },
+          {
+            icon: "edit",
+            tooltip: "Actualizar reporte",
+            onClick: (event, rowData) => {
+              event.preventDefault();
+              setReportId(rowData.id);
+              setUpdateReportModalShow(true)
             },
           },
         ]}
@@ -131,9 +154,14 @@ const VerReportesPendientes = () => {
             <div className="card-body">
               <RefreshData></RefreshData>
               <ReportModal
-              reportId={reportId}
+                reportId={reportId}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+              />
+              <UpdateReportModal
+                reportId={reportId}
+                show={updateReportModalShow}
+                onHide={() => setUpdateReportModalShow(false)}
               />
             </div>
           </div>

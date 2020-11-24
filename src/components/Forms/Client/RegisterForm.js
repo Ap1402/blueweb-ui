@@ -6,6 +6,7 @@ import userService from "../../../services/user.service";
 import createAlert from "../../../helpers/createAlert";
 import { useState } from "react";
 import Spinner from '../../Spinner/Spinner';
+import SelectField from "../SelectField";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -28,11 +29,14 @@ const RegisterForm = () => {
         confirmPassword: "",
         username: "",
         dni: "",
+        identification:""
       }}
       validationSchema={Yup.object({
         password: Yup.string().required("Este campo es necesario"),
         username: Yup.string().required("Este campo es necesario"),
-
+        identification: Yup.string()
+        .oneOf(["V", "G", "E", "J"])
+        .required("Campo necesario"),
         confirmPassword: Yup.string().oneOf(
           [Yup.ref("password"), null],
           "Las contraseñas deben coincidir"
@@ -51,7 +55,20 @@ const RegisterForm = () => {
             <div className="col-12">{createAlert(requestStatus)}</div>
 
             <div className="col-10 mx-auto">
-              <FormGroup label="Cedula" name="dni" type="text"></FormGroup>
+            <div className="row">
+            <div className="col-3">
+              <SelectField label="." name="identification">
+                <option value=""></option>
+                <option value="V">V</option>
+                <option value="E">E</option>
+                <option value="G">G</option>
+                <option value="J">J</option>
+              </SelectField>
+            </div>
+            <div className="col-9">
+              <FormGroup label="Cedula/Rif del contrato (*)" name="dni" type="text"></FormGroup>
+            </div>
+          </div>
               <FormGroup
                 label="Nombre de usuario"
                 name="username"

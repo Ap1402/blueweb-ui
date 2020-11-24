@@ -13,7 +13,10 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
       <Link to="/admin">
         <a className="sidebar-brand d-flex align-items-center justify-content-center">
           <div className="sidebar-brand-icon rotate-n-15">
-            <img src="/images/Logo.png" style={{ width: "50px" }}></img>
+            <img
+              src="/images/icons/BluewebLogoWhite.png"
+              style={{ width: "50px" }}
+            ></img>
           </div>
           <div className="sidebar-brand-text mx-3">BlueWeb</div>
         </a>
@@ -144,31 +147,48 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
       <div className="sidebar-heading">Reportes</div>
 
       <li className="nav-item">
-        <Link to="/admin/reportes">
+        <Link to="/admin/reportes/pendientes">
           <a className="nav-link">
             <i className="fas fa-fw fa-table"></i>
             <span>Reportes pendientes</span>
           </a>
         </Link>
-
+        <Link to="/admin/reportes">
+          <a className="nav-link">
+            <i className="fas fa-fw fa-table"></i>
+            <span>Todos los reportes</span>
+          </a>
+        </Link>
       </li>
       <hr className="sidebar-divider d-none d-md-block" />
 
-      <div className="sidebar-heading">Planes</div>
+      <div className="sidebar-heading">Configuración</div>
 
       <li className="nav-item">
-        <Link to="/admin/planes">
-          <a className="nav-link">
-            <i className="fas fa-fw fa-table"></i>
-            <span>Ver Planes</span>
-          </a>
+        <Link
+          className="nav-link collapsed"
+          to="#"
+          data-toggle="collapse"
+          data-target="#collapseConfigReport"
+          aria-expanded="true"
+          aria-controls="collapseConfigReport"
+        >
+          <i className="fas fa-plus-square "></i>
+          <span>Estados y categorias de reporte</span>
         </Link>
-        <Link to="/admin/planes/editar">
-          <a className="nav-link">
-            <i className="fas fa-fw fa-table"></i>
-            <span>Editar Planes</span>
-          </a>
-        </Link>
+        <div
+          id="collapseConfigReport"
+          className="collapse"
+          aria-labelledby="headingReportConfig"
+          data-parent="#collapseConfigReport"
+        >
+          <div className="bg-white py-2 collapse-inner rounded">
+            <h6 className="collapse-header">Opciones:</h6>
+            <Link to="/admin/reportes/categorias">
+              <a className="collapse-item">Categorias</a>
+            </Link>
+          </div>
+        </div>
       </li>
       <div className="text-center d-none d-md-inline">
         <button className="rounded-circle border-0" id="sidebarToggle"></button>

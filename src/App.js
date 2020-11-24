@@ -13,6 +13,7 @@ import ClientPanelLayout from "./pages/Layouts/ClientPanelLayout";
 
 import VerClientes from "./pages/admin/VerClientes";
 import VerReportesPendientes from "./pages/admin/VerReportesPendientes";
+import VerTodosLosReportes from "./pages/admin/VerTodosLosReportes";
 
 import VerFactibilidadSolicitudes from "./pages/admin/VerFactibilidadSolicitudes";
 import VerMensajesContacto from "./pages/admin/VerMensajesContacto";
@@ -27,6 +28,7 @@ import MisReportes from "./pages/client/MisReportes";
 import PerfilCliente from "./pages/client/PerfilCliente";
 import ActualizarDatos from "./pages/client/ActualizarDatos";
 import HistorialPago from "./pages/client/HistorialPago";
+import CreateStatus from "./pages/admin/Configuración/CrearEstado";
 
 const theme = {
   colors: {
@@ -48,9 +50,16 @@ function App() {
               <Switch>
               <PrivateSupportRoute
                   layout={AdminPanelLayout}
-                  path="/admin/reportes"
+                  path="/admin/reportes/pendientes"
                   exact
                   component={VerReportesPendientes}
+                />
+
+<PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/reportes"
+                  exact
+                  component={VerTodosLosReportes}
                 />
                 <PrivateSupportRoute
                   layout={AdminPanelLayout}
@@ -75,6 +84,12 @@ function App() {
                   path="/admin/mensajes/"
                   exact
                   component={VerMensajesContacto}
+                />
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/reportes/categorias"
+                  exact
+                  component={CreateStatus}
                 />
                 <PrivateSupportRoute
                   layout={AdminPanelLayout}
