@@ -36,7 +36,7 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
       <div className="sidebar-heading">Clientes</div>
 
       <li className="nav-item">
-        <Link
+        <a
           className="nav-link collapsed"
           to="#"
           data-toggle="collapse"
@@ -46,7 +46,7 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
         >
           <i className="fas fa-people-square "></i>
           <span>Creacion/edición</span>
-        </Link>
+        </a>
         <div
           id="collapseTwo"
           className="collapse"
@@ -115,7 +115,7 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
       <div className="sidebar-heading">Usuarios</div>
 
       <li className="nav-item">
-        <Link
+        <a
           className="nav-link collapsed"
           to="#"
           data-toggle="collapse"
@@ -125,7 +125,7 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
         >
           <i className="fas fa-plus-square "></i>
           <span>Creacion/edición</span>
-        </Link>
+        </a>
         <div
           id="collapseUser"
           className="collapse"
@@ -165,30 +165,12 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
       <div className="sidebar-heading">Configuración</div>
 
       <li className="nav-item">
-        <Link
-          className="nav-link collapsed"
-          to="#"
-          data-toggle="collapse"
-          data-target="#collapseConfigReport"
-          aria-expanded="true"
-          aria-controls="collapseConfigReport"
-        >
-          <i className="fas fa-plus-square "></i>
-          <span>Estados y categorias de reporte</span>
+        <Link to="/admin/reportes/categorias">
+          <a className="nav-link">
+            <i className="fas fa-fw fa-table"></i>
+            <span>Estados y categorias de reporte</span>
+          </a>
         </Link>
-        <div
-          id="collapseConfigReport"
-          className="collapse"
-          aria-labelledby="headingReportConfig"
-          data-parent="#collapseConfigReport"
-        >
-          <div className="bg-white py-2 collapse-inner rounded">
-            <h6 className="collapse-header">Opciones:</h6>
-            <Link to="/admin/reportes/categorias">
-              <a className="collapse-item">Categorias</a>
-            </Link>
-          </div>
-        </div>
       </li>
       <div className="text-center d-none d-md-inline">
         <button className="rounded-circle border-0" id="sidebarToggle"></button>

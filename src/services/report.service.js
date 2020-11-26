@@ -178,6 +178,39 @@ const createStatus = async (name) => {
 };
 
 
+const deleteStatus = async (statusId) => {
+  const result = await axios
+    .delete(
+      "http://localhost:4000/api/admin/reportStatuses/"+statusId,
+      {
+        headers: {
+          "x-auth-token": authHeader(),
+        },
+      }
+    )
+  return result.data;
+};
+
+
+const deleteCategory = async (categoryId) => {
+  const result = await axios
+    .delete(
+      "http://localhost:4000/api/admin/reportCategories/"+categoryId,
+      {
+        headers: {
+          "x-auth-token": authHeader(),
+        },
+      }
+    )
+  return result.data;
+};
+
+
+
+
+
+
+
 export default {
   registerReport,
   getCategories,
@@ -186,5 +219,7 @@ export default {
   getStatuses,
   updateReport,
   createCategory,
-  createStatus
+  createStatus,
+  deleteCategory,
+  deleteStatus
 };
