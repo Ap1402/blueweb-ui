@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "../helpers/getAuthToken";
+import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = "http://localhost:4000/api/reports/";
+const API_URL = getEnvUrl() + "/api/reports/";
 
 const registerReport = async (message, categoryId) => {
   const result = await axios
@@ -35,7 +36,7 @@ const registerReport = async (message, categoryId) => {
 
 const getCategories = async () => {
   const categories = await axios.get(
-    "http://localhost:4000/api/admin/reportCategories/",
+    getEnvUrl() + "/api/admin/reportCategories/",
     {
       headers: {
         "x-auth-token": authHeader(),
@@ -46,14 +47,11 @@ const getCategories = async () => {
 };
 
 const getStatuses = async () => {
-  const statuses = await axios.get(
-    "http://localhost:4000/api/admin/reportStatuses/",
-    {
-      headers: {
-        "x-auth-token": authHeader(),
-      },
-    }
-  );
+  const statuses = await axios.get(getEnvUrl() + "/api/admin/reportStatuses/", {
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  });
   return statuses.data;
 };
 
@@ -64,25 +62,23 @@ const getReports = async (query) => {
   if (query.status) {
     params.status = query.status;
   }
-  const categories = await axios.get("http://localhost:4000/api/reports", {
+  const categories = await axios.get(getEnvUrl() + "/api/reports", {
     params: params,
     headers: {
       "x-auth-token": authHeader(),
     },
   });
+  console.log(categories)
+
   return categories.data;
 };
 
 const getReportById = async (reportId) => {
-  const report = await axios.get(
-    "http://localhost:4000/api/reports/" + reportId,
-    {
-      headers: {
-        "x-auth-token": authHeader(),
-      },
-    }
-  );
-  console.log(report.data);
+  const report = await axios.get(getEnvUrl() + "/api/reports/" + reportId, {
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  });
   return report.data;
 };
 
@@ -127,7 +123,7 @@ const updateReport = async (
 const createCategory = async (name, defaultPriorityLevel) => {
   const result = await axios
     .post(
-      "http://localhost:4000/api/admin/reportCategories",
+      getEnvUrl() + "/api/admin/reportCategories",
       {
         name,
         defaultPriorityLevel,
@@ -154,9 +150,9 @@ const createCategory = async (name, defaultPriorityLevel) => {
 const createStatus = async (name) => {
   const result = await axios
     .post(
-      "http://localhost:4000/api/admin/reportStatuses",
+      getEnvUrl() + "/api/admin/reportStatuses",
       {
-        name
+        name,
       },
       {
         headers: {
@@ -177,39 +173,29 @@ const createStatus = async (name) => {
   return result;
 };
 
-
 const deleteStatus = async (statusId) => {
-  const result = await axios
-    .delete(
-      "http://localhost:4000/api/admin/reportStatuses/"+statusId,
-      {
-        headers: {
-          "x-auth-token": authHeader(),
-        },
-      }
-    )
+  const result = await axios.delete(
+    getEnvUrl() + "/api/admin/reportStatuses/" + statusId,
+    {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    }
+  );
   return result.data;
 };
-
 
 const deleteCategory = async (categoryId) => {
-  const result = await axios
-    .delete(
-      "http://localhost:4000/api/admin/reportCategories/"+categoryId,
-      {
-        headers: {
-          "x-auth-token": authHeader(),
-        },
-      }
-    )
+  const result = await axios.delete(
+    getEnvUrl() + "/api/admin/reportCategories/" + categoryId,
+    {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    }
+  );
   return result.data;
 };
-
-
-
-
-
-
 
 export default {
   registerReport,
@@ -221,5 +207,5 @@ export default {
   createCategory,
   createStatus,
   deleteCategory,
-  deleteStatus
+  deleteStatus,
 };

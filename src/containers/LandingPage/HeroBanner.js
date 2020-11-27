@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
-import styled, { css } from "styled-components";
-import makeCarousel from "react-reveal/makeCarousel";
-import Fade from "react-reveal/Fade";
+import React from "react";
+import styled from "styled-components";
 
 const HeroBannerStyled = styled.section`
   width: 100%;
@@ -16,13 +14,13 @@ const HeroBannerStyled = styled.section`
   -ms-user-select: none;
   user-select: none;
   height: 100vh;
-  background-image: url("/images/Banner-2.png");
+  background-image: url("/images/Banner-2.jpg");
 
   &:before {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(57, 49, 49, 0.65);
+    background-color: rgba(57, 49, 49, 0.75);
     z-index: 1;
     content: "";
   }
@@ -44,6 +42,8 @@ const StyledBannerInner = styled.div`
     font-size: 44px;
     color: #ffffff;
     line-height: 1.5;
+    font-weight: bold;
+
     letter-spacing: 0;
     margin-bottom: 16px;
   }
@@ -51,7 +51,7 @@ const StyledBannerInner = styled.div`
     font-size: 20px;
     line-height: 1.6;
     letter-spacing: 0;
-    font-weight: 400;
+    font-weight: 500;
     margin: 0 auto 10px;
   }
   a {
@@ -65,7 +65,7 @@ const StyledBannerInner = styled.div`
     display: inline-block;
     color: white;
     border: solid 2px white;
-    font-weight: 400;
+    font-weight: 500;
     transition: 0.3s;
     text-align: center;
     &:hover {

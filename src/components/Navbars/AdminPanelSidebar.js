@@ -12,13 +12,18 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
     >
       <Link to="/admin">
         <a className="sidebar-brand d-flex align-items-center justify-content-center">
-          <div className="sidebar-brand-icon rotate-n-15">
+          <div className="sidebar-brand-icon">
             <img
               src="/images/icons/BluewebLogoWhite.png"
               style={{ width: "50px" }}
             ></img>
           </div>
-          <div className="sidebar-brand-text mx-3">BlueWeb</div>
+          <div className="sidebar-brand-text mx-3">
+            <img
+              style={{ width: "100px" }}
+              src="/images/icons/Blueweb-letters.png"
+            ></img>
+          </div>
         </a>
       </Link>
 

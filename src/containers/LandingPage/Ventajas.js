@@ -17,9 +17,8 @@ const StyledTextDiv = styled.div`
   background-color: #ffffff;
     padding: 50px 50px 35px;
     box-shadow: 0px 20px 35px rgba(27,48,77,.07);
-    font-family: "Poppins", Arial, Tahoma, sans-serif;
   h1 {
-    font-weight: 700;
+    font-weight: 600;
 
     font-size: 32px;
     margin-bottom: 20px;

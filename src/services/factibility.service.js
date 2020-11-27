@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "../helpers/getAuthToken";
+import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = getEnvUrl()+"/api/auth/";
 
 const register = (username, email, password) => {
   return axios.post(API_URL + "signup", {
@@ -15,7 +16,7 @@ const register = (username, email, password) => {
 //Access Admin
 const getFactibilityRequests = async (query) => {
   const result = await axios
-    .get("http://localhost:4000/api/factibility/", {
+    .get(getEnvUrl()+"/api/factibility/", {
       params: {
         page: query.page,
         size: query.size,
@@ -34,7 +35,7 @@ const getFactibilityRequests = async (query) => {
 const pendingFactibilityRequestsCount = async ()=>{
 
  const result=  await axios.get(
-    "http://localhost:4000/api/factibility/count",
+  getEnvUrl()+"/api/factibility/count",
     {
       headers: {
         "x-auth-token": authHeader(),

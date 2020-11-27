@@ -18,18 +18,18 @@ const HeaderStyle = styled.header`
     width: 100%;
     display: flex;
     z-index: 1000;
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 30px;
     position: absolute;
-    font-style:italic;
-    font-weight:600;
+    font-style: bold;
     flex-direction: row;
     justify-content: space-between;
+
     img {
       align-self: flex-start;
       padding: 5px 0 5px 50px;
       height: 70px;
-      display:none;
+      display: none;
     }
     a {
       z-index: 1000;
@@ -81,8 +81,7 @@ const HeaderStyle = styled.header`
 
     img {
       height: 50px;
-      display:block;
-
+      display: block;
     }
     animation-name: slideRight;
     -webkit-animation-name: slideRight;

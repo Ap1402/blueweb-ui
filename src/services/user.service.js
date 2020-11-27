@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "../helpers/getAuthToken";
+import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = "http://192.168.1.211:4000/api/users/";
+const API_URL = getEnvUrl()+"/api/users/";
 
 const register = async (userData) => {
   const result = await axios

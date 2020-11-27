@@ -13,7 +13,7 @@ const ClientTopBar = ({ userInfo }) => {
 
       <ul className="navbar-nav ml-auto">
         <li className="nav-item dropdown no-arrow d-sm-none">
-          <Link
+          <a
             className="nav-link dropdown-toggle"
             to="#"
             id="searchDropdown"
@@ -23,7 +23,7 @@ const ClientTopBar = ({ userInfo }) => {
             aria-expanded="false"
           >
             <i className="fas fa-search fa-fw"></i>
-          </Link>
+          </a>
           <div
             className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
             aria-labelledby="searchDropdown"
@@ -50,7 +50,7 @@ const ClientTopBar = ({ userInfo }) => {
         <div className="topbar-divider d-none d-sm-block"></div>
 
         <li className="nav-item dropdown no-arrow">
-          <Link
+          <a
             className="nav-link dropdown-toggle"
             to="#"
             id="userDropdown"
@@ -67,7 +67,7 @@ const ClientTopBar = ({ userInfo }) => {
               src="https://source.unsplash.com/QAB-WJcbgJk/60x60"
               alt="User"
             />
-          </Link>
+          </a>
           <div
             className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="userDropdown"
@@ -82,7 +82,7 @@ const ClientTopBar = ({ userInfo }) => {
             </Link>
 
             <div className="dropdown-divider"></div>
-            <Link
+            <a
               className="dropdown-item"
               to="#"
               data-toggle="modal"
@@ -90,7 +90,7 @@ const ClientTopBar = ({ userInfo }) => {
             >
               <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               Salir
-            </Link>
+            </a>
           </div>
         </li>
       </ul>

@@ -16,7 +16,7 @@ const NavbarStyle = styled.ul`
     display: block;
     padding: 5px;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: inherit;
     margin: 0 10px;
     color: inherit;
   }
@@ -46,8 +46,7 @@ const NavbarStyle = styled.ul`
     height: 1px;
     content: ".";
     color: transparent;
-    box-shadow: 0 0 4px rgba(248, 202, 255, 0.2),
-      2px 2px 3px rgba(248, 202, 255, 0.2);
+ 
     background: ${({ theme }) => theme.colors.blue};
     visibility: none;
     opacity: 0;
@@ -93,13 +92,19 @@ const Navbar = () => {
       </li>
 
       <li className="common-nav">
-        <Link to="/servicios" href="/servicios">Servicios</Link>
+        <Link to="/servicios" href="/servicios">
+          Servicios
+        </Link>
       </li>
       <li className="common-nav">
-        <Link to="/nosotros" href="/nosotros">Nosotros</Link>
+        <Link to="/nosotros" href="/nosotros">
+          Nosotros
+        </Link>
       </li>
       <li className="common-nav">
-        <Link to="/contacto" href="/contacto">Contacto</Link>
+        <Link to="/contacto" href="/contacto">
+          Contacto
+        </Link>
       </li>
       {/*   <li className="highlighted" onClick={() => setModalShow(true)}>
       <Link to="#">Ingreso</Link>

@@ -20,6 +20,100 @@ const StyledModalContent = styled.div`
   }
 `;
 
+function RefreshData(setShowData, setModalShow, handleClick) {
+  const tableRef = React.createRef();
+
+  return (
+    <MaterialTable
+      title="Tabla de Mensajes por atender"
+      tableRef={tableRef}
+      localization={{
+        pagination: {
+          labelDisplayedRows: "{from}-{to} de {count} páginas",
+        },
+        toolbar: {
+          nRowsSelected: "{0} filas(s) seleccionadas",
+        },
+
+        pagination: {
+          labelRowsSelect: "filas",
+        },
+        header: {
+          actions: "Acciones",
+        },
+        body: {
+          emptyDataSourceMessage: "No hay registros para mostrar",
+          filterRow: {
+            filterTooltip: "Filtro",
+          },
+        },
+      }}
+      columns={[
+        {
+          title: "Nombre",
+          field: "name",
+        },
+        { title: "Teléfono", field: "phone" },
+        { title: "Correo", field: "email" },
+        { title: "Razón", field: "reason" },
+        {
+          title: "Revisado",
+          field: "wasAnswered",
+          render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
+        },
+      ]}
+      options={{
+        headerStyle: {
+          backgroundColor: "#01579b",
+          color: "white",
+          fontWeight: 400,
+          padding: "20px",
+        },
+      }}
+      data={(query) =>
+        new Promise(async (resolve, reject) => {
+          const result = await messagesService.getMessages({
+            page: query.page,
+            size: query.pageSize,
+            wasAnswered: 0,
+          });
+          resolve({
+            page: result.data.currentPage,
+            data: result.data.data,
+            totalCount: result.data.totalItems,
+          });
+        })
+      }
+      actions={[
+        {
+          icon: "refresh",
+          tooltip: "Refrescar datos",
+          isFreeAction: true,
+          onClick: () => tableRef.current && tableRef.current.onQueryChange(),
+        },
+
+        {
+          icon: "visibility",
+          tooltip: "Ver información",
+          onClick: (event, rowData) => {
+            setShowData({
+              id: rowData.id,
+              name: rowData.name,
+              reason: rowData.reason,
+              message: rowData.message,
+              phone: rowData.phone,
+              email: rowData.email,
+              wasAnswered: rowData.wasAnswered,
+            });
+            setModalShow(true);
+            // Do save operation
+          },
+        },
+      ]}
+    />
+  );
+}
+
 const VerMensajesContacto = () => {
   const [modalShow, setModalShow] = useState(false);
 
@@ -32,99 +126,7 @@ const VerMensajesContacto = () => {
     email: null,
     wasAnswered: null,
   });
-  function RefreshData({}) {
-    const tableRef = React.createRef();
-
-    return (
-      <MaterialTable
-        title="Tabla de Mensajes por atender"
-        tableRef={tableRef}
-        localization={{
-          pagination: {
-            labelDisplayedRows: "{from}-{to} de {count} páginas",
-          },
-          toolbar: {
-            nRowsSelected: "{0} filas(s) seleccionadas",
-          },
-
-          pagination: {
-            labelRowsSelect: "filas",
-          },
-          header: {
-            actions: "Acciones",
-          },
-          body: {
-            emptyDataSourceMessage: "No hay registros para mostrar",
-            filterRow: {
-              filterTooltip: "Filtro",
-            },
-          },
-        }}
-        columns={[
-          {
-            title: "Nombre",
-            field: "name",
-          },
-          { title: "Teléfono", field: "phone" },
-          { title: "Correo", field: "email" },
-          { title: "Razón", field: "reason" },
-          {
-            title: "Revisado",
-            field: "wasAnswered",
-            render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
-          },
-        ]}
-        options={{
-          headerStyle: {
-            backgroundColor: "#01579b",
-            color: "white",
-            fontWeight: 400,
-            padding: "20px",
-          },
-        }}
-        data={(query) =>
-          new Promise(async (resolve, reject) => {
-            const result = await messagesService.getMessages({
-              page: query.page,
-              size: query.pageSize,
-              wasAnswered: 0,
-            });
-            resolve({
-              page: result.data.currentPage,
-              data: result.data.data,
-              totalCount: result.data.totalItems,
-            });
-          })
-        }
-        actions={[
-          {
-            icon: "refresh",
-            tooltip: "Refrescar datos",
-            isFreeAction: true,
-            onClick: () => tableRef.current && tableRef.current.onQueryChange(),
-          },
-
-          {
-            icon: "visibility",
-            tooltip: "Ver información",
-            onClick: (event, rowData) => {
-              setShowData({
-                id: rowData.id,
-                name: rowData.name,
-                reason: rowData.reason,
-                message: rowData.message,
-                phone: rowData.phone,
-                email: rowData.email,
-                wasAnswered: rowData.wasAnswered,
-              });
-              setModalShow(true);
-              // Do save operation
-            },
-          },
-        ]}
-      />
-    );
-  }
+ 
   const handleClick = async (e, id) => {
     const result = await axios
       .put("http://localhost:4000/api/clients/ContactMessage/setAnswered/" + id)
@@ -164,8 +166,7 @@ const VerMensajesContacto = () => {
                 </h6>
               </div>
               <div className="card-body">
-                <RefreshData></RefreshData>
-
+{RefreshData(setShowData, setModalShow)}
                 <SeeContactMessageInfo
                   show={modalShow}
                   onHide={() => setModalShow(false)}

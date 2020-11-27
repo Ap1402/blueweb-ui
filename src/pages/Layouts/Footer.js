@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledFooter = styled.footer`
   width: 100%;
-  background-color:#ededed;
+  background-color: #ededed;
   margin: 0;
   padding: 3rem;
   color: black;
@@ -14,7 +14,7 @@ const StyledDivForFooter = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: left;
-  justify-content:space-between;
+  justify-content: space-between;
 
   .red {
     font-size: 35px;
@@ -49,9 +49,9 @@ const StyledDivForFooter = styled.div`
     @media (min-width: 760px) {
       width: 30%;
     }
-    .logo-footer{
+    .logo-footer {
       width: 200px;
-      margin-bottom:20px;
+      margin-bottom: 20px;
     }
   }
   .logoWrapper {
@@ -81,7 +81,7 @@ const StyledDivForFooter = styled.div`
         margin-bottom: 0.3rem;
       }
     }
-  
+
     .direction {
       font-size: 0.8rem;
     }
@@ -93,15 +93,20 @@ const StyledDivForFooter = styled.div`
 
   @media (min-width: 760px) {
     flex-direction: row;
-    margin:0 4rem;
+    margin: 0 4rem;
   }
 `;
+
 const Footer = () => {
   return (
     <StyledFooter>
       <StyledDivForFooter>
         <div className="aboutUsWrapper">
-        <img src="/images/blue-web.png" alt="BlueWeb" className="logo-footer"></img>
+          <img
+            src="/images/blue-web.png"
+            alt="BlueWeb"
+            className="logo-footer"
+          ></img>
 
           <p>
             The following is the stress test for the chosen effect. A 100
@@ -114,9 +119,7 @@ const Footer = () => {
           <i className="fab fa-facebook red"></i>
           <i className="fab fa-instagram-square red"></i>
         </div>
-      {/*   <div className="logoWrapper">
-          <img src="/images/Logo.png" alt="BlueWeb"></img>
-        </div> */}
+
         <div className="contactWrapper">
           <h2>Datos de Contacto</h2>
           <p>Telefono: 555-55555</p>

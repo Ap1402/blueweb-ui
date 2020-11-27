@@ -4,6 +4,10 @@ import reportService from "../../services/report.service";
 import MaterialTable, { MTableCell } from "material-table";
 import { Paper } from "@material-ui/core";
 import dayjs from "dayjs";
+import ReportModal from "../../components/Modals/ReportModal";
+import { useState } from "react";
+
+
 const StyledContainer = styled.div`
   width: 100%;
   .content {
@@ -36,7 +40,10 @@ const StyledContainer = styled.div`
     font-size: 40px;
   }
 `;
-function RefreshData() {
+
+
+
+function RefreshData(setReportId, setModalShow) {
   const tableRef = React.createRef();
   return (
     <MaterialTable
@@ -129,17 +136,8 @@ function RefreshData() {
           icon: "visibility",
           tooltip: "Ver información",
           onClick: (event, rowData) => {
-            /* setShowData({
-              id: rowData.id,
-              name: rowData.name,
-              reason: rowData.reason,
-              message: rowData.message,
-              phone: rowData.phone,
-              email: rowData.email,
-              wasAnswered: rowData.wasAnswered,
-            }); */
-            //setModalShow(true);
-            // Do save operation
+            setReportId(rowData.id);
+            setModalShow(true);
           },
         },
       ]}
@@ -148,6 +146,8 @@ function RefreshData() {
 }
 
 const MisReportes = () => {
+  const [modalShow, setModalShow] = useState(false);
+  const [reportId, setReportId] = useState();
   return (
     <>
       <div className="card">
@@ -155,8 +155,13 @@ const MisReportes = () => {
           <StyledContainer>
             <h1 className="seccion-header">Mis reportes</h1>
             
-            {RefreshData()}
+            {RefreshData(setReportId,setModalShow)}
           </StyledContainer>
+          <ReportModal
+                reportId={reportId}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              />
         </div>
       </div>
     </>

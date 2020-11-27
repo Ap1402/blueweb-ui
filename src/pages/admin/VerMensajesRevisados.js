@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import SeeContactMessageInfo from "../../components/Modals/SeeContactMessageInfo";
 import MaterialTable from "material-table";
-import Axios from "axios";
 import styled from "styled-components";
 import adminService from "../../services/admin.service";
 import messagesService from "../../services/messages.service";
@@ -124,6 +123,7 @@ const VerMensajesContacto = () => {
       />
     );
   }
+  
   const handleClick = async (e, id) => {
     const result = await axios
       .put("http://localhost:4000/api/clients/ContactMessage/setAnswered/" + id)

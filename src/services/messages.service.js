@@ -1,7 +1,8 @@
 import Axios from "axios";
 import authHeader from "../helpers/getAuthToken";
+import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = "http://localhost:4000/api/clients/messages";
+const API_URL = getEnvUrl()+"/api/clients/messages";
 
 const createContactMessage = async (requestData) => {
   const result = await Axios.post(API_URL, requestData).catch((err) => {
@@ -34,7 +35,7 @@ const getMessages = async (query) => {
 const getPendingMessagesCount = async()=>{
   
   const result= await Axios.get(
-    "http://localhost:4000/api/clients/messages/count",
+    getEnvUrl()+"/api/clients/messages/count",
     {
       headers: {
         "x-auth-token": authHeader(),

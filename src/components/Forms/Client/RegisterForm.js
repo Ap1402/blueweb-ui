@@ -32,7 +32,7 @@ const RegisterForm = () => {
         identification:""
       }}
       validationSchema={Yup.object({
-        password: Yup.string().required("Este campo es necesario"),
+        password: Yup.string().min(6, 'Debe tener mínimo 6 carácteres').required("Este campo es necesario"),
         username: Yup.string().required("Este campo es necesario"),
         identification: Yup.string()
         .oneOf(["V", "G", "E", "J"])

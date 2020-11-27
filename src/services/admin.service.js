@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "../helpers/getAuthToken";
+import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = "http://192.168.1.211:4000/api/clients/";
+const API_URL = getEnvUrl()+"/api/clients/";
 
 const registerClient = async (client) => {
   const result = await axios

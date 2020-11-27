@@ -61,6 +61,7 @@ const StyledBackgroundColorWrapper = styled.div`
       font-size: 18px;
       text-align: center;
       margin-top: 5px;
+      font-weight:600;
     }
     h5 {
       max-width: 310px;

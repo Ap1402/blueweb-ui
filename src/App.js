@@ -36,6 +36,10 @@ const theme = {
     secondaryBackgrund: "white",
     primary: "#0070f3",
     blue: "#276ef1",
+    lightBlue:"#5799fb",
+    darkBlue:"#111D7D",
+    darkerBlue: "#000036",
+
   },
 };
 
