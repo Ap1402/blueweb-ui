@@ -3,7 +3,7 @@ import authHeader from "../helpers/getAuthToken";
 import getEnvUrl from "../helpers/GetEnvUrl";
 import setAuthToken from "../helpers/setAuthToken";
 
-const API_URL = getEnvUrl()+"/api/auth/";
+const API_URL = getEnvUrl()+"/auth/";
 
 const login = async (userData) => {
   const result = await axios.post(API_URL + "login", userData).catch((err) => {

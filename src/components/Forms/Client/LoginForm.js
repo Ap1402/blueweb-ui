@@ -13,6 +13,8 @@ const StyledForm = styled(Form)`
   justify-content: center;
   align-items: center;
 `;
+
+
 const LoginForm = (props) => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
@@ -23,8 +25,8 @@ const LoginForm = (props) => {
   const loginUser = async (userData) => {
     try {
       const result = await authService.login(userData);
-      if (result.status === 200) {
-        setRequestStatus({
+      if (result.status == 201) {
+        setRequestStatus({...requestStatus,
           success: true,
           message: "Datos correctos",
           sent: true,
@@ -33,14 +35,12 @@ const LoginForm = (props) => {
               ? "/clients/historial"
               : "/admin/clientes",
         });
-        return "";
       } else {
         setRequestStatus({
           success: false,
           message: result.data.message,
           sent: true,
         });
-        return "";
       }
     } catch (err) {}
   };

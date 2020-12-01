@@ -2,11 +2,11 @@ import axios from "axios";
 import authHeader from "../helpers/getAuthToken";
 import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl()+"/api/clients/";
+const API_URL = getEnvUrl()+"/clients/";
 
 const registerClient = async (client) => {
   const result = await axios
-    .post(API_URL + "register", client, {
+    .post(API_URL, client, {
       headers: {
         "x-auth-token": authHeader(),
       },
