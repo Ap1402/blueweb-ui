@@ -3,14 +3,30 @@ import authHeader from "../helpers/getAuthToken";
 import getEnvUrl from "../helpers/GetEnvUrl";
 import setAuthToken from "../helpers/setAuthToken";
 
-const API_URL = getEnvUrl()+"/auth/";
+const API_URL = getEnvUrl() + "/auth/";
 
 const login = async (userData) => {
   const result = await axios.post(API_URL + "login", userData).catch((err) => {
     return err.response;
   });
-  setAuthToken(result.data);
-  return result;
+
+  if (result.status === 201) {
+    const response = {
+      success: true,
+      message: "Datos correctos",
+      role: result.data.role,
+    };
+    setAuthToken(result.data);
+    return response;
+  } else {
+    const response = {
+      success: false,
+      message: result.data.message,
+      role:''
+    };
+    setAuthToken(result.data);
+    return response;
+  }
 };
 
 const logout = async () => {
@@ -44,8 +60,8 @@ const isAuthenticated = async () => {
   if (result.status === 200) {
     return {
       isAuth: true,
-      role: result.data.user.role,
-      id: result.data.user.id,
+      role: result.data.role,
+      id: result.data.userId,
     };
   } else {
     return result;

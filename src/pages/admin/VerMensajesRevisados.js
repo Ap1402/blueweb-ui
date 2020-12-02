@@ -88,7 +88,7 @@ const VerMensajesContacto = () => {
               wasAnswered: 1,
             });
             resolve({
-              page: result.data.currentPage,
+              page:parseInt(result.data.currentPage),
               data: result.data.data,
               totalCount: result.data.totalItems,
             });

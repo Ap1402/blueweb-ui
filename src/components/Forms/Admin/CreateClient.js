@@ -7,14 +7,12 @@ import adminService from "../../../services/admin.service";
 import TextAreaField from "../TextAreaField";
 import SelectField from "../SelectField";
 
-
 const CreateClient = () => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
     sent: false,
   });
-
 
   return (
     <Formik
@@ -32,7 +30,7 @@ const CreateClient = () => {
         commercialReason: "",
       }}
       validationSchema={Yup.object({
-        isEnterprise: Yup.number().required(
+        isEnterprise: Yup.boolean().required(
           "Necesita especificar el tipo de cliente"
         ),
         identification: Yup.string()
@@ -40,13 +38,13 @@ const CreateClient = () => {
           .required("Necesario"),
 
         socialReason: Yup.string().when("isEnterprise", {
-          is: (value) => value == "1",
+          is: (value) => value == '1',
           then: Yup.string().required("Este campo es necesario"),
           otherwise: Yup.string(),
         }),
 
         commercialReason: Yup.string().when("isEnterprise", {
-          is: (value) => value == "1",
+          is: (value) => value == '1',
           then: Yup.string().required("Este campo es necesario"),
           otherwise: Yup.string(),
         }),

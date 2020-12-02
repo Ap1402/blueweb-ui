@@ -5,12 +5,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 import ClientLogoutModal from "../../components/Modals/ClientLogoutModal";
-import userService from "../../services/user.service";
+import clientsService from "../../services/clients.service";
 
 const StyledDiv = styled.div`
   background-color: #2052b0;
   width: 100%;
-  height:auto;
+  height: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ const ClientPanelLayout = ({ children }) => {
   // Checking if user is client
   useEffect(() => {
     const getUserData = async () => {
-      const result = await userService.getCurrentUserInfo();
+      const result = await clientsService.getCurrentLoggedClient();
       setUserData(result);
       setIsLoading(false);
     };
@@ -80,7 +80,7 @@ const ClientPanelLayout = ({ children }) => {
 
         <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
           <a className="navbar-brand " href="#">
-            <img src="/images/blue-web.png" style={{ height: "30px" }}></img>
+            <img src="/images/icons/Logo-blueweb-letters.png" style={{ height: "25px" }}></img>
           </a>
           <button
             className="navbar-toggler"
@@ -118,7 +118,11 @@ const ClientPanelLayout = ({ children }) => {
                   Reportes
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <Link to="/clients/misReportes" className="dropdown-item" href="#" >
+                  <Link
+                    to="/clients/misReportes"
+                    className="dropdown-item"
+                    href="#"
+                  >
                     Ver mis reportes
                   </Link>
                   <Link
@@ -147,7 +151,11 @@ const ClientPanelLayout = ({ children }) => {
                     Mis datos
                   </Link>
 
-                  <Link to="/clients/actualizar" className="dropdown-item" href="#">
+                  <Link
+                    to="/clients/actualizar"
+                    className="dropdown-item"
+                    href="#"
+                  >
                     Actualizar mis datos
                   </Link>
                 </div>

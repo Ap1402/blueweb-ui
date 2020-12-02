@@ -2,7 +2,7 @@ import axios from "axios";
 import authHeader from "../helpers/getAuthToken";
 import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl() + "/api/reports/";
+const API_URL = getEnvUrl() + "/reports";
 
 const registerReport = async (message, categoryId) => {
   const result = await axios
@@ -35,19 +35,16 @@ const registerReport = async (message, categoryId) => {
 };
 
 const getCategories = async () => {
-  const categories = await axios.get(
-    getEnvUrl() + "/api/admin/reportCategories/",
-    {
-      headers: {
-        "x-auth-token": authHeader(),
-      },
-    }
-  );
+  const categories = await axios.get(API_URL + "/categories", {
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  });
   return categories.data;
 };
 
 const getStatuses = async () => {
-  const statuses = await axios.get(getEnvUrl() + "/api/admin/reportStatuses/", {
+  const statuses = await axios.get(API_URL + "/statuses", {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -62,19 +59,18 @@ const getReports = async (query) => {
   if (query.status) {
     params.status = query.status;
   }
-  const categories = await axios.get(getEnvUrl() + "/api/reports", {
+  const reports = await axios.get(API_URL, {
     params: params,
     headers: {
       "x-auth-token": authHeader(),
     },
   });
-  console.log(categories)
 
-  return categories.data;
+  return reports.data;
 };
 
 const getReportById = async (reportId) => {
-  const report = await axios.get(getEnvUrl() + "/api/reports/" + reportId, {
+  const report = await axios.get(API_URL+ reportId, {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -123,7 +119,7 @@ const updateReport = async (
 const createCategory = async (name, defaultPriorityLevel) => {
   const result = await axios
     .post(
-      getEnvUrl() + "/api/admin/reportCategories",
+      API_URL+'/categories',
       {
         name,
         defaultPriorityLevel,
@@ -150,7 +146,7 @@ const createCategory = async (name, defaultPriorityLevel) => {
 const createStatus = async (name) => {
   const result = await axios
     .post(
-      getEnvUrl() + "/api/admin/reportStatuses",
+      API_URL+'/statuses',
       {
         name,
       },
@@ -175,7 +171,7 @@ const createStatus = async (name) => {
 
 const deleteStatus = async (statusId) => {
   const result = await axios.delete(
-    getEnvUrl() + "/api/admin/reportStatuses/" + statusId,
+    API_URL + '/statuses/' + statusId,
     {
       headers: {
         "x-auth-token": authHeader(),
@@ -187,7 +183,7 @@ const deleteStatus = async (statusId) => {
 
 const deleteCategory = async (categoryId) => {
   const result = await axios.delete(
-    getEnvUrl() + "/api/admin/reportCategories/" + categoryId,
+    API_URL + "/categories/" + categoryId,
     {
       headers: {
         "x-auth-token": authHeader(),

@@ -12,9 +12,9 @@ const CreateStatus = () => {
   useEffect(() => {
     const getData = async () => {
       const resultCategories = await reportService.getCategories();
-      setCategories(resultCategories);
+      setCategories(resultCategories.data);
       const resultStatuses = await reportService.getStatuses();
-      setStatuses(resultStatuses);
+      setStatuses(resultStatuses.data);
       setLoading(false);
     };
     getData();
@@ -41,13 +41,17 @@ const CreateStatus = () => {
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 className="h3 mb-0 text-gray-800">Control de estados y categorías de reportes</h1>
+        <h1 className="h3 mb-0 text-gray-800">
+          Control de estados y categorías de reportes
+        </h1>
       </div>
       <div className="row">
         <div className="col-lg-5">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">Crear estado</h6>
+              <h6 className="m-0 font-weight-bold text-primary">
+                Crear estado
+              </h6>
             </div>
             <div className="card-body">
               <CreateStatusForm></CreateStatusForm>
@@ -102,7 +106,9 @@ const CreateStatus = () => {
         <div className="col-lg-7">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">Crear categoria</h6>
+              <h6 className="m-0 font-weight-bold text-primary">
+                Crear categoria
+              </h6>
             </div>
             <div className="card-body">
               <CreateCategory></CreateCategory>

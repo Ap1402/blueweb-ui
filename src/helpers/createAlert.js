@@ -1,6 +1,5 @@
 
 const createAlert = (requestStatus) => {
-  console.log(requestStatus)
   if (requestStatus.sent & !requestStatus.success) {
     
     return (

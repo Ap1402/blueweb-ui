@@ -14,35 +14,24 @@ const StyledForm = styled(Form)`
   align-items: center;
 `;
 
-
 const LoginForm = (props) => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
     sent: false,
+    redirect: "",
   });
 
   const loginUser = async (userData) => {
-    try {
-      const result = await authService.login(userData);
-      if (result.status == 201) {
-        setRequestStatus({...requestStatus,
-          success: true,
-          message: "Datos correctos",
-          sent: true,
-          redirect:
-            result.data.user.role === "client"
-              ? "/clients/historial"
-              : "/admin/clientes",
-        });
-      } else {
-        setRequestStatus({
-          success: false,
-          message: result.data.message,
-          sent: true,
-        });
-      }
-    } catch (err) {}
+    const result = await authService.login(userData);
+    setRequestStatus({
+      sent:true, 
+      message: result.message,
+      success: result.success,
+      role: result.role,
+      redirect:
+        result.role === "client" ? "/clients/historial" : "/admin/clientes",
+    });
   };
 
   useEffect(() => {

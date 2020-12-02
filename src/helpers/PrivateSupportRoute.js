@@ -29,7 +29,7 @@ function PrivateSupportRoute({
       {...rest}
       render={(matchProps) =>
         !loading ? (
-          isAuth & (role === "admin" || role === "support") ? (
+          isAuth & (role === "client" || role === "support") ? (
             <Layout>
               <Component {...matchProps} />
             </Layout>

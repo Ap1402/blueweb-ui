@@ -2,11 +2,11 @@ import axios from "axios";
 import authHeader from "../helpers/getAuthToken";
 import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl()+"/api/users/";
+const API_URL = getEnvUrl()+"/users";
 
 const register = async (userData) => {
   const result = await axios
-    .post(API_URL + "register", userData)
+    .post(API_URL, userData)
     .then((data) => {
       return { success: true, message: data.response.data, sent: true };
     })
@@ -18,14 +18,13 @@ const register = async (userData) => {
 
 const getCurrentUserInfo = async () => {
   try {
-    const result = await axios.get(API_URL + "current", {
+    const result = await axios.get(API_URL + "/me", {
       headers: {
         "x-auth-token": authHeader(),
       },
     });
     return result.data;
   } catch (err) {
-    console.log(err.response);
     return err.response.data;
   }
 };

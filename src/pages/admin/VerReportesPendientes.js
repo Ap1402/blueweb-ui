@@ -44,12 +44,12 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
         },
         {
           title: "Razón",
-          render: (rowData) => rowData.reportCategory.name,
+          render: (rowData) => rowData.category.name,
         },
 
         {
           title: "Estado",
-          render: (rowData) => rowData.reportStatus.name,
+          render: (rowData) => rowData.status.name,
         },
         {
           title: "Fecha de reporte",
@@ -57,7 +57,8 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
         },
         {
           title: "Cliente",
-          render: (rowData) => rowData.client.identification+' - '+rowData.client.dni
+          render: (rowData) =>
+            rowData.client.identification + " - " + rowData.client.dni,
         },
         {
           title: "Nivel de prioridad",
@@ -69,7 +70,6 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
           render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
         }, */
       ]}
-
       options={{
         headerStyle: {
           backgroundColor: "#01579b",
@@ -91,7 +91,6 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
 
         actionsColumnIndex: -1,
       }}
-
       data={(query) =>
         new Promise(async (resolve, reject) => {
           const result = await reportService.getReports({
@@ -100,7 +99,7 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
             status: 1,
           });
           resolve({
-            page: result.currentPage,
+            page: parseInt(result.currentPage),
             data: result.data,
             totalCount: result.totalItems,
           });
@@ -129,7 +128,7 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
           onClick: (event, rowData) => {
             event.preventDefault();
             setReportId(rowData.id);
-            setUpdateReportModalShow(true)
+            setUpdateReportModalShow(true);
           },
         },
       ]}
@@ -137,14 +136,11 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
   );
 }
 
-
 const VerReportesPendientes = () => {
   const [modalShow, setModalShow] = useState(false);
   const [updateReportModalShow, setUpdateReportModalShow] = useState(false);
 
   const [reportId, setReportId] = useState();
-
-  
 
   return (
     <>
@@ -161,7 +157,7 @@ const VerReportesPendientes = () => {
               </h6>
             </div>
             <div className="card-body">
-            {RefreshData(setReportId, setModalShow, setUpdateReportModalShow)}
+              {RefreshData(setReportId, setModalShow, setUpdateReportModalShow)}
               <ReportModal
                 reportId={reportId}
                 show={modalShow}

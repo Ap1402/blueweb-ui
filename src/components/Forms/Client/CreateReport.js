@@ -27,7 +27,7 @@ const CreateReport = () => {
   useEffect(() => {
     const getCategories = async () => {
       const result = await reportService.getCategories();
-      setCategories(result);
+      setCategories(result.data);
       setLoading(false);
     };
     getCategories();

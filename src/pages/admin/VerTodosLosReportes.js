@@ -44,12 +44,12 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
         },
         {
           title: "Razón",
-          render: (rowData) => rowData.reportCategory.name,
+          render: (rowData) => rowData.category.name,
         },
 
         {
           title: "Estado",
-          render: (rowData) => rowData.reportStatus.name,
+          render: (rowData) => rowData.status.name,
         },
         {
           title: "Fecha de reporte",
@@ -90,17 +90,16 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
         new Promise(async (resolve, reject) => {
           const result = await reportService.getReports({
             page: query.page,
-            size: query.pageSize
+            size: query.pageSize,
           });
           resolve({
-            page: result.currentPage,
+            page: parseInt(result.currentPage),
             data: result.data,
             totalCount: result.totalItems,
           });
         })
       }
       actions={[
-        
         {
           icon: "refresh",
           tooltip: "Refrescar datos",
@@ -111,7 +110,7 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
           icon: "visibility",
           tooltip: "Ver información",
           onClick: (event, rowData) => {
-             event.preventDefault();
+            event.preventDefault();
             setReportId(rowData.id);
             setModalShow(true);
             // Do save operation
@@ -123,7 +122,7 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
           onClick: (event, rowData) => {
             event.preventDefault();
             setReportId(rowData.id);
-            setUpdateReportModalShow(true)
+            setUpdateReportModalShow(true);
           },
         },
       ]}
@@ -131,14 +130,12 @@ function RefreshData(setReportId, setModalShow, setUpdateReportModalShow) {
   );
 }
 
-
 const VerReportesPendientes = () => {
   const [modalShow, setModalShow] = useState(false);
   const [updateReportModalShow, setUpdateReportModalShow] = useState(false);
 
   const [reportId, setReportId] = useState();
 
-  
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -149,9 +146,7 @@ const VerReportesPendientes = () => {
         <div className="col-lg-12 mb-4 col-12">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">
-                Reportes
-              </h6>
+              <h6 className="m-0 font-weight-bold text-primary">Reportes</h6>
             </div>
             <div className="card-body">
               {RefreshData(setReportId, setModalShow, setUpdateReportModalShow)}

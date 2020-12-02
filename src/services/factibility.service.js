@@ -2,21 +2,12 @@ import axios from "axios";
 import authHeader from "../helpers/getAuthToken";
 import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl()+"/api/auth/";
-
-const register = (username, email, password) => {
-  return axios.post(API_URL + "signup", {
-    username,
-    email,
-    password,
-  });
-};
-
+const API_URL = getEnvUrl() + "/factibility-requests";
 
 //Access Admin
 const getFactibilityRequests = async (query) => {
   const result = await axios
-    .get(getEnvUrl()+"/api/factibility/", {
+    .get(API_URL, {
       params: {
         page: query.page,
         size: query.size,
@@ -32,22 +23,20 @@ const getFactibilityRequests = async (query) => {
   return result;
 };
 
-const pendingFactibilityRequestsCount = async ()=>{
-
- const result=  await axios.get(
-  getEnvUrl()+"/api/factibility/count",
-    {
+const pendingFactibilityRequestsCount = async () => {
+  const result = await axios
+    .get(API_URL + "/count", {
       headers: {
         "x-auth-token": authHeader(),
       },
-    }
-  ).catch((err) => {
-    return err.response;
-  });
-  return result.data
-}
+    })
+    .catch((err) => {
+      return err.response;
+    });
+  return result.data;
+};
+
 export default {
   pendingFactibilityRequestsCount,
-  register,
-  getFactibilityRequests
+  getFactibilityRequests,
 };

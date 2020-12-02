@@ -7,7 +7,6 @@ import dayjs from "dayjs";
 import ReportModal from "../../components/Modals/ReportModal";
 import { useState } from "react";
 
-
 const StyledContainer = styled.div`
   width: 100%;
   .content {
@@ -40,8 +39,6 @@ const StyledContainer = styled.div`
     font-size: 40px;
   }
 `;
-
-
 
 function RefreshData(setReportId, setModalShow) {
   const tableRef = React.createRef();
@@ -121,17 +118,14 @@ function RefreshData(setReportId, setModalShow) {
             page: query.page,
             size: query.pageSize,
           });
-          console.log(result);
           resolve({
-            page: result.currentPage,
+            page: parseInt(result.currentPage),
             data: result.data,
             totalCount: result.totalItems,
           });
         })
       }
       actions={[
-     
-
         {
           icon: "visibility",
           tooltip: "Ver información",
@@ -154,14 +148,14 @@ const MisReportes = () => {
         <div className="card-body">
           <StyledContainer>
             <h1 className="seccion-header">Mis reportes</h1>
-            
-            {RefreshData(setReportId,setModalShow)}
+
+            {RefreshData(setReportId, setModalShow)}
           </StyledContainer>
           <ReportModal
-                reportId={reportId}
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-              />
+            reportId={reportId}
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+          />
         </div>
       </div>
     </>

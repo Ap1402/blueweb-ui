@@ -78,7 +78,7 @@ function RefreshData(setShowData, setModalShow, handleClick) {
             wasAnswered: 0,
           });
           resolve({
-            page: result.data.currentPage,
+            page: parseInt(result.data.currentPage),
             data: result.data.data,
             totalCount: result.data.totalItems,
           });
