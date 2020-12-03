@@ -7,7 +7,6 @@ import createAlert from "../../../helpers/createAlert";
 import { useEffect, useState } from "react";
 import Spinner from "../../Spinner/Spinner";
 import reportService from "../../../services/report.service";
-import dayjs from "dayjs";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -35,9 +34,9 @@ const UpdateReportForm = (props) => {
         setLoading(true);
         const report = await reportService.getReportById(props.reportId);
         const resultCategories = await reportService.getCategories();
-        setCategories(resultCategories);
+        setCategories(resultCategories.data);
         const resultStatuses = await reportService.getStatuses();
-        setStatuses(resultStatuses);
+        setStatuses(resultStatuses.data);
         setReportInfo(report);
         setLoading(false);
       }
@@ -49,8 +48,8 @@ const UpdateReportForm = (props) => {
     return (
       <Formik
         initialValues={{
-          categoryId: reportInfo.reportCategoryId,
-          statusId: reportInfo.reportStatusId,
+          categoryId: reportInfo.categoryId || "",
+          statusId: reportInfo.statusId || "",
           supportMessageForClient: reportInfo.supportMessageForClient || "",
           supportMessageInner: reportInfo.supportMessageInner || "",
           priorityLevel: reportInfo.priorityLevel,
@@ -65,7 +64,6 @@ const UpdateReportForm = (props) => {
           priorityLevel: Yup.string().required("Este campo es necesario"),
         })}
         onSubmit={async (values, { setSubmitting }) => {
-          console.log(values);
           const result = await reportService.updateReport(
             values.statusId,
             values.categoryId,
@@ -86,18 +84,24 @@ const UpdateReportForm = (props) => {
               <div className="col-10 mx-auto">
                 <SelectField label="Motivo del reporte" name="categoryId">
                   <option value="">Seleccione una razón</option>
-                  {categories.map((category) => {
-                    return <option value={category.id}>{category.name}</option>;
-                  })}
+                  {categories
+                    ? categories.map((category) => {
+                        return (
+                          <option value={category.id}>{category.name}</option>
+                        );
+                      })
+                    : ""}
                 </SelectField>
               </div>
 
               <div className="col-10 mx-auto">
                 <SelectField label="Estado del reporte" name="statusId">
                   <option value="">Seleccione una razón</option>
-                  {statuses.map((status) => {
-                    return <option value={status.id}>{status.name}</option>;
-                  })}
+                  {statuses
+                    ? statuses.map((status) => {
+                        return <option value={status.id}>{status.name}</option>;
+                      })
+                    : ""}
                 </SelectField>
               </div>
               <div className="col-10 mx-auto">

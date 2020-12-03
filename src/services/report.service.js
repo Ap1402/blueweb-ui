@@ -70,7 +70,7 @@ const getReports = async (query) => {
 };
 
 const getReportById = async (reportId) => {
-  const report = await axios.get(API_URL+ reportId, {
+  const report = await axios.get(API_URL + "/" + reportId, {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -88,7 +88,7 @@ const updateReport = async (
 ) => {
   const result = await axios
     .put(
-      API_URL + reportId,
+      API_URL + "/" + reportId,
       {
         statusId,
         categoryId,
@@ -119,7 +119,7 @@ const updateReport = async (
 const createCategory = async (name, defaultPriorityLevel) => {
   const result = await axios
     .post(
-      API_URL+'/categories',
+      API_URL + "/categories",
       {
         name,
         defaultPriorityLevel,
@@ -146,7 +146,7 @@ const createCategory = async (name, defaultPriorityLevel) => {
 const createStatus = async (name) => {
   const result = await axios
     .post(
-      API_URL+'/statuses',
+      API_URL + "/statuses",
       {
         name,
       },
@@ -170,26 +170,20 @@ const createStatus = async (name) => {
 };
 
 const deleteStatus = async (statusId) => {
-  const result = await axios.delete(
-    API_URL + '/statuses/' + statusId,
-    {
-      headers: {
-        "x-auth-token": authHeader(),
-      },
-    }
-  );
+  const result = await axios.delete(API_URL + "/statuses/" + statusId, {
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  });
   return result.data;
 };
 
 const deleteCategory = async (categoryId) => {
-  const result = await axios.delete(
-    API_URL + "/categories/" + categoryId,
-    {
-      headers: {
-        "x-auth-token": authHeader(),
-      },
-    }
-  );
+  const result = await axios.delete(API_URL + "/categories/" + categoryId, {
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  });
   return result.data;
 };
 

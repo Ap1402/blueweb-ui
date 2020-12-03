@@ -23,6 +23,25 @@ const getFactibilityRequests = async (query) => {
   return result;
 };
 
+const createFactibilityRequest = async (request) => {
+  const result = await axios
+    .post(API_URL, request)
+    .then((result) => {
+      return {
+        success: true,
+        message:
+          "Su solicitud de factibilidad ha sido enviada con exito, lo contactaremos pronto",
+      };
+    })
+    .catch((err) => {
+      return {
+        success: false,
+        message: "Hubo un problema registrando su solicitud de factibilidad",
+      };
+    });
+  return result;
+};
+
 const pendingFactibilityRequestsCount = async () => {
   const result = await axios
     .get(API_URL + "/count", {
@@ -39,4 +58,5 @@ const pendingFactibilityRequestsCount = async () => {
 export default {
   pendingFactibilityRequestsCount,
   getFactibilityRequests,
+  createFactibilityRequest,
 };

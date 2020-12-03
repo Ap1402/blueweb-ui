@@ -80,7 +80,10 @@ const ClientPanelLayout = ({ children }) => {
 
         <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
           <a className="navbar-brand " href="#">
-            <img src="/images/icons/Logo-blueweb-letters.png" style={{ height: "25px" }}></img>
+            <img
+              src="/images/icons/Logo-blueweb-letters.png"
+              style={{ height: "25px" }}
+            ></img>
           </a>
           <button
             className="navbar-toggler"
@@ -95,11 +98,6 @@ const ClientPanelLayout = ({ children }) => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item active">
-                <Link to="/clients/" className="nav-link" href="#">
-                  Inicio <span className="sr-only">(current)</span>
-                </Link>
-              </li>
               <li className="nav-item">
                 <Link to="/clients/historial" className="nav-link" href="#">
                   Historial y saldo

@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import reportService from "../../services/report.service";
-import MaterialTable, { MTableCell } from "material-table";
-import { Paper } from "@material-ui/core";
-import dayjs from "dayjs";
 import ReportModal from "../../components/Modals/ReportModal";
 import { useState } from "react";
+import { RefreshData } from "../../components/Tables/ReportsTable";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -40,105 +38,6 @@ const StyledContainer = styled.div`
   }
 `;
 
-function RefreshData(setReportId, setModalShow) {
-  const tableRef = React.createRef();
-  return (
-    <MaterialTable
-      components={{
-        Container: (props) => <Paper {...props} elevation={0} />,
-        Cell: (props) => <MTableCell {...props} align="center" />,
-      }}
-      title="Mis reportes realizados"
-      tableRef={tableRef}
-      localization={{
-        pagination: {
-          labelDisplayedRows: "{from}-{to} de {count} páginas",
-        },
-        toolbar: {
-          nRowsSelected: "{0} filas(s) seleccionadas",
-        },
-        header: {
-          actions: "Acciones",
-        },
-        pagination: {
-          labelRowsSelect: "filas",
-        },
-        body: {
-          emptyDataSourceMessage: "No hay registros para mostrar",
-          filterRow: {
-            filterTooltip: "Filtro",
-          },
-        },
-      }}
-      columns={[
-        {
-          title: "Código",
-          field: "id",
-        },
-        {
-          title: "Razón",
-          render: (rowData) => rowData.reportCategory.name,
-        },
-
-        {
-          title: "Estado",
-          render: (rowData) => rowData.reportStatus.name,
-        },
-        {
-          title: "Fecha de reporte",
-          render: (rowData) => dayjs(rowData.createdAt).format("DD/MM/YYYY"),
-        },
-        /*  {
-          title: "Revisado",
-          field: "wasAnswered",
-          render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
-        }, */
-      ]}
-      options={{
-        headerStyle: {
-          backgroundColor: "#01579b",
-          color: "#FFF",
-          padding: "20px",
-          textAlign: "center",
-        },
-        rowStyle: {
-          backgroundColor: "#EEE",
-          textAlign: "center",
-        },
-        cellStyle: {
-          textAlign: "center",
-        },
-        search: false,
-
-        actionsColumnIndex: -1,
-      }}
-      data={(query) =>
-        new Promise(async (resolve, reject) => {
-          const result = await reportService.getReports({
-            page: query.page,
-            size: query.pageSize,
-          });
-          resolve({
-            page: parseInt(result.currentPage),
-            data: result.data,
-            totalCount: result.totalItems,
-          });
-        })
-      }
-      actions={[
-        {
-          icon: "visibility",
-          tooltip: "Ver información",
-          onClick: (event, rowData) => {
-            setReportId(rowData.id);
-            setModalShow(true);
-          },
-        },
-      ]}
-    />
-  );
-}
-
 const MisReportes = () => {
   const [modalShow, setModalShow] = useState(false);
   const [reportId, setReportId] = useState();
@@ -149,7 +48,7 @@ const MisReportes = () => {
           <StyledContainer>
             <h1 className="seccion-header">Mis reportes</h1>
 
-            {RefreshData(setReportId, setModalShow)}
+            {RefreshData(setReportId, setModalShow, null, true)}
           </StyledContainer>
           <ReportModal
             reportId={reportId}

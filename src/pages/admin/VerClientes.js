@@ -3,8 +3,9 @@ import MaterialTable, { MTableCell } from "material-table";
 import adminService from "../../services/admin.service";
 import { Paper } from "@material-ui/core";
 import clientsService from "../../services/clients.service";
+import ClientInfoModal from "../../components/Modals/ShowClientInfoModal";
 
-function RefreshData() {
+function RefreshData(setModalShow, setClientInfo) {
   const tableRef = React.createRef();
   return (
     <MaterialTable
@@ -75,7 +76,7 @@ function RefreshData() {
             page: query.page,
             size: query.pageSize,
           });
-          console.log(result)
+
           resolve({
             page: parseInt(result.data.currentPage),
             data: result.data.data,
@@ -95,16 +96,8 @@ function RefreshData() {
           icon: "visibility",
           tooltip: "Ver información",
           onClick: (event, rowData) => {
-            /* setShowData({
-              id: rowData.id,
-              name: rowData.name,
-              reason: rowData.reason,
-              message: rowData.message,
-              phone: rowData.phone,
-              email: rowData.email,
-              wasAnswered: rowData.wasAnswered,
-            }); */
-            //setModalShow(true);
+            setClientInfo(rowData);
+            setModalShow(true);
             // Do save operation
           },
         },
@@ -116,6 +109,7 @@ function RefreshData() {
 const VerClientes = () => {
   const [data, setData] = useState(null);
   const [modalShow, setModalShow] = useState(false);
+  const [clientInfo, setClientInfo] = useState();
 
   return (
     <>
@@ -131,7 +125,14 @@ const VerClientes = () => {
                 Tabla de clientes
               </h6>
             </div>
-            <div className="card-body">{RefreshData()}</div>
+            <div className="card-body">
+              {RefreshData(setModalShow, setClientInfo)}
+            </div>
+            <ClientInfoModal
+              clientInfo={clientInfo}
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            ></ClientInfoModal>
           </div>
         </div>
       </div>

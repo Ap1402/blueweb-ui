@@ -14,8 +14,8 @@ const StyledContainer = styled.div`
       column-gap: 30px;
     }
     .passwordChange {
-      h4{
-        font-size:20px;
+      h4 {
+        font-size: 20px;
       }
     }
   }
@@ -44,12 +44,16 @@ const ActualizarDatos = () => {
           <StyledContainer>
             <div className="content">
               <div className="dataChange">
-              <h4>ACTUALIZA TUS <strong>DATOS</strong></h4>
+                <h4>
+                  ACTUALIZA TUS <strong>DATOS</strong>
+                </h4>
 
-              <UpdateDataForm></UpdateDataForm>
-                </div>
+                <UpdateDataForm></UpdateDataForm>
+              </div>
               <div className="passwordChange">
-                <h4>ACTUALIZA TU <strong>CONTRASEÑA</strong></h4>
+                <h4>
+                  ACTUALIZA TU <strong>CONTRASEÑA</strong>
+                </h4>
                 <UpdatePasswordForm></UpdatePasswordForm>
               </div>
             </div>

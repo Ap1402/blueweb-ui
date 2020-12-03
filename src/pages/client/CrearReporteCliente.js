@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import CreateReport from "../../components/Forms/Client/CreateReport";
 import Spinner from "../../components/Spinner/Spinner";
+import clientsService from "../../services/clients.service";
 import userService from "../../services/user.service";
 
 const StyledContainer = styled.div`
@@ -15,7 +16,7 @@ const StyledContainer = styled.div`
   }
   .data-info {
     margin: 20px 30px;
-    font-size:18px;
+    font-size: 18px;
   }
 `;
 
@@ -25,7 +26,7 @@ const CrearReporteCliente = () => {
 
   useEffect(() => {
     const getUserData = async () => {
-      const result = await userService.getCurrentUserInfo();
+      const result = await clientsService.getCurrentLoggedClient();
       setUserData(result);
       setIsLoading(false);
     };
@@ -38,9 +39,9 @@ const CrearReporteCliente = () => {
           <StyledContainer>
             <h1 className="seccion-header">Crear un reporte</h1>
             <p className="data-info">
-              Es necesario que antes verifiques si los
-              datos de contacto registrados en nuestro sistema son correctos,
-              así podremos contactarte:
+              Es necesario que antes verifiques si los datos de contacto
+              registrados en nuestro sistema son correctos, así podremos
+              contactarte:
             </p>
             <ul>
               <li>
@@ -51,11 +52,8 @@ const CrearReporteCliente = () => {
               </li>
             </ul>
             <p className="data-info">
-              Si estos no son tus datos, por favor actualízalos {' '}
-              <Link to="/">
-
-              aquí
-              </Link>
+              Si estos no son tus datos, por favor actualízalos{" "}
+              <Link to="/">aquí</Link>
             </p>
             <hr></hr>
             <CreateReport></CreateReport>

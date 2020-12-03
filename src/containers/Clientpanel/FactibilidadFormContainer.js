@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import RequestFactibility from "../../components/Forms/Client/RequestFactibility";
-import axios from 'axios'
+import axios from "axios";
+import factibilityService from "../../services/factibility.service";
 
 const StyledContacto = styled.div`
   width: 100%;
@@ -18,7 +19,6 @@ const StyledContacto = styled.div`
   }
 `;
 
-
 const FactibilidadFormContainer = () => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
@@ -28,25 +28,14 @@ const FactibilidadFormContainer = () => {
 
   const createRequest = async (request) => {
     try {
-      const result = await axios
-        .post("http://localhost:4000/api/factibility", request)
-        .catch((err) => {
-          setRequestStatus({
-            success: false,
-            message: err.response.data,
-            sent: true,
-          });
-        });
-      if (result.status === 201) {
-        setRequestStatus({
-          success: true,
-          message: "Solicitud registrada correctamente, nos pondremos en contacto con usted",
-          sent: true,
-        });
-      }
+      const result = await factibilityService.createFactibilityRequest(request);
+      setRequestStatus({
+        sent: true,
+        success: result.success,
+        message: result.message,
+      });
       return result;
     } catch (err) {
-
       return err;
     }
   };
@@ -70,14 +59,14 @@ const FactibilidadFormContainer = () => {
 
   return (
     <>
-        <StyledContacto>
-          <h1>Solicita tu revisión de factibilidad</h1>
-          {createAlert()}
+      <StyledContacto>
+        <h1>Solicita tu revisión de factibilidad</h1>
+        {createAlert()}
 
-          <RequestFactibility
-            registerRequest={createRequest}
-          ></RequestFactibility>
-        </StyledContacto>
+        <RequestFactibility
+          registerRequest={createRequest}
+        ></RequestFactibility>
+      </StyledContacto>
     </>
   );
 };

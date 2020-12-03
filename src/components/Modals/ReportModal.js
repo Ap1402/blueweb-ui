@@ -46,11 +46,11 @@ function ReportModal(props) {
         </li>
         <li>
           <strong>Categoría de reporte: </strong>
-          {info.reportCategory.name.toUpperCase()}
+          {info.category ? info.category.name.toUpperCase() : "Hubo un problema al buscar la categoria"}
         </li>
         <li>
           <strong>Estado de reporte: </strong>
-          {info.reportStatus.name.toUpperCase()}
+          {info.status ? info.status.name.toUpperCase() : "Hubo un problema al buscar el estado"}
         </li>
         <li>
           <strong>Mensaje de cliente: </strong>

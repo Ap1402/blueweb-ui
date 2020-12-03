@@ -4,7 +4,7 @@ import MaterialTable from "material-table";
 import adminService from "../../services/admin.service";
 import factibilityService from "../../services/factibility.service";
 
-function RefreshData(setModalShow) {
+function RefreshData(setModalShow, setModalData) {
   const tableRef = React.createRef();
   return (
     <MaterialTable
@@ -86,6 +86,7 @@ function RefreshData(setModalShow) {
               email: rowData.email,
               wasAnswered: rowData.wasAnswered,
             }); */
+            setModalData(rowData);
             setModalShow(true);
             // Do save operation
           },
@@ -97,16 +98,7 @@ function RefreshData(setModalShow) {
 
 const VerFactibilidadSolicitudes = () => {
   const [modalShow, setModalShow] = useState(false);
-
-  const [showData, setShowData] = useState({
-    id: null,
-    name: null,
-    reason: null,
-    message: null,
-    phone: null,
-    email: null,
-    wasAnswered: null,
-  });
+  const [modalData, setModalData] = useState();
 
   return (
     <>
@@ -123,8 +115,9 @@ const VerFactibilidadSolicitudes = () => {
               </h6>
             </div>
             <div className="card-body">
-              {RefreshData(setModalShow)}
+              {RefreshData(setModalShow, setModalData)}
               <SeeContactMessageInfo
+                data={modalData}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
               />

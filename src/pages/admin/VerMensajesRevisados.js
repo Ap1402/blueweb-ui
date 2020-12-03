@@ -88,7 +88,7 @@ const VerMensajesContacto = () => {
               wasAnswered: 1,
             });
             resolve({
-              page:parseInt(result.data.currentPage),
+              page: parseInt(result.data.currentPage),
               data: result.data.data,
               totalCount: result.data.totalItems,
             });
@@ -123,7 +123,7 @@ const VerMensajesContacto = () => {
       />
     );
   }
-  
+
   const handleClick = async (e, id) => {
     const result = await axios
       .put("http://localhost:4000/api/clients/ContactMessage/setAnswered/" + id)
@@ -135,40 +135,40 @@ const VerMensajesContacto = () => {
 
   return (
     <>
-        <div className="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 className="h3 mb-0 text-gray-800">Panel de control</h1>
-        </div>
+      <div className="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 className="h3 mb-0 text-gray-800">Panel de control</h1>
+      </div>
 
-        <div className="row">
-          <div className="col-lg-10 mb-4 col-12">
-            <div className="card shadow mb-4">
-              <div className="card-header py-3">
-                <h6 className="m-0 font-weight-bold text-primary">
-                  Mensajes atendidos
-                </h6>
-              </div>
-              <div className="card-body">
-                <RefreshData></RefreshData>
+      <div className="row">
+        <div className="col-lg-10 mb-4 col-12">
+          <div className="card shadow mb-4">
+            <div className="card-header py-3">
+              <h6 className="m-0 font-weight-bold text-primary">
+                Mensajes atendidos
+              </h6>
+            </div>
+            <div className="card-body">
+              <RefreshData></RefreshData>
 
-                <SeeContactMessageInfo
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                >
-                  <StyledModalContent>
-                    <h4>Nombre:</h4>
-                    <p>{showData.name}</p>
-                    <h4>Correo:</h4>
-                    <p>{showData.email}</p>
-                    <h4>Teléfono:</h4>
-                    <p>{showData.phone}</p>
-                    <h4>Mensaje:</h4>
-                    <p>{showData.message}</p>
-                  </StyledModalContent>
-                </SeeContactMessageInfo>
-              </div>
+              <SeeContactMessageInfo
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              >
+                <StyledModalContent>
+                  <h4>Nombre:</h4>
+                  <p>{showData.name}</p>
+                  <h4>Correo:</h4>
+                  <p>{showData.email}</p>
+                  <h4>Teléfono:</h4>
+                  <p>{showData.phone}</p>
+                  <h4>Mensaje:</h4>
+                  <p>{showData.message}</p>
+                </StyledModalContent>
+              </SeeContactMessageInfo>
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 };
