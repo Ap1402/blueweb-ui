@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MaterialTable, { MTableCell } from "material-table";
-import adminService from "../../services/admin.service";
 import { Paper } from "@material-ui/core";
 import clientsService from "../../services/clients.service";
 import ClientInfoModal from "../../components/Modals/ShowClientInfoModal";
@@ -52,12 +51,6 @@ function RefreshData(setModalShow, setClientInfo) {
           title: "Empresa",
           render: (rowData) => <p>{rowData.isEnterprise ? "Sí" : "No"}</p>,
         },
-
-        /*  {
-          title: "Revisado",
-          field: "wasAnswered",
-          render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
-        }, */
       ]}
       options={{
         headerStyle: {
@@ -91,14 +84,12 @@ function RefreshData(setModalShow, setClientInfo) {
           isFreeAction: true,
           onClick: () => tableRef.current && tableRef.current.onQueryChange(),
         },
-
         {
           icon: "visibility",
           tooltip: "Ver información",
           onClick: (event, rowData) => {
             setClientInfo(rowData);
             setModalShow(true);
-            // Do save operation
           },
         },
       ]}

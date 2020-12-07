@@ -44,7 +44,6 @@ const CreateReport = () => {
           message: Yup.string().required("Este campo es necesario"),
           categoryId: Yup.string().required("Este campo es necesario"),
         })}
-
         onSubmit={async (values, { setSubmitting }) => {
           const result = await reportService.registerReport(
             values.message,
@@ -56,8 +55,9 @@ const CreateReport = () => {
       >
         {({ isSubmitting }) => (
           <StyledForm>
+            {createAlert(requestStatus)}
             <div className="row">
-              <div className="col-10 mx-auto">{createAlert(requestStatus)}</div>
+              <div className="col-10 mx-auto"></div>
 
               <div className="col-10 mx-auto">
                 <SelectField label="Motivo del reporte" name="categoryId">

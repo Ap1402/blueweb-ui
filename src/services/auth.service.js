@@ -22,7 +22,7 @@ const login = async (userData) => {
     const response = {
       success: false,
       message: result.data.message,
-      role:''
+      role: "",
     };
     setAuthToken(result.data);
     return response;

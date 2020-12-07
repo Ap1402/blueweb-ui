@@ -14,6 +14,7 @@ const StyledDiv = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: "Open Sans", sans-serif;
   .welcome-message {
     color: white;
 
@@ -59,21 +60,7 @@ const ClientPanelLayout = ({ children }) => {
             href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
             rel="stylesheet"
           />
-          <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet"
-          />
-          <link
-            rel="stylesheet"
-            href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-            crossorigin=""
-          />
-          <script
-            src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""
-          ></script>
+
           <link rel="icon" href="/favicon.ico" />
           <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js" />
         </Helmet>

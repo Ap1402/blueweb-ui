@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import reportService from "../../services/report.service";
 import ReportModal from "../../components/Modals/ReportModal";
 import { useState } from "react";
 import { RefreshData } from "../../components/Tables/ReportsTable";
@@ -23,7 +22,7 @@ const StyledContainer = styled.div`
   }
   .info {
     p {
-      font-size: 20px;
+      font-size: 15px;
       span {
         font-weight: 500;
       }
@@ -32,9 +31,11 @@ const StyledContainer = styled.div`
 
   .seccion-header {
     text-align: center;
-    font-weight: 800;
+    font-weight: 700;
     color: ${({ theme }) => theme.colors.blue};
-    font-size: 40px;
+    font-size: 28px;
+    text-transform: uppercase;
+    /*  */
   }
 `;
 

@@ -50,6 +50,10 @@ function ClientInfoModal(props) {
           {info.phone}
         </li>
         <li>
+          <strong>Dirección: </strong>
+          {info.address}
+        </li>
+        <li>
           <strong>Fecha de ingreso del cliente: </strong>
           {dayjs(info.createdAt).format("DD/MM/YY HH:mm")}
         </li>

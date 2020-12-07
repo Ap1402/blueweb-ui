@@ -4,8 +4,6 @@ import ContactForm from "../../components/Forms/Client/ContactForm";
 import ParallaxBackground from "../../components/ParallaxBackground/ParallaxBackground";
 import PreFooter from "../../containers/LandingPage/PreFooter";
 import PreFooterItems from "../../containers/LandingPage/PreFooterItems";
-import { useState } from "react";
-import createContactMessage from "../../services/messages.service";
 
 const StyledContacto = styled.div`
   width: 80%;

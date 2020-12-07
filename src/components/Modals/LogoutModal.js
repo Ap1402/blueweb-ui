@@ -1,3 +1,5 @@
+import authService from "../../services/auth.service";
+
 const LogoutModal = () => {
   return (
     <div
@@ -24,7 +26,7 @@ const LogoutModal = () => {
             </button>
           </div>
           <div className="modal-body">
-              Seleccione "Salir" si está listo para cerrar su sesión.
+            Seleccione "Salir" si está listo para cerrar su sesión.
           </div>
           <div className="modal-footer">
             <button
@@ -34,7 +36,11 @@ const LogoutModal = () => {
             >
               Cancelar
             </button>
-            <a className="btn btn-primary" href="/">
+            <a
+              className="btn btn-primary"
+              onClick={(e) => authService.logout()}
+              href="/"
+            >
               Salir
             </a>
           </div>

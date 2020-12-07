@@ -62,7 +62,7 @@ export const RefreshData = (
           tooltip: "Ver información",
           onClick: (event, rowData) => {
             event.preventDefault();
-            setReportId(rowData.id);
+            setReportId(rowData);
             setModalShow(true);
           },
         },
@@ -134,10 +134,13 @@ export const RefreshData = (
         }}
         data={(query) =>
           new Promise(async (resolve, reject) => {
-            const result = await reportService.getReports({
-              page: query.page,
-              size: query.pageSize,
-            });
+            const result = await reportService.getReports(
+              {
+                page: query.page,
+                size: query.pageSize,
+              },
+              isForClient
+            );
             resolve({
               page: parseInt(result.currentPage),
               data: result.data,

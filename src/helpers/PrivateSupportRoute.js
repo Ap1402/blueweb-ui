@@ -16,7 +16,6 @@ function PrivateSupportRoute({
   useEffect(() => {
     const getData = async () => {
       const result = await authService.isAuthenticated();
-      console.log(result);
       setIsAuth(result.isAuth);
       setRole(result.role);
       setLoading(false);
@@ -29,7 +28,7 @@ function PrivateSupportRoute({
       {...rest}
       render={(matchProps) =>
         !loading ? (
-          isAuth & (role === "client" || role === "support") ? (
+          isAuth & (role === "admin" || role === "support") ? (
             <Layout>
               <Component {...matchProps} />
             </Layout>

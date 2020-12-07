@@ -52,14 +52,40 @@ const getStatuses = async () => {
   return statuses.data;
 };
 
-const getReports = async (query) => {
+const getReports = async (query, isForClient) => {
   const params = {};
   params.page = query.page;
   params.size = query.size;
   if (query.status) {
     params.status = query.status;
   }
-  const reports = await axios.get(API_URL, {
+  if (!isForClient) {
+    const reports = await axios.get(API_URL, {
+      params: params,
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    });
+    return reports.data;
+  } else {
+    const reports = await axios.get(API_URL + "/me", {
+      params: params,
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    });
+    return reports.data;
+  }
+};
+
+const getMyReports = async (query) => {
+  const params = {};
+  params.page = query.page;
+  params.size = query.size;
+  if (query.status) {
+    params.status = query.status;
+  }
+  const reports = await axios.get(API_URL + "/me", {
     params: params,
     headers: {
       "x-auth-token": authHeader(),
@@ -195,6 +221,7 @@ export default {
   getStatuses,
   updateReport,
   createCategory,
+  getMyReports,
   createStatus,
   deleteCategory,
   deleteStatus,

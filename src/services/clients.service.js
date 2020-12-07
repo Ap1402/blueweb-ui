@@ -54,8 +54,29 @@ const getCurrentLoggedClient = async (query) => {
   return result.data;
 };
 
+const updateClientSelf = async (values) => {
+  const result = await axios
+    .put(API_URL + "me", values, {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .then((result) => {
+      return {
+        success: true,
+        message: "Cliente actualizado correctamente",
+        sent: true,
+      };
+    })
+    .catch((err) => {
+      return { success: false, message: err.response.data.message, sent: true };
+    });
+  return result;
+};
+
 export default {
   registerClient,
   getCurrentLoggedClient,
   getClients,
+  updateClientSelf,
 };

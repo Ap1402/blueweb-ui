@@ -15,9 +15,11 @@ const StyledContainer = styled.div`
 
   .seccion-header {
     text-align: center;
-    font-weight: 800;
+    font-weight: 700;
     color: ${({ theme }) => theme.colors.blue};
-    font-size: 40px;
+    font-size: 28px;
+    text-transform: uppercase;
+
   }
 `;
 

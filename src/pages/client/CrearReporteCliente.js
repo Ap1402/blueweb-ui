@@ -4,19 +4,20 @@ import styled from "styled-components";
 import CreateReport from "../../components/Forms/Client/CreateReport";
 import Spinner from "../../components/Spinner/Spinner";
 import clientsService from "../../services/clients.service";
-import userService from "../../services/user.service";
 
 const StyledContainer = styled.div`
   width: 100%;
   .seccion-header {
     text-align: center;
-    font-weight: 800;
+    font-weight: 700;
     color: ${({ theme }) => theme.colors.blue};
-    font-size: 40px;
+    font-size: 28px;
+    text-transform: uppercase;
   }
+
   .data-info {
     margin: 20px 30px;
-    font-size: 18px;
+    font-size: 15px;
   }
 `;
 
@@ -53,7 +54,7 @@ const CrearReporteCliente = () => {
             </ul>
             <p className="data-info">
               Si estos no son tus datos, por favor actualízalos{" "}
-              <Link to="/">aquí</Link>
+              <Link to="/clients/perfil">aquí</Link>
             </p>
             <hr></hr>
             <CreateReport></CreateReport>

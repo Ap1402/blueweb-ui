@@ -25,7 +25,7 @@ const LoginForm = (props) => {
   const loginUser = async (userData) => {
     const result = await authService.login(userData);
     setRequestStatus({
-      sent:true, 
+      sent: true,
       message: result.message,
       success: result.success,
       role: result.role,

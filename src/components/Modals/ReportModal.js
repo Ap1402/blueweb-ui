@@ -22,21 +22,7 @@ const StyledModalInner = styled.ul`
 `;
 
 function ReportModal(props) {
-  const [reportInfo, setReportInfo] = useState();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const getData = async () => {
-      if (props.reportId !== undefined) {
-        setLoading(true);
-        const report = await reportService.getReportById(props.reportId);
-        setReportInfo(report);
-        setLoading(false);
-      }
-    };
-    getData();
-  }, [props.reportId]);
-
+  const [loading, setLoading] = useState(false);
   const createInnerElements = (info) => {
     return (
       <StyledModalInner>
@@ -46,11 +32,15 @@ function ReportModal(props) {
         </li>
         <li>
           <strong>Categoría de reporte: </strong>
-          {info.category ? info.category.name.toUpperCase() : "Hubo un problema al buscar la categoria"}
+          {info.category
+            ? info.category.name.toUpperCase()
+            : "Hubo un problema al buscar la categoria"}
         </li>
         <li>
           <strong>Estado de reporte: </strong>
-          {info.status ? info.status.name.toUpperCase() : "Hubo un problema al buscar el estado"}
+          {info.status
+            ? info.status.name.toUpperCase()
+            : "Hubo un problema al buscar el estado"}
         </li>
         <li>
           <strong>Mensaje de cliente: </strong>
@@ -76,10 +66,8 @@ function ReportModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {loading ? (
-          "Cargando..."
-        ) : props.reportId !== undefined ? (
-          <p>{createInnerElements(reportInfo)}</p>
+        {props.reportId !== undefined ? (
+          <p>{createInnerElements(props.reportId)}</p>
         ) : (
           <p></p>
         )}
