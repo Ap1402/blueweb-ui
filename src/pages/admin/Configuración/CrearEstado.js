@@ -6,8 +6,8 @@ import reportService from "../../../services/report.service";
 
 const CreateStatus = () => {
   const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState();
-  const [statuses, setStatuses] = useState();
+  const [categories, setCategories] = useState([]);
+  const [statuses, setStatuses] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -38,6 +38,31 @@ const CreateStatus = () => {
     }
   };
 
+  const addCategoryStatus = async (type, name, defaultPriorityLevel) => {
+    const result =
+      type === "status"
+        ? await reportService.createStatus(name)
+        : await reportService.createCategory(name, defaultPriorityLevel);
+
+    if (result.sent === true && result.success == true) {
+      if (type === "status") {
+        const tempStatuses = [...statuses];
+        tempStatuses.push({ id: result.data.id, name: result.data.name });
+        setStatuses(tempStatuses);
+      } else {
+        const tempCategories = [...categories];
+        tempCategories.push({
+          id: result.data.id,
+          name: result.data.name,
+          defaultPriorityLevel: result.data.defaultPriorityLevel,
+        });
+        setCategories(tempCategories);
+      }
+    }
+
+    return result;
+  };
+
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -54,7 +79,9 @@ const CreateStatus = () => {
               </h6>
             </div>
             <div className="card-body">
-              <CreateStatusForm></CreateStatusForm>
+              <CreateStatusForm
+                addCategoryStatus={addCategoryStatus}
+              ></CreateStatusForm>
             </div>
           </div>
 
@@ -111,7 +138,9 @@ const CreateStatus = () => {
               </h6>
             </div>
             <div className="card-body">
-              <CreateCategory></CreateCategory>
+              <CreateCategory
+                addCategoryStatus={addCategoryStatus}
+              ></CreateCategory>
             </div>
           </div>
 

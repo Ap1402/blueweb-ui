@@ -32,15 +32,6 @@ export const RefreshData = (
     },
   ]);
 
-  const [actions, setActions] = useState([
-    {
-      icon: "refresh",
-      tooltip: "Refrescar datos",
-      isFreeAction: true,
-      onClick: () => tableRef.current && tableRef.current.onQueryChange(),
-    },
-  ]);
-
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -54,30 +45,6 @@ export const RefreshData = (
       ]);
 
       setColumns(tempColumns);
-      var tempActions = [...actions];
-
-      tempActions = tempActions.concat([
-        {
-          icon: "visibility",
-          tooltip: "Ver información",
-          onClick: (event, rowData) => {
-            event.preventDefault();
-            setReportId(rowData);
-            setModalShow(true);
-          },
-        },
-        {
-          icon: "edit",
-          tooltip: "Actualizar reporte",
-          onClick: (event, rowData) => {
-            event.preventDefault();
-            setReportId(rowData.id);
-            setUpdateReportModalShow(true);
-          },
-        },
-      ]);
-
-      setActions(tempActions);
       setLoading(true);
     } else {
       setLoading(true);
@@ -148,7 +115,45 @@ export const RefreshData = (
             });
           })
         }
-        actions={actions}
+        actions={
+          isForClient
+            ? [
+                {
+                  icon: "refresh",
+                  tooltip: "Refrescar datos",
+                  isFreeAction: true,
+                  onClick: () =>
+                    tableRef.current && tableRef.current.onQueryChange(),
+                },
+              ]
+            : [
+                {
+                  icon: "visibility",
+                  tooltip: "Ver información",
+                  onClick: (event, rowData) => {
+                    event.preventDefault();
+                    setReportId(rowData);
+                    setModalShow(true);
+                  },
+                },
+                {
+                  icon: "edit",
+                  tooltip: "Actualizar reporte",
+                  onClick: (event, rowData) => {
+                    event.preventDefault();
+                    setReportId(rowData);
+                    setUpdateReportModalShow(true);
+                  },
+                },
+                {
+                  icon: "refresh",
+                  tooltip: "Refrescar datos",
+                  isFreeAction: true,
+                  onClick: () =>
+                    tableRef.current && tableRef.current.onQueryChange(),
+                },
+              ]
+        }
       />
     );
   } else {

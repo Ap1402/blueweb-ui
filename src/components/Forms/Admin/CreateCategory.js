@@ -3,11 +3,10 @@ import { Formik, Form } from "formik";
 import FormGroup from "../FormGroup";
 import * as Yup from "yup";
 import createAlert from "../../../helpers/createAlert";
-import adminService from "../../../services/admin.service";
 import reportService from "../../../services/report.service";
 import SelectField from "../SelectField";
 
-const CreateCategory = () => {
+const CreateCategory = ({ addCategoryStatus }) => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
@@ -25,7 +24,8 @@ const CreateCategory = () => {
         defaultPriorityLevel: Yup.number().required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        const result = await reportService.createCategory(
+        const result = await addCategoryStatus(
+          "category",
           values.name,
           values.defaultPriorityLevel
         );

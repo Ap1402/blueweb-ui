@@ -43,6 +43,24 @@ const getCategories = async () => {
   return categories.data;
 };
 
+const getAllCategories = async () => {
+  const categories = await axios.get(API_URL + "/categories/all", {
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  });
+  return categories.data;
+};
+
+const getAllStatuses = async () => {
+  const statuses = await axios.get(API_URL + "/statuses/all", {
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  });
+  return statuses.data;
+};
+
 const getStatuses = async () => {
   const statuses = await axios.get(API_URL + "/statuses", {
     headers: {
@@ -161,6 +179,7 @@ const createCategory = async (name, defaultPriorityLevel) => {
         success: true,
         message: "Categoria creada correctamente",
         sent: true,
+        data: result.data,
       };
     })
     .catch((err) => {
@@ -187,6 +206,7 @@ const createStatus = async (name) => {
         success: true,
         message: "Estado creado correctamente",
         sent: true,
+        data: result.data,
       };
     })
     .catch((err) => {
@@ -225,4 +245,6 @@ export default {
   createStatus,
   deleteCategory,
   deleteStatus,
+  getAllStatuses,
+  getAllCategories,
 };

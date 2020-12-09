@@ -5,7 +5,6 @@ import { Formik, Form } from "formik";
 import styled from "styled-components";
 import createAlert from "../../../helpers/createAlert";
 import { useEffect, useState } from "react";
-import Spinner from "../../Spinner/Spinner";
 import reportService from "../../../services/report.service";
 
 const StyledForm = styled(Form)`
@@ -32,16 +31,17 @@ const UpdateReportForm = (props) => {
     const getData = async () => {
       if (props.reportId !== undefined) {
         setLoading(true);
-        const report = await reportService.getReportById(props.reportId);
+        /* const report = await reportService.getReportById(props.reportId); */
         const resultCategories = await reportService.getCategories();
         setCategories(resultCategories.data);
         const resultStatuses = await reportService.getStatuses();
         setStatuses(resultStatuses.data);
-        setReportInfo(report);
+        //setReportInfo(report);
         setLoading(false);
       }
     };
     getData();
+    setReportInfo(props.reportId);
   }, [props.reportId]);
 
   if (!loading) {
@@ -128,7 +128,7 @@ const UpdateReportForm = (props) => {
               </div>
               <div className="col-10 mx-auto">
                 <TextAreaField
-                  label="Mensaje o anotaciones para soporte"
+                  label="Agregar un mensaje anotación para soporte"
                   name="supportMessageInner"
                   type="text"
                 ></TextAreaField>

@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
-import reportService from "../../services/report.service";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
@@ -19,11 +17,12 @@ const StyledModalInner = styled.ul`
     font-size: 15px;
     margin: 10px 0;
   }
+  .support-messages {
+  }
 `;
 
 function ReportModal(props) {
-  const [loading, setLoading] = useState(false);
-  const createInnerElements = (info) => {
+  const createInfoElements = (info) => {
     return (
       <StyledModalInner>
         <li>
@@ -50,9 +49,28 @@ function ReportModal(props) {
           <strong>Nivel de prioridad: </strong>
           {info.priorityLevel}
         </li>
+
         <li>
           <strong>Fecha de creación: </strong>
           {dayjs(info.createdAt).format("DD/MM/YY HH:mm")}
+        </li>
+
+        <li>
+          <strong>Mensajes de soporte: </strong>
+
+          <ul className="support-messages">
+            {info.comments.map((comment) => (
+              <li>
+                {comment.comment}
+
+                {" " +
+                  "Comentado por " +
+                  comment.user.username +
+                  " el " +
+                  dayjs(comment.createdAt).format("DD/MM/YY HH:mm")}
+              </li>
+            ))}
+          </ul>
         </li>
       </StyledModalInner>
     );
@@ -67,7 +85,7 @@ function ReportModal(props) {
       </Modal.Header>
       <Modal.Body>
         {props.reportId !== undefined ? (
-          <p>{createInnerElements(props.reportId)}</p>
+          <p>{createInfoElements(props.reportId)}</p>
         ) : (
           <p></p>
         )}

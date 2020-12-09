@@ -3,11 +3,8 @@ import { Formik, Form } from "formik";
 import FormGroup from "../FormGroup";
 import * as Yup from "yup";
 import createAlert from "../../../helpers/createAlert";
-import adminService from "../../../services/admin.service";
-import reportService from "../../../services/report.service";
 
-
-const CreateStatusForm = () => {
+const CreateStatusForm = ({ addCategoryStatus }) => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
@@ -20,18 +17,19 @@ const CreateStatusForm = () => {
         name: "",
       }}
       validationSchema={Yup.object({
-        name: Yup.string().required("Este campo es necesario")
+        name: Yup.string().required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        const result = await reportService.createStatus(values.name);
+        const result = await addCategoryStatus("status", values.name);
         setRequestStatus(result);
+
         setSubmitting(false);
       }}
     >
       {({ isSubmitting, values }) => (
         <Form className="mx-2">
           <div className="row">
-          <div className="col-12">{createAlert(requestStatus)}</div>
+            <div className="col-12">{createAlert(requestStatus)}</div>
 
             <div className="col-12 col-lg-6">
               <FormGroup
