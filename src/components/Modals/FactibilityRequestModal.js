@@ -3,13 +3,19 @@ import styled from "styled-components";
 
 const StyledList = styled.ul`
   list-style: none;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-row-gap: 10px;
+  @media (min-width: 720px) {
+    grid-template-columns: 45% 45%;
+  }
   li {
     display: flex;
     flex-direction: column;
   }
 `;
 
-function SeeContactMessageInfo(props) {
+function FactibilityRequestModal(props) {
   console.log(props.data);
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
@@ -22,17 +28,25 @@ function SeeContactMessageInfo(props) {
         {props.data ? (
           <StyledList>
             <li>
-              <strong>Nombre:</strong> {props.data.name}
+              <strong>Nombre:</strong> {props.data.requesterName}
             </li>
             <li>
               <strong>Email del solicitante:</strong>{" "}
-              {props.data.email}
+              {props.data.requesterEmail}
             </li>
             <li>
-              <strong>Teléfono:</strong> {props.data.phone}
+              <strong>Teléfono:</strong> {props.data.requesterPhone}
             </li>
             <li>
-              <strong>Mensaje:</strong> {props.data.message}
+              <strong>Coordenadas:</strong> {props.data.coordenades}
+            </li>
+            <li>
+              <strong>Marcado como factible:</strong>{" "}
+              {props.data.isFactible
+                ? props.data.isFactible
+                  ? "Sì"
+                  : "No"
+                : "No ha sido evaluado"}
             </li>
           </StyledList>
         ) : (
@@ -43,4 +57,4 @@ function SeeContactMessageInfo(props) {
   );
 }
 
-export default SeeContactMessageInfo;
+export default FactibilityRequestModal;

@@ -43,6 +43,15 @@ const getCategories = async () => {
   return categories.data;
 };
 
+const getCommentsById = async (reportId) => {
+  const comments = await axios.get(API_URL + "/comments/" + reportId, {
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  });
+  return comments.data;
+};
+
 const getAllCategories = async () => {
   const categories = await axios.get(API_URL + "/categories/all", {
     headers: {
@@ -74,9 +83,25 @@ const getReports = async (query, isForClient) => {
   const params = {};
   params.page = query.page;
   params.size = query.size;
+
   if (query.status) {
     params.status = query.status;
   }
+
+  if (query.clientName) {
+    params.name = query.clientName;
+  }
+
+  if (query.clientDni) {
+    params.dni = query.clientDni;
+  }
+  if (query.orderBy) {
+    params.orderBy = query.orderBy;
+  }
+  if (query.order) {
+    params.order = query.order;
+  }
+
   if (!isForClient) {
     const reports = await axios.get(API_URL, {
       params: params,
@@ -247,4 +272,5 @@ export default {
   deleteStatus,
   getAllStatuses,
   getAllCategories,
+  getCommentsById,
 };

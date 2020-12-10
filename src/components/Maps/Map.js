@@ -37,7 +37,7 @@ function LocationMarker({ changeCoordenades, coordenades }) {
 
   return position === null ? null : (
     <Marker position={position} icon={myIcon}>
-      <Popup>You are here</Popup>
+      <Popup>Estás aquí</Popup>
     </Marker>
   );
 }
@@ -45,7 +45,7 @@ function LocationMarker({ changeCoordenades, coordenades }) {
 const Map = ({ changeCoordenades }) => {
   return (
     <MapContainer
-      center={[10, -67]}
+      center={[10.1980878, -67.9674077]}
       zoom={13}
       scrollWheelZoom={true}
       style={{ height: 450, width: "100%" }}

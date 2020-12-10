@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SeeContactMessageInfo from "../../components/Modals/SeeContactMessageInfo";
+import SeeContactMessageInfo from "../../components/Modals/FactibilityRequestModal";
 import MaterialTable from "material-table";
 import adminService from "../../services/admin.service";
 import factibilityService from "../../services/factibility.service";

@@ -4,54 +4,59 @@ import { Paper } from "@material-ui/core";
 import reportService from "../../services/report.service";
 import dayjs from "dayjs";
 
-export const RefreshData = (
-  setReportId,
-  setModalShow,
-  setUpdateReportModalShow,
-  isForClient
-) => {
-  const tableRef = React.createRef();
+export const ReportsTable = React.forwardRef(
+  (
+    { setReportId, setModalShow, setUpdateReportModalShow, isForClient },
+    tableRef
+  ) => {
+    useEffect(() => {
+      if (!isForClient) {
+        var tempColumns = [...columns];
+        tempColumns = tempColumns.concat([
+          {
+            title: "Cliente",
+            filtering: false,
+            field: "status.name",
+            render: (rowData) =>
+              rowData.client
+                ? rowData.client.identification + " - " + rowData.client.dni
+                : "",
+            sorting: false,
+          },
+          {
+            title: "Nivel de prioridad",
+            field: "priorityLevel",
+          },
+        ]);
 
-  const [columns, setColumns] = useState([
-    {
-      title: "Código",
-      field: "id",
-    },
-    {
-      title: "Razón",
-      render: (rowData) => (rowData.category ? rowData.category.name : ""),
-    },
+        setColumns(tempColumns);
+      }
+    }, []);
 
-    {
-      title: "Estado",
-      render: (rowData) => (rowData.status ? rowData.status.name : ""),
-    },
-    {
-      title: "Fecha de reporte",
-      render: (rowData) => dayjs(rowData.createdAt).format("DD/MM/YYYY"),
-    },
-  ]);
+    const [columns, setColumns] = useState([
+      {
+        title: "Código",
+        field: "id",
+      },
+      {
+        title: "Razón",
+        field: "categoryId",
+        render: (rowData) => (rowData.category ? rowData.category.name : ""),
+      },
 
-  const [loading, setLoading] = useState(false);
+      {
+        title: "Estado",
+        filtering: false,
+        field: "statusId",
+        render: (rowData) => (rowData.status ? rowData.status.name : ""),
+      },
+      {
+        title: "Fecha de reporte",
+        field: "createdAt",
+        render: (rowData) => dayjs(rowData.createdAt).format("DD/MM/YYYY"),
+      },
+    ]);
 
-  useEffect(() => {
-    if (!isForClient) {
-      var tempColumns = [...columns];
-      tempColumns = tempColumns.concat([
-        {
-          title: "Nivel de prioridad",
-          field: "priorityLevel",
-        },
-      ]);
-
-      setColumns(tempColumns);
-      setLoading(true);
-    } else {
-      setLoading(true);
-    }
-  }, []);
-
-  if (loading) {
     return (
       <MaterialTable
         components={{
@@ -66,6 +71,8 @@ export const RefreshData = (
           },
           toolbar: {
             nRowsSelected: "{0} filas(s) seleccionadas",
+            searchTooltip: "Buscar",
+            searchPlaceholder: "Cédula o rif del cliente",
           },
           header: {
             actions: "Acciones",
@@ -95,8 +102,7 @@ export const RefreshData = (
           cellStyle: {
             textAlign: "center",
           },
-          search: false,
-
+          search: true,
           actionsColumnIndex: -1,
         }}
         data={(query) =>
@@ -105,6 +111,9 @@ export const RefreshData = (
               {
                 page: query.page,
                 size: query.pageSize,
+                clientDni: query.search,
+                orderBy: query.orderBy ? query.orderBy.field : "",
+                order: query.orderDirection ? query.orderDirection : "",
               },
               isForClient
             );
@@ -156,7 +165,5 @@ export const RefreshData = (
         }
       />
     );
-  } else {
-    return <p>Cargando...</p>;
   }
-};
+);

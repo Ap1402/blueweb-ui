@@ -20,6 +20,8 @@ function RefreshData(setModalShow, setClientInfo) {
         },
         toolbar: {
           nRowsSelected: "{0} filas(s) seleccionadas",
+          searchPlaceholder: "Cédula o rif",
+          searchTooltip: "Buscar",
         },
         header: {
           actions: "Acciones",
@@ -68,6 +70,7 @@ function RefreshData(setModalShow, setClientInfo) {
           const result = await clientsService.getClients({
             page: query.page,
             size: query.pageSize,
+            dni: query.search,
           });
 
           resolve({
@@ -98,7 +101,6 @@ function RefreshData(setModalShow, setClientInfo) {
 }
 
 const VerClientes = () => {
-  const [data, setData] = useState(null);
   const [modalShow, setModalShow] = useState(false);
   const [clientInfo, setClientInfo] = useState();
 

@@ -74,6 +74,7 @@ const UpdateReportForm = (props) => {
           );
           setRequestStatus(result);
           setSubmitting(false);
+          props.tableRef.current && props.tableRef.current.onQueryChange();
         }}
       >
         {({ isSubmitting }) => (

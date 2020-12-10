@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ReportModal from "../../components/Modals/ReportModal";
 import UpdateReportModal from "../../components/Modals/UpdateReportModal";
-import { RefreshData } from "../../components/Tables/ReportsTable";
+import { ReportsTable } from "../../components/Tables/ReportsTable";
 
 const VerReportesPendientes = () => {
   const [modalShow, setModalShow] = useState(false);
   const [updateReportModalShow, setUpdateReportModalShow] = useState(false);
 
   const [reportId, setReportId] = useState();
+  const tableRef = React.createRef();
 
   return (
     <>
@@ -20,10 +21,17 @@ const VerReportesPendientes = () => {
         <div className="col-lg-12 mb-4 col-12">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
-              <h6 className="m-0 font-weight-bold text-primary">Reportes</h6>
+              <h6 className="m-0 font-weight-bold text-primary">
+                Todos los reportes
+              </h6>
             </div>
             <div className="card-body">
-              {RefreshData(setReportId, setModalShow, setUpdateReportModalShow)}
+              <ReportsTable
+                setReportId={setReportId}
+                setModalShow={setModalShow}
+                setUpdateReportModalShow={setUpdateReportModalShow}
+                ref={tableRef}
+              ></ReportsTable>
               <ReportModal
                 reportId={reportId}
                 show={modalShow}

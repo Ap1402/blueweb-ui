@@ -11,7 +11,10 @@ function UpdateReportModal(props) {
       </Modal.Header>
       <Modal.Body>
         {props.reportId !== undefined ? (
-          <UpdateReportForm reportId={props.reportId}></UpdateReportForm>
+          <UpdateReportForm
+            reportId={props.reportId}
+            tableRef={props.tableRef}
+          ></UpdateReportForm>
         ) : (
           <p>Cargando...</p>
         )}

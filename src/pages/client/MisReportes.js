@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ReportModal from "../../components/Modals/ReportModal";
 import { useState } from "react";
-import { RefreshData } from "../../components/Tables/ReportsTable";
+import { ReportsTable } from "../../components/Tables/ReportsTable";
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -28,14 +28,12 @@ const StyledContainer = styled.div`
       }
     }
   }
-
   .seccion-header {
     text-align: center;
     font-weight: 700;
     color: ${({ theme }) => theme.colors.blue};
     font-size: 28px;
     text-transform: uppercase;
-    /*  */
   }
 `;
 
@@ -49,7 +47,7 @@ const MisReportes = () => {
           <StyledContainer>
             <h1 className="seccion-header">Mis reportes</h1>
 
-            {RefreshData(setReportId, setModalShow, null, true)}
+            {ReportsTable(setReportId, setModalShow, null, true)}
           </StyledContainer>
           <ReportModal
             reportId={reportId}

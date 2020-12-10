@@ -1,16 +1,14 @@
 import React, { useState } from "react";
-import reportService from "../../services/report.service";
 import ReportModal from "../../components/Modals/ReportModal";
 import UpdateReportModal from "../../components/Modals/UpdateReportModal";
-import { RefreshData } from "../../components/Tables/ReportsTable";
-import ReportsShow from "../../components/ReportsShow/ReportsShow";
-import { Table } from "../../components/Tables/ReportTable";
+import { ReportsTable } from "../../components/Tables/ReportsTable";
 
 const VerReportesPendientes = () => {
   const [modalShow, setModalShow] = useState(false);
   const [updateReportModalShow, setUpdateReportModalShow] = useState(false);
-
   const [reportId, setReportId] = useState();
+
+  const tableRef = React.createRef();
 
   return (
     <>
@@ -19,13 +17,7 @@ const VerReportesPendientes = () => {
       </div>
 
       <div className="row">
-        <div className="col-lg-6 mb-2 mx-auto col-12">
-          {/*  <ReportsShow
-            showInfo={modalShow}
-            setShowInfo={setModalShow}
-            info={reportId}
-          ></ReportsShow> */}
-        </div>
+        <div className="col-lg-6 mb-2 mx-auto col-12"></div>
         <div className="col-lg-12 mb-4 col-12">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
@@ -34,23 +26,26 @@ const VerReportesPendientes = () => {
               </h6>
             </div>
             <div className="card-body">
-              <Table></Table>
-              {/* {RefreshData(
-                setReportId,
-                setModalShow,
-                setUpdateReportModalShow,
-                false
-              )} */}
-              {/*  <ReportModal
+              <ReportsTable
+                setReportId={setReportId}
+                setModalShow={setModalShow}
+                setUpdateReportModalShow={setUpdateReportModalShow}
+                isForClient={false}
+                ref={tableRef}
+              ></ReportsTable>
+
+              <ReportModal
                 reportId={reportId}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
               />
+
               <UpdateReportModal
                 reportId={reportId}
                 show={updateReportModalShow}
                 onHide={() => setUpdateReportModalShow(false)}
-              /> */}
+                tableRef={tableRef}
+              />
             </div>
           </div>
         </div>

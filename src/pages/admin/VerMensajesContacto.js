@@ -3,7 +3,6 @@ import axios from "axios";
 import SeeContactMessageInfo from "../../components/Modals/SeeContactMessageInfo";
 import MaterialTable from "material-table";
 import styled from "styled-components";
-import adminService from "../../services/admin.service";
 import messagesService from "../../services/messages.service";
 
 const StyledModalContent = styled.div`
@@ -64,10 +63,11 @@ function RefreshData(setShowData, setModalShow, handleClick) {
       ]}
       options={{
         headerStyle: {
-          backgroundColor: "#01579b",
+          backgroundColor: "#3f425e",
           color: "white",
-          fontWeight: 400,
+          fontWeight: 600,
           padding: "20px",
+          textAlign: 'center'
         },
       }}
       data={(query) =>
@@ -96,17 +96,8 @@ function RefreshData(setShowData, setModalShow, handleClick) {
           icon: "visibility",
           tooltip: "Ver información",
           onClick: (event, rowData) => {
-            setShowData({
-              id: rowData.id,
-              name: rowData.name,
-              reason: rowData.reason,
-              message: rowData.message,
-              phone: rowData.phone,
-              email: rowData.email,
-              wasAnswered: rowData.wasAnswered,
-            });
+            setShowData(rowData);
             setModalShow(true);
-            // Do save operation
           },
         },
       ]}
@@ -117,15 +108,7 @@ function RefreshData(setShowData, setModalShow, handleClick) {
 const VerMensajesContacto = () => {
   const [modalShow, setModalShow] = useState(false);
 
-  const [showData, setShowData] = useState({
-    id: null,
-    name: null,
-    reason: null,
-    message: null,
-    phone: null,
-    email: null,
-    wasAnswered: null,
-  });
+  const [showData, setShowData] = useState();
 
   const handleClick = async (e, id) => {
     const result = await axios
@@ -133,23 +116,7 @@ const VerMensajesContacto = () => {
       .catch((err) => {
         console.log(err);
       });
-    setShowData({ ...showData, wasAnswered: result.data.wasAnswered });
   };
-
-  /*   useEffect(() => {
-    const getData = async () => {
-      try {
-        const result = await axios
-          .get("http://localhost:4000/api/clients/ContactMessage")
-          .catch((err) => {
-            console.log(err);
-          });
-        setData(result.data);
-        return;
-      } catch (err) {}
-    };
-    getData();
-  }, []); */
 
   return (
     <>
@@ -158,7 +125,7 @@ const VerMensajesContacto = () => {
       </div>
 
       <div className="row">
-        <div className="col-lg-10 mb-4 col-12">
+        <div className="col-lg-12 mb-4 col-12">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">
@@ -168,30 +135,10 @@ const VerMensajesContacto = () => {
             <div className="card-body">
               {RefreshData(setShowData, setModalShow)}
               <SeeContactMessageInfo
+                data={showData}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-              >
-                <StyledModalContent>
-                  <div className="block-info">
-                    <h4>Nombre:</h4>
-                    <p>{showData.name}</p>
-                  </div>
-                  <h4>Correo:</h4>
-                  <p>{showData.email}</p>
-                  <h4>Teléfono:</h4>
-                  <p>{showData.phone}</p>
-                  <h4>Mensaje:</h4>
-                  <p>{showData.message}</p>
-                  <button
-                    className="btn btn-primary btn-block"
-                    onClick={(e) => handleClick(e, showData.id)}
-                  >
-                    {showData.wasAnswered
-                      ? "Respondido"
-                      : "Marcar como respondido"}
-                  </button>
-                </StyledModalContent>
-              </SeeContactMessageInfo>
+              ></SeeContactMessageInfo>
             </div>
           </div>
         </div>

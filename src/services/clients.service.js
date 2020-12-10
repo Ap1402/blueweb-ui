@@ -30,6 +30,7 @@ const getClients = async (query) => {
       params: {
         page: query.page,
         size: query.size,
+        dni: query.dni,
       },
       headers: {
         "x-auth-token": authHeader(),
