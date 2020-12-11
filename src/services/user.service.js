@@ -2,7 +2,7 @@ import axios from "axios";
 import authHeader from "../helpers/getAuthToken";
 import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl()+"/users";
+const API_URL = getEnvUrl() + "/users";
 
 const register = async (userData) => {
   const result = await axios
@@ -29,7 +29,21 @@ const getCurrentUserInfo = async () => {
   }
 };
 
+const getAllUsers = async () => {
+  try {
+    const result = await axios.get(API_URL, {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    });
+    return result.data;
+  } catch (err) {
+    return err.response.data;
+  }
+};
+
 export default {
   register,
   getCurrentUserInfo,
+  getAllUsers,
 };

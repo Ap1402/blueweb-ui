@@ -17,7 +17,6 @@ import VerTodosLosReportes from "./pages/admin/VerTodosLosReportes";
 
 import VerFactibilidadSolicitudes from "./pages/admin/VerFactibilidadSolicitudes";
 import VerMensajesContacto from "./pages/admin/VerMensajesContacto";
-import VerMensajesRevisados from "./pages/admin/VerMensajesRevisados";
 import CrearCliente from "./pages/admin/CrearCliente";
 import PrivateRoute from "./helpers/PrivateRoute";
 import PrivateSupportRoute from "./helpers/PrivateSupportRoute";
@@ -29,6 +28,7 @@ import PerfilCliente from "./pages/client/PerfilCliente";
 import ActualizarDatos from "./pages/client/ActualizarDatos";
 import HistorialPago from "./pages/client/HistorialPago";
 import CreateStatus from "./pages/admin/Configuración/CrearEstado";
+import VerUsuarios from "./pages/admin/VerUsuarios";
 
 const theme = {
   colors: {
@@ -36,10 +36,9 @@ const theme = {
     secondaryBackgrund: "white",
     primary: "#0070f3",
     blue: "#276ef1",
-    lightBlue:"#5799fb",
-    darkBlue:"#111D7D",
+    lightBlue: "#5799fb",
+    darkBlue: "#111D7D",
     darkerBlue: "#000036",
-
   },
 };
 
@@ -52,14 +51,14 @@ function App() {
           <Switch>
             <Route path="/admin/:path?">
               <Switch>
-              <PrivateSupportRoute
+                <PrivateSupportRoute
                   layout={AdminPanelLayout}
                   path="/admin/reportes/pendientes"
                   exact
                   component={VerReportesPendientes}
                 />
 
-<PrivateSupportRoute
+                <PrivateSupportRoute
                   layout={AdminPanelLayout}
                   path="/admin/reportes"
                   exact
@@ -103,9 +102,9 @@ function App() {
                 />
                 <PrivateSupportRoute
                   layout={AdminPanelLayout}
-                  path="/admin/mensajes/revisados"
+                  path="/admin/usuarios/"
                   exact
-                  component={VerMensajesRevisados}
+                  component={VerUsuarios}
                 />
               </Switch>
             </Route>
@@ -129,7 +128,7 @@ function App() {
               component={ActualizarDatos}
               exact
             />
-             <PrivateRoute
+            <PrivateRoute
               layout={ClientPanelLayout}
               path="/clients/reportar"
               component={CrearReporteCliente}
@@ -152,7 +151,7 @@ function App() {
                     exact
                     component={Factibilidad}
                   />
-            
+
                   <Route path="/nosotros" exact component={Nosotros} />
                   <Route path="/servicios" exact component={servicios} />
                 </Switch>

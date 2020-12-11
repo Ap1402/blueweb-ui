@@ -10,7 +10,6 @@ const StyledList = styled.ul`
 `;
 
 function SeeContactMessageInfo(props) {
-  console.log(props.data);
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>
@@ -25,8 +24,7 @@ function SeeContactMessageInfo(props) {
               <strong>Nombre:</strong> {props.data.name}
             </li>
             <li>
-              <strong>Email del solicitante:</strong>{" "}
-              {props.data.email}
+              <strong>Email del solicitante:</strong> {props.data.email}
             </li>
             <li>
               <strong>Teléfono:</strong> {props.data.phone}

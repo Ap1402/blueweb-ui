@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ReportModal from "../../components/Modals/ReportModal";
 import { useState } from "react";
 import { ReportsTable } from "../../components/Tables/ReportsTable";
 
@@ -38,8 +37,6 @@ const StyledContainer = styled.div`
 `;
 
 const MisReportes = () => {
-  const [modalShow, setModalShow] = useState(false);
-  const [reportId, setReportId] = useState();
   return (
     <>
       <div className="card">
@@ -47,13 +44,8 @@ const MisReportes = () => {
           <StyledContainer>
             <h1 className="seccion-header">Mis reportes</h1>
 
-            {ReportsTable(setReportId, setModalShow, null, true)}
+            <ReportsTable isForClient={true}></ReportsTable>
           </StyledContainer>
-          <ReportModal
-            reportId={reportId}
-            show={modalShow}
-            onHide={() => setModalShow(false)}
-          />
         </div>
       </div>
     </>

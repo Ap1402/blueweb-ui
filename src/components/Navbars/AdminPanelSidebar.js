@@ -107,14 +107,6 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
           </a>
         </Link>
       </li>
-      <li className="nav-item">
-        <Link to="/admin/mensajes/revisados">
-          <a className="nav-link">
-            <i className="fas fa-fw fa-table"></i>
-            <span>Mensajes revisados</span>
-          </a>
-        </Link>
-      </li>
       <hr className="sidebar-divider d-none d-md-block" />
 
       <div className="sidebar-heading">Usuarios</div>
@@ -139,7 +131,7 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
         >
           <div className="bg-white py-2 collapse-inner rounded">
             <h6 className="collapse-header">Opciones de usuario:</h6>
-            <Link to="/admin/clientes/">
+            <Link to="/admin/usuarios/">
               <a className="collapse-item">Ver/modificar usuarios</a>
             </Link>
             <Link to="/admin/usuarios/crear">

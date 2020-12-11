@@ -23,6 +23,7 @@ const getMessages = async (query) => {
       page: query.page,
       size: query.size,
       wasAnswered: query.wasAnswered,
+      dni: query.dni,
     },
     headers: {
       "x-auth-token": authHeader(),

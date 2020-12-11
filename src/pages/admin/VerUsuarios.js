@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import ClientInfoModal from "../../components/Modals/ShowClientInfoModal";
-import { ClientsTable } from "../../components/Tables/ClientsTable";
+import UserInfoModal from "../../components/Modals/ShowUserInfoModal";
+import { UsersTable } from "../../components/Tables/UsersTable";
 
-const VerClientes = () => {
-  const [modalShow, setModalShow] = useState(false);
-  const [clientInfo, setClientInfo] = useState();
-
+const VerUsuarios = () => {
+  const [showData, setShowData] = useState();
+  const [modalShow, setModalShow] = useState();
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -21,16 +20,17 @@ const VerClientes = () => {
               </h6>
             </div>
             <div className="card-body">
-              <ClientsTable
+              <UsersTable
+                setShowData={setShowData}
                 setModalShow={setModalShow}
-                setClientInfo={setClientInfo}
-              ></ClientsTable>
+              ></UsersTable>
+
+              <UserInfoModal
+                userInfo={showData}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              ></UserInfoModal>
             </div>
-            <ClientInfoModal
-              clientInfo={clientInfo}
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-            ></ClientInfoModal>
           </div>
         </div>
       </div>
@@ -38,4 +38,4 @@ const VerClientes = () => {
   );
 };
 
-export default VerClientes;
+export default VerUsuarios;

@@ -1,122 +1,13 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import SeeContactMessageInfo from "../../components/Modals/SeeContactMessageInfo";
-import MaterialTable from "material-table";
 import styled from "styled-components";
-import messagesService from "../../services/messages.service";
-
-const StyledModalContent = styled.div`
-  color: black;
-  h4 {
-    font-size: 20px;
-  }
-  p {
-    font-size: 15px;
-    margin-left: 30px;
-  }
-  button {
-    text-align: center;
-  }
-`;
-
-function RefreshData(setShowData, setModalShow, handleClick) {
-  const tableRef = React.createRef();
-
-  return (
-    <MaterialTable
-      title="Tabla de Mensajes por atender"
-      tableRef={tableRef}
-      localization={{
-        pagination: {
-          labelDisplayedRows: "{from}-{to} de {count} páginas",
-        },
-        toolbar: {
-          nRowsSelected: "{0} filas(s) seleccionadas",
-        },
-
-        pagination: {
-          labelRowsSelect: "filas",
-        },
-        header: {
-          actions: "Acciones",
-        },
-        body: {
-          emptyDataSourceMessage: "No hay registros para mostrar",
-          filterRow: {
-            filterTooltip: "Filtro",
-          },
-        },
-      }}
-      columns={[
-        {
-          title: "Nombre",
-          field: "name",
-        },
-        { title: "Teléfono", field: "phone" },
-        { title: "Correo", field: "email" },
-        { title: "Razón", field: "reason" },
-        {
-          title: "Revisado",
-          field: "wasAnswered",
-          render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
-        },
-      ]}
-      options={{
-        headerStyle: {
-          backgroundColor: "#3f425e",
-          color: "white",
-          fontWeight: 600,
-          padding: "20px",
-          textAlign: 'center'
-        },
-      }}
-      data={(query) =>
-        new Promise(async (resolve, reject) => {
-          const result = await messagesService.getMessages({
-            page: query.page,
-            size: query.pageSize,
-            wasAnswered: 0,
-          });
-          resolve({
-            page: parseInt(result.data.currentPage),
-            data: result.data.data,
-            totalCount: result.data.totalItems,
-          });
-        })
-      }
-      actions={[
-        {
-          icon: "refresh",
-          tooltip: "Refrescar datos",
-          isFreeAction: true,
-          onClick: () => tableRef.current && tableRef.current.onQueryChange(),
-        },
-
-        {
-          icon: "visibility",
-          tooltip: "Ver información",
-          onClick: (event, rowData) => {
-            setShowData(rowData);
-            setModalShow(true);
-          },
-        },
-      ]}
-    />
-  );
-}
+import { MessageTable } from "../../components/Tables/MessageTable";
 
 const VerMensajesContacto = () => {
   const [modalShow, setModalShow] = useState(false);
 
   const [showData, setShowData] = useState();
-
-  const handleClick = async (e, id) => {
-    const result = await axios
-      .put("http://localhost:4000/api/clients/ContactMessage/setAnswered/" + id)
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const tableRef = React.useRef();
 
   return (
     <>
@@ -133,7 +24,12 @@ const VerMensajesContacto = () => {
               </h6>
             </div>
             <div className="card-body">
-              {RefreshData(setShowData, setModalShow)}
+              <MessageTable
+                setShowData={setShowData}
+                setModalShow={setModalShow}
+                ref={tableRef}
+              ></MessageTable>
+
               <SeeContactMessageInfo
                 data={showData}
                 show={modalShow}

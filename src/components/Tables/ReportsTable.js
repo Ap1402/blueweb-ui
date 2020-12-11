@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import MaterialTable, { MTableCell } from "material-table";
 import { Paper } from "@material-ui/core";
 import reportService from "../../services/report.service";
+import React, { useEffect, useState } from "react";
+import MaterialTable, { MTableCell } from "material-table";
 import dayjs from "dayjs";
 
 export const ReportsTable = React.forwardRef(
@@ -102,7 +102,7 @@ export const ReportsTable = React.forwardRef(
           cellStyle: {
             textAlign: "center",
           },
-          search: true,
+          search: isForClient ? false : true,
           actionsColumnIndex: -1,
         }}
         data={(query) =>

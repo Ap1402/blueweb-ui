@@ -1,7 +1,6 @@
 import HeroBanner from "../containers/LandingPage/HeroBanner";
 import styled from "styled-components";
 import SupportBanner from "../containers/LandingPage/SupportBanner";
-import Testimonials from "../containers/LandingPage/Testimonials";
 import Ventajas from "../containers/LandingPage/Ventajas";
 import ThreeComponents from "../containers/LandingPage/ThreeComponents";
 import ContactUs from "../containers/LandingPage/ContactUs";
