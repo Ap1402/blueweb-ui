@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { Redirect, withRouter } from "react-router-dom";
 import ClientInfoModal from "../../components/Modals/ShowClientInfoModal";
 import { ClientsTable } from "../../components/Tables/ClientsTable";
 
-const VerClientes = () => {
+const VerClientes = (props) => {
   const [modalShow, setModalShow] = useState(false);
   const [clientInfo, setClientInfo] = useState();
+
+  const redirecToClient = (id) => {
+    props.history.push("/admin/clientes/" + id);
+  };
 
   return (
     <>
@@ -24,6 +29,7 @@ const VerClientes = () => {
               <ClientsTable
                 setModalShow={setModalShow}
                 setClientInfo={setClientInfo}
+                redirectToClientUpdate={redirecToClient}
               ></ClientsTable>
             </div>
             <ClientInfoModal
@@ -38,4 +44,4 @@ const VerClientes = () => {
   );
 };
 
-export default VerClientes;
+export default withRouter(VerClientes);

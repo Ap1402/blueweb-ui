@@ -25,7 +25,6 @@ export const MessageTable = React.forwardRef(
     const onClickHandler = () => {
       setWasAnswered(wasAnswered ? 0 : 1);
     };
-
     useEffect(() => {
       ref.current.onQueryChange({ filters: { wasAnswered: wasAnswered } });
     }, [wasAnswered]);
@@ -71,7 +70,11 @@ export const MessageTable = React.forwardRef(
             },
             { title: "Teléfono", field: "phone" },
             { title: "Correo", field: "email" },
-            { title: "Razón", field: "reason" }
+            {
+              title: "Razón",
+              field: "reasonId",
+              render: (rowData) => (rowData.reason ? rowData.reason.name : ""),
+            },
           ]}
           options={{
             headerStyle: {

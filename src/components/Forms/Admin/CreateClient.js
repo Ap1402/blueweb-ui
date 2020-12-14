@@ -6,8 +6,9 @@ import createAlert from "../../../helpers/createAlert";
 import adminService from "../../../services/admin.service";
 import TextAreaField from "../TextAreaField";
 import SelectField from "../SelectField";
+import clientsService from "../../../services/clients.service";
 
-const CreateClient = () => {
+const CreateClient = ({ data, isUpdating }) => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
@@ -17,17 +18,27 @@ const CreateClient = () => {
   return (
     <Formik
       initialValues={{
-        names: "",
-        lastNames: "",
-        email: "",
-        phone: "",
-        city: "",
-        municipality: "",
-        state: "",
-        identification: "",
-        isEnterprise: "",
-        socialReason: "",
-        commercialReason: "",
+        names: data ? (data.names ? data.names : "") : "",
+        lastNames: data ? (data.lastNames ? data.lastNames : "") : "",
+        email: data ? (data.email ? data.email : "") : "",
+        phone: data ? (data.phone ? data.phone : "") : "",
+        city: data ? (data.city ? data.city : "") : "",
+        municipality: data ? (data.municipality ? data.municipality : "") : "",
+        state: data ? (data.state ? data.state : "") : "",
+        identification: data
+          ? data.identification
+            ? data.identification
+            : ""
+          : "",
+        isEnterprise: data ? (data.isEnterprise ? "1" : "0") : "",
+        socialReason: data ? (data.socialReason ? data.socialReason : "") : "",
+        commercialReason: data
+          ? data.commercialReason
+            ? data.commercialReason
+            : ""
+          : "",
+        dni: data ? (data.dni ? data.dni : "") : "",
+        address: data ? (data.address ? data.address : "") : "",
       }}
       validationSchema={Yup.object({
         isEnterprise: Yup.boolean().required(
@@ -38,13 +49,13 @@ const CreateClient = () => {
           .required("Necesario"),
 
         socialReason: Yup.string().when("isEnterprise", {
-          is: (value) => value == '1',
+          is: (value) => value == "1",
           then: Yup.string().required("Este campo es necesario"),
           otherwise: Yup.string(),
         }),
 
         commercialReason: Yup.string().when("isEnterprise", {
-          is: (value) => value == '1',
+          is: (value) => value == "1",
           then: Yup.string().required("Este campo es necesario"),
           otherwise: Yup.string(),
         }),
@@ -62,9 +73,15 @@ const CreateClient = () => {
         state: Yup.string().required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        const result = await adminService.registerClient(values);
-        setRequestStatus(result);
-        setSubmitting(false);
+        if (isUpdating && data) {
+          const result = await clientsService.updateClient(values, data.id);
+          setRequestStatus(result);
+          setSubmitting(false);
+        } else {
+          const result = await adminService.registerClient(values);
+          setRequestStatus(result);
+          setSubmitting(false);
+        }
       }}
     >
       {({ isSubmitting, values }) => (
@@ -74,7 +91,7 @@ const CreateClient = () => {
 
             <div className="col-12 col-lg-3">
               <SelectField label="Tipo" name="isEnterprise">
-                <option value=""></option>
+                <option value="">Seleccione el tipo de cliente</option>
                 <option value="0">Natural</option>
                 <option value="1">Juridico</option>
               </SelectField>

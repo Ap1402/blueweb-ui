@@ -106,6 +106,15 @@ export const UsersTable = React.forwardRef(
               setModalShow(true);
             },
           },
+
+          {
+            icon: "edit",
+            tooltip: "Editar Información",
+            onClick: (event, rowData) => {
+              setShowData(rowData);
+              setModalShow(true);
+            },
+          },
         ]}
       />
     );

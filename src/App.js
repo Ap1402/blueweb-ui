@@ -29,6 +29,7 @@ import ActualizarDatos from "./pages/client/ActualizarDatos";
 import HistorialPago from "./pages/client/HistorialPago";
 import CreateStatus from "./pages/admin/Configuración/CrearEstado";
 import VerUsuarios from "./pages/admin/VerUsuarios";
+import EditarClienteInfo from "./pages/admin/EditarClienteInfo";
 
 const theme = {
   colors: {
@@ -75,6 +76,13 @@ function App() {
                   path="/admin/clientes/crear"
                   exact
                   component={CrearCliente}
+                />
+
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/clientes/:id"
+                  exact
+                  component={EditarClienteInfo}
                 />
                 <PrivateSupportRoute
                   layout={AdminPanelLayout}

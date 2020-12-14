@@ -4,7 +4,7 @@ import clientsService from "../../services/clients.service";
 import React, { useState } from "react";
 
 export const ClientsTable = React.forwardRef(
-  ({ setModalShow, setClientInfo }, ref) => {
+  ({ setModalShow, setClientInfo, redirectToClientUpdate }, ref) => {
     return (
       <MaterialTable
         components={{
@@ -92,6 +92,13 @@ export const ClientsTable = React.forwardRef(
             onClick: (event, rowData) => {
               setClientInfo(rowData);
               setModalShow(true);
+            },
+          },
+          {
+            icon: "edit",
+            tooltip: "Editar Información",
+            onClick: (event, rowData) => {
+              redirectToClientUpdate(rowData.id);
             },
           },
         ]}

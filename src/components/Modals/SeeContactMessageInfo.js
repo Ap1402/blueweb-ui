@@ -30,6 +30,12 @@ function SeeContactMessageInfo(props) {
               <strong>Teléfono:</strong> {props.data.phone}
             </li>
             <li>
+              <strong>Razón:</strong>{" "}
+              {props.data.reason
+                ? props.data.reason.name
+                : "No especificado o razón desactivada"}
+            </li>
+            <li>
               <strong>Mensaje:</strong> {props.data.message}
             </li>
           </StyledList>

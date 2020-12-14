@@ -34,6 +34,13 @@ const getMessages = async (query) => {
   return result;
 };
 
+const getReasons = async () => {
+  const result = await Axios.get(API_URL + "/reasons").catch((err) => {
+    return err.response;
+  });
+  return result.data;
+};
+
 const getPendingMessagesCount = async () => {
   const result = await Axios.get(API_URL + "/count", {
     headers: {
@@ -50,4 +57,5 @@ export default {
   getPendingMessagesCount,
   createContactMessage,
   getMessages,
+  getReasons,
 };

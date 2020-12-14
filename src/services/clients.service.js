@@ -24,6 +24,27 @@ const registerClient = async (client) => {
   return result;
 };
 
+const updateClient = async (clientData, clientId) => {
+  const result = await axios
+    .put(API_URL + clientId, clientData, {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .then((result) => {
+      return {
+        success: true,
+        message:
+          "Cliente C.I/RIF " + result.data.dni + " actualizado correctamente",
+        sent: true,
+      };
+    })
+    .catch((err) => {
+      return { success: false, message: err.response.data.message, sent: true };
+    });
+  return result;
+};
+
 const getClients = async (query) => {
   const result = await axios
     .get(API_URL, {
@@ -45,6 +66,19 @@ const getClients = async (query) => {
 const getCurrentLoggedClient = async (query) => {
   const result = await axios
     .get(API_URL + "me", {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .catch((err) => {
+      return err.response;
+    });
+  return result.data;
+};
+
+const getClientById = async (id) => {
+  const result = await axios
+    .get(API_URL + id, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -80,4 +114,6 @@ export default {
   getCurrentLoggedClient,
   getClients,
   updateClientSelf,
+  getClientById,
+  updateClient,
 };
