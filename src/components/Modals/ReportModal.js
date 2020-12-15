@@ -16,7 +16,6 @@ const StyledModalInner = styled.ul`
   li {
     word-wrap: break-word;
 
-
     display: flex;
     flex-direction: column;
     font-size: 15px;
@@ -43,7 +42,9 @@ function ReportModal(props) {
         </li>
         <li>
           <strong>Estado de reporte: </strong>
-          {info.status
+          {info.wasCompleted === "1"
+            ? "COMPLETADO"
+            : info.status
             ? info.status.name.toUpperCase()
             : "Hubo un problema al buscar el estado"}
         </li>
@@ -103,7 +104,6 @@ function ReportModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
       size="xl"
-
       dialogClassName="width-90w"
     >
       <Modal.Header closeButton closeLabel>

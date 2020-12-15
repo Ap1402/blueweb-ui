@@ -1,7 +1,7 @@
 import MaterialTable, { MTableCell } from "material-table";
 import { Paper } from "@material-ui/core";
 import clientsService from "../../services/clients.service";
-import React, { useState } from "react";
+import React from "react";
 
 export const ClientsTable = React.forwardRef(
   ({ setModalShow, setClientInfo, redirectToClientUpdate }, ref) => {

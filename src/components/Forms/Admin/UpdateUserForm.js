@@ -15,7 +15,7 @@ const StyledForm = styled(Form)`
   align-items: center;
 `;
 
-const RegisterForm = () => {
+const UpdateUserForm = (props) => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
@@ -25,30 +25,18 @@ const RegisterForm = () => {
   return (
     <Formik
       initialValues={{
-        password: "",
-        confirmPassword: "",
-        username: "",
-        dni: "",
-        identification: "",
+        username: props.userInfo ? props.userInfo.username : "",
+        isActive: props.userInfo.isActive ? "1" : "0",
       }}
       validationSchema={Yup.object({
-        password: Yup.string()
-          .min(6, "Debe tener mínimo 6 carácteres")
-          .required("Este campo es necesario"),
         username: Yup.string().required("Este campo es necesario"),
-        identification: Yup.string()
-          .oneOf(["V", "G", "E", "J"])
-          .required("Campo necesario"),
-        confirmPassword: Yup.string().oneOf(
-          [Yup.ref("password"), null],
-          "Las contraseñas deben coincidir"
-        ),
-        dni: Yup.string().required("Este campo es necesario"),
+        isActive: Yup.boolean().required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        const result = await userService.register(values);
+        const result = await userService.updateUser(values, props.userInfo.id);
         setRequestStatus(result);
         setSubmitting(false);
+        props.tableRef.current && props.tableRef.current.onQueryChange();
       }}
     >
       {({ isSubmitting }) => (
@@ -57,24 +45,6 @@ const RegisterForm = () => {
             <div className="col-12">{createAlert(requestStatus)}</div>
 
             <div className="col-10 mx-auto">
-              <div className="row">
-                <div className="col-3">
-                  <SelectField label="." name="identification">
-                    <option value=""></option>
-                    <option value="V">V</option>
-                    <option value="E">E</option>
-                    <option value="G">G</option>
-                    <option value="J">J</option>
-                  </SelectField>
-                </div>
-                <div className="col-9">
-                  <FormGroup
-                    label="Cedula/Rif del contrato (*)"
-                    name="dni"
-                    type="text"
-                  ></FormGroup>
-                </div>
-              </div>
               <FormGroup
                 label="Nombre de usuario"
                 name="username"
@@ -82,16 +52,11 @@ const RegisterForm = () => {
               ></FormGroup>
             </div>
             <div className="col-10 mx-auto">
-              <FormGroup
-                label="Contraseña"
-                name="password"
-                type="password"
-              ></FormGroup>
-              <FormGroup
-                label="Confirmar contraseña"
-                name="confirmPassword"
-                type="password"
-              ></FormGroup>
+              <SelectField label="Usuario activo" name="isActive">
+                <option value="">Seleccione una opción</option>
+                <option value="1">Sí</option>
+                <option value="0">No</option>
+              </SelectField>
             </div>
           </div>
           <div className="row text-center my-3">
@@ -102,7 +67,7 @@ const RegisterForm = () => {
                 className=" btn-primary btn "
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Por favor espere" : "Registrar"}
+                {isSubmitting ? "Por favor espere" : "Actualizar"}
               </button>
             </div>
           </div>
@@ -112,4 +77,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default UpdateUserForm;

@@ -14,7 +14,7 @@ const StyledForm = styled(Form)`
   align-items: center;
 `;
 
-const UpdateReportForm = (props) => {
+const UpdateFactibilityRequest = (props) => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
@@ -168,4 +168,4 @@ const UpdateReportForm = (props) => {
   }
 };
 
-export default UpdateReportForm;
+export default UpdateFactibilityRequest;

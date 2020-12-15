@@ -102,6 +102,8 @@ const getReports = async (query, isForClient) => {
     params.order = query.order;
   }
 
+  params.completed = query.wasCompleted ? query.wasCompleted : 0;
+
   if (!isForClient) {
     const reports = await axios.get(API_URL, {
       params: params,
@@ -153,6 +155,7 @@ const updateReport = async (
   supportMessageForClient,
   supportMessageInner,
   priorityLevel,
+  wasCompleted,
   reportId
 ) => {
   const result = await axios
@@ -164,6 +167,7 @@ const updateReport = async (
         supportMessageForClient,
         supportMessageInner,
         priorityLevel,
+        wasCompleted,
       },
       {
         headers: {

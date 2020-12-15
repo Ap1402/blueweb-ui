@@ -12,7 +12,6 @@ import AdminPanelLayout from "./pages/Layouts/AdminPanelLayout";
 import ClientPanelLayout from "./pages/Layouts/ClientPanelLayout";
 
 import VerClientes from "./pages/admin/VerClientes";
-import VerReportesPendientes from "./pages/admin/VerReportesPendientes";
 import VerTodosLosReportes from "./pages/admin/VerTodosLosReportes";
 
 import VerFactibilidadSolicitudes from "./pages/admin/VerFactibilidadSolicitudes";
@@ -52,13 +51,6 @@ function App() {
           <Switch>
             <Route path="/admin/:path?">
               <Switch>
-                <PrivateSupportRoute
-                  layout={AdminPanelLayout}
-                  path="/admin/reportes/pendientes"
-                  exact
-                  component={VerReportesPendientes}
-                />
-
                 <PrivateSupportRoute
                   layout={AdminPanelLayout}
                   path="/admin/reportes"

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import SeeContactMessageInfo from "../../components/Modals/FactibilityRequestModal";
 import MaterialTable from "material-table";
-import adminService from "../../services/admin.service";
 import factibilityService from "../../services/factibility.service";
+import { Modal } from "react-bootstrap";
 
-function RefreshData(setModalShow, setModalData) {
+function RefreshData(setModalShow, setModalData, setUpdateModal) {
   const tableRef = React.createRef();
   return (
     <MaterialTable
@@ -38,11 +38,16 @@ function RefreshData(setModalShow, setModalData) {
         { title: "Solicitante", field: "requesterName" },
         { title: "Correo", field: "requesterEmail" },
         { title: "Teléfono", field: "requesterPhone" },
-        /*  {
+        {
           title: "Revisado",
-          field: "wasAnswered",
-          render: (rowData) => <p>{rowData.wasAnswered ? "Sí" : "No"}</p>,
-        }, */
+          field: "wasEvaluated",
+          render: (rowData) => <p>{rowData.wasEvaluated ? "Sí" : "No"}</p>,
+        },
+        {
+          title: "Factible",
+          field: "isFactible",
+          render: (rowData) => <p>{rowData.isFactible ? "Sí" : "No"}</p>,
+        },
       ]}
       options={{
         headerStyle: {
@@ -58,6 +63,7 @@ function RefreshData(setModalShow, setModalData) {
             size: query.pageSize,
             wasEvaluated: 0,
           });
+          console.log(result);
           resolve({
             page: parseInt(result.data.currentPage),
             data: result.data.data,
@@ -77,18 +83,17 @@ function RefreshData(setModalShow, setModalData) {
           icon: "visibility",
           tooltip: "Ver información",
           onClick: (event, rowData) => {
-            /* setShowData({
-              id: rowData.id,
-              name: rowData.name,
-              reason: rowData.reason,
-              message: rowData.message,
-              phone: rowData.phone,
-              email: rowData.email,
-              wasAnswered: rowData.wasAnswered,
-            }); */
             setModalData(rowData);
             setModalShow(true);
-            // Do save operation
+          },
+        },
+
+        {
+          icon: "edit",
+          tooltip: "Editar solicitud",
+          onClick: (event, rowData) => {
+            setModalData(rowData);
+            setUpdateModal(true);
           },
         },
       ]}
@@ -96,9 +101,51 @@ function RefreshData(setModalShow, setModalData) {
   );
 }
 
+function FactibilityRequestUpdate(props) {
+  return (
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter centered">
+          Información
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {props.data ? (
+          <ul>
+            <li>
+              <strong>Nombre:</strong> {props.data.requesterName}
+            </li>
+            <li>
+              <strong>Email del solicitante:</strong>{" "}
+              {props.data.requesterEmail}
+            </li>
+            <li>
+              <strong>Teléfono:</strong> {props.data.requesterPhone}
+            </li>
+            <li>
+              <strong>Coordenadas:</strong> {props.data.coordenades}
+            </li>
+            <li>
+              <strong>Marcado como factible:</strong>{" "}
+              {props.data.isFactible
+                ? props.data.isFactible
+                  ? "Sì"
+                  : "No"
+                : "No ha sido evaluado"}
+            </li>
+          </ul>
+        ) : (
+          <p>Cargando..</p>
+        )}
+      </Modal.Body>
+    </Modal>
+  );
+}
+
 const VerFactibilidadSolicitudes = () => {
   const [modalShow, setModalShow] = useState(false);
   const [modalData, setModalData] = useState();
+  const [updateModal, setUpdateModal] = useState();
 
   return (
     <>
@@ -115,7 +162,12 @@ const VerFactibilidadSolicitudes = () => {
               </h6>
             </div>
             <div className="card-body">
-              {RefreshData(setModalShow, setModalData)}
+              {RefreshData(setModalShow, setModalData, setUpdateModal)}
+              <FactibilityRequestUpdate
+                data={modalData}
+                show={updateModal}
+                onHide={() => setUpdateModal(false)}
+              ></FactibilityRequestUpdate>
               <SeeContactMessageInfo
                 data={modalData}
                 show={modalShow}

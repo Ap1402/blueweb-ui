@@ -38,6 +38,7 @@ const VerReportesPendientes = () => {
                 onHide={() => setModalShow(false)}
               />
               <UpdateReportModal
+                tableRef={tableRef}
                 reportId={reportId}
                 show={updateReportModalShow}
                 onHide={() => setUpdateReportModalShow(false)}

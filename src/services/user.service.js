@@ -42,8 +42,33 @@ const getAllUsers = async () => {
   }
 };
 
+const updateUser = async (values, userId) => {
+  const result = await axios
+    .put(API_URL + "/" + userId, values, {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .then((result) => {
+      return {
+        success: true,
+        message: "Usuario actualizado correctamente",
+        sent: true,
+      };
+    })
+    .catch((err) => {
+      return {
+        success: false,
+        message: err.response.data.message,
+        sent: true,
+      };
+    });
+  return result;
+};
+
 export default {
   register,
   getCurrentUserInfo,
   getAllUsers,
+  updateUser,
 };

@@ -144,12 +144,6 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
       <div className="sidebar-heading">Reportes</div>
 
       <li className="nav-item">
-        <Link to="/admin/reportes/pendientes">
-          <a className="nav-link">
-            <i className="fas fa-fw fa-table"></i>
-            <span>Reportes pendientes</span>
-          </a>
-        </Link>
         <Link to="/admin/reportes">
           <a className="nav-link">
             <i className="fas fa-fw fa-table"></i>

@@ -1,10 +1,34 @@
 import React, { useState } from "react";
+import { Modal } from "react-bootstrap";
+import UpdateUserForm from "../../components/Forms/Admin/UpdateUserForm";
 import UserInfoModal from "../../components/Modals/ShowUserInfoModal";
 import { UsersTable } from "../../components/Tables/UsersTable";
+
+const UserUpdateModal = (props) => {
+  return (
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal.Header closeButton closeLabel>
+        <Modal.Title id="contained-modal-title-vcenter centered">
+          Actualizar Usuario
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {props.userInfo ? (
+          <UpdateUserForm tableRef={props.tableRef} userInfo={props.userInfo}></UpdateUserForm>
+        ) : (
+          <p>Cargando...</p>
+        )}
+      </Modal.Body>
+    </Modal>
+  );
+};
 
 const VerUsuarios = () => {
   const [showData, setShowData] = useState();
   const [modalShow, setModalShow] = useState();
+  const [updateModal, setUpdateModal] = useState();
+  const tableRef = React.useRef();
+
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -23,7 +47,16 @@ const VerUsuarios = () => {
               <UsersTable
                 setShowData={setShowData}
                 setModalShow={setModalShow}
+                setUpdateModalShow={setUpdateModal}
+                ref={tableRef}
               ></UsersTable>
+
+              <UserUpdateModal
+                show={updateModal}
+                onHide={() => setUpdateModal(false)}
+                userInfo={showData}
+                tableRef={tableRef}
+              ></UserUpdateModal>
 
               <UserInfoModal
                 userInfo={showData}
