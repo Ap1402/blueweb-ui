@@ -16,7 +16,6 @@ const StyledList = styled.ul`
 `;
 
 function FactibilityRequestModal(props) {
-  console.log(props.data);
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton>

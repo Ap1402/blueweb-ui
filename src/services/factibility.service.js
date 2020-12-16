@@ -42,11 +42,32 @@ const createFactibilityRequest = async (request) => {
   return result;
 };
 
+const updateFactibilityRequest = async (request, factibilityId) => {
+  const result = await axios
+    .put(API_URL + "/" + factibilityId, request)
+    .then((result) => {
+      return {
+        success: true,
+        message: "Solicitud actualizada con éxito",
+      };
+    })
+    .catch((err) => {
+      return {
+        success: false,
+        message: "Hubo un problam actualizando la solicitud",
+      };
+    });
+  return result;
+};
+
 const pendingFactibilityRequestsCount = async () => {
   const result = await axios
     .get(API_URL + "/count", {
       headers: {
         "x-auth-token": authHeader(),
+      },
+      params: {
+        wasEvaluated: false,
       },
     })
     .catch((err) => {
@@ -59,4 +80,5 @@ export default {
   pendingFactibilityRequestsCount,
   getFactibilityRequests,
   createFactibilityRequest,
+  updateFactibilityRequest,
 };

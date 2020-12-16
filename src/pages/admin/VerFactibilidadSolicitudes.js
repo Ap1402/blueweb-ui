@@ -1,105 +1,146 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SeeContactMessageInfo from "../../components/Modals/FactibilityRequestModal";
 import MaterialTable from "material-table";
 import factibilityService from "../../services/factibility.service";
-import { Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
+import UpdateFactibilityRequest from "../../components/Forms/Admin/UpdateFactibilityRequest";
+import styled from "styled-components";
 
-function RefreshData(setModalShow, setModalData, setUpdateModal) {
-  const tableRef = React.createRef();
-  return (
-    <MaterialTable
-      title="Solicitudes de factibilidad"
-      tableRef={tableRef}
-      localization={{
-        pagination: {
-          labelDisplayedRows: "{from}-{to} de {count} páginas",
-        },
-        toolbar: {
-          nRowsSelected: "{0} filas(s) seleccionadas",
-        },
-        header: {
-          actions: "Acciones",
-        },
-        pagination: {
-          labelRowsSelect: "filas",
-        },
-        body: {
-          emptyDataSourceMessage: "No hay registros para mostrar",
-          filterRow: {
-            filterTooltip: "Filtro",
-          },
-        },
-      }}
-      columns={[
-        {
-          title: "Coordenadas",
-          field: "coordenades",
-        },
-        { title: "Solicitante", field: "requesterName" },
-        { title: "Correo", field: "requesterEmail" },
-        { title: "Teléfono", field: "requesterPhone" },
-        {
-          title: "Revisado",
-          field: "wasEvaluated",
-          render: (rowData) => <p>{rowData.wasEvaluated ? "Sí" : "No"}</p>,
-        },
-        {
-          title: "Factible",
-          field: "isFactible",
-          render: (rowData) => <p>{rowData.isFactible ? "Sí" : "No"}</p>,
-        },
-      ]}
-      options={{
-        headerStyle: {
-          backgroundColor: "#01579b",
-          color: "#FFF",
-          padding: "20px",
-        },
-      }}
-      data={(query) =>
-        new Promise(async (resolve, reject) => {
-          const result = await factibilityService.getFactibilityRequests({
-            page: query.page,
-            size: query.pageSize,
-            wasEvaluated: 0,
-          });
-          console.log(result);
-          resolve({
-            page: parseInt(result.data.currentPage),
-            data: result.data.data,
-            totalCount: result.data.totalItems,
-          });
-        })
-      }
-      actions={[
-        {
-          icon: "refresh",
-          tooltip: "Refrescar datos",
-          isFreeAction: true,
-          onClick: () => tableRef.current && tableRef.current.onQueryChange(),
-        },
+const StyledButton = styled(Button)`
+  ${(props) =>
+    props.isActive
+      ? `
+      background-color: ${props.theme.colors.darkerBlue} !important;
+      border-color: ${props.theme.colors.darkerBlue} !important;
+      `
+      : `
+      background-color: ${props.theme.colors.lightBlue} !important;
+      border-color: ${props.theme.colors.lightBlue} !important;
+      `}
+  margin: 0 10px 10px 10px;
+`;
 
-        {
-          icon: "visibility",
-          tooltip: "Ver información",
-          onClick: (event, rowData) => {
-            setModalData(rowData);
-            setModalShow(true);
-          },
-        },
+const FactibilityTable = React.forwardRef(
+  ({ setModalShow, setModalData, setUpdateModal }, tableRef) => {
+    const [wasEvaluated, setWasEvaluated] = useState(false);
 
-        {
-          icon: "edit",
-          tooltip: "Editar solicitud",
-          onClick: (event, rowData) => {
-            setModalData(rowData);
-            setUpdateModal(true);
-          },
-        },
-      ]}
-    />
-  );
-}
+    const onClickHandler = () => {
+      setWasEvaluated(wasEvaluated ? 0 : 1);
+    };
+
+    useEffect(() => {
+      tableRef.current.onQueryChange({
+        filters: { wasEvaluated: wasEvaluated },
+      });
+    }, [wasEvaluated]);
+
+    return (
+      <>
+        <StyledButton onClick={() => onClickHandler()} isActive={wasEvaluated}>
+          {wasEvaluated ? "Buscar no evaluados" : "Buscar evaluados"}
+        </StyledButton>
+        <MaterialTable
+          title={
+            wasEvaluated
+              ? "Solicitudes de factibilidad evaluadas"
+              : "Solicitudes de factibilidad no evaluadas"
+          }
+          tableRef={tableRef}
+          localization={{
+            pagination: {
+              labelDisplayedRows: "{from}-{to} de {count} páginas",
+            },
+            toolbar: {
+              nRowsSelected: "{0} filas(s) seleccionadas",
+            },
+            header: {
+              actions: "Acciones",
+            },
+            pagination: {
+              labelRowsSelect: "filas",
+            },
+            body: {
+              emptyDataSourceMessage: "No hay registros para mostrar",
+              filterRow: {
+                filterTooltip: "Filtro",
+              },
+            },
+          }}
+          columns={[
+            {
+              title: "Coordenadas",
+              field: "coordenades",
+            },
+            { title: "Solicitante", field: "requesterName" },
+            { title: "Correo", field: "requesterEmail" },
+            { title: "Teléfono", field: "requesterPhone" },
+            {
+              title: "Revisado",
+              field: "wasEvaluated",
+              render: (rowData) => <p>{rowData.wasEvaluated ? "Sí" : "No"}</p>,
+            },
+            {
+              title: "Factible",
+              field: "isFactible",
+              render: (rowData) => <p>{rowData.isFactible ? "Sí" : "No"}</p>,
+            },
+          ]}
+          options={{
+            headerStyle: {
+              backgroundColor: "#01579b",
+              color: "#FFF",
+              padding: "20px",
+            },
+          }}
+          data={(query) =>
+            new Promise(async (resolve, reject) => {
+              const result = await factibilityService.getFactibilityRequests({
+                page: query.page,
+                size: query.pageSize,
+                wasEvaluated:
+                  query.filters.wasEvaluated === undefined
+                    ? 0
+                    : query.filters.wasEvaluated,
+              });
+              resolve({
+                page: parseInt(result.data.currentPage),
+                data: result.data.data,
+                totalCount: result.data.totalItems,
+              });
+            })
+          }
+          actions={[
+            {
+              icon: "refresh",
+              tooltip: "Refrescar datos",
+              isFreeAction: true,
+              onClick: () =>
+                tableRef.current && tableRef.current.onQueryChange(),
+            },
+
+            {
+              icon: "visibility",
+              tooltip: "Ver información",
+              onClick: (event, rowData) => {
+                setModalData(rowData);
+                setModalShow(true);
+              },
+            },
+
+            {
+              icon: "edit",
+              tooltip: "Editar solicitud",
+              onClick: (event, rowData) => {
+                setModalData(rowData);
+                setUpdateModal(true);
+              },
+            },
+          ]}
+        />
+      </>
+    );
+  }
+);
 
 function FactibilityRequestUpdate(props) {
   return (
@@ -111,29 +152,10 @@ function FactibilityRequestUpdate(props) {
       </Modal.Header>
       <Modal.Body>
         {props.data ? (
-          <ul>
-            <li>
-              <strong>Nombre:</strong> {props.data.requesterName}
-            </li>
-            <li>
-              <strong>Email del solicitante:</strong>{" "}
-              {props.data.requesterEmail}
-            </li>
-            <li>
-              <strong>Teléfono:</strong> {props.data.requesterPhone}
-            </li>
-            <li>
-              <strong>Coordenadas:</strong> {props.data.coordenades}
-            </li>
-            <li>
-              <strong>Marcado como factible:</strong>{" "}
-              {props.data.isFactible
-                ? props.data.isFactible
-                  ? "Sì"
-                  : "No"
-                : "No ha sido evaluado"}
-            </li>
-          </ul>
+          <UpdateFactibilityRequest
+            factibilityInfo={props.data}
+            tableRef={props.tableRef}
+          ></UpdateFactibilityRequest>
         ) : (
           <p>Cargando..</p>
         )}
@@ -146,6 +168,7 @@ const VerFactibilidadSolicitudes = () => {
   const [modalShow, setModalShow] = useState(false);
   const [modalData, setModalData] = useState();
   const [updateModal, setUpdateModal] = useState();
+  const tableRef = React.createRef();
 
   return (
     <>
@@ -162,11 +185,17 @@ const VerFactibilidadSolicitudes = () => {
               </h6>
             </div>
             <div className="card-body">
-              {RefreshData(setModalShow, setModalData, setUpdateModal)}
+              <FactibilityTable
+                setModalShow={setModalShow}
+                setModalData={setModalData}
+                setUpdateModal={setUpdateModal}
+                ref={tableRef}
+              ></FactibilityTable>
               <FactibilityRequestUpdate
                 data={modalData}
                 show={updateModal}
                 onHide={() => setUpdateModal(false)}
+                tableRef={tableRef}
               ></FactibilityRequestUpdate>
               <SeeContactMessageInfo
                 data={modalData}
