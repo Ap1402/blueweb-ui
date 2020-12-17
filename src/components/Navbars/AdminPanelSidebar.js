@@ -153,6 +153,16 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
       </li>
       <hr className="sidebar-divider d-none d-md-block" />
 
+      <li className="nav-item">
+        <Link to="/admin/pagos">
+          <a className="nav-link">
+            <i className="fas fa-fw fa-table"></i>
+            <span>Reportes de pago</span>
+          </a>
+        </Link>
+      </li>
+      <hr className="sidebar-divider d-none d-md-block" />
+
       <div className="sidebar-heading">Configuración</div>
 
       <li className="nav-item">
@@ -163,6 +173,7 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
           </a>
         </Link>
       </li>
+
       <div className="text-center d-none d-md-inline">
         <button className="rounded-circle border-0" id="sidebarToggle"></button>
       </div>

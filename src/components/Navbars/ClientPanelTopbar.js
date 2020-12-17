@@ -102,6 +102,10 @@ const Navbar = () => {
       <li className="common-nav">
         <Link to="/contacto">Contacto</Link>
       </li>
+
+      <li className="common-nav">
+        <Link to="/contacto">Contacto</Link>
+      </li>
       {/*   <li className="highlighted" onClick={() => setModalShow(true)}>
       <Link to="#">Ingreso</Link>
       </li>

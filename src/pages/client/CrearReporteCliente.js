@@ -33,6 +33,7 @@ const CrearReporteCliente = () => {
     };
     getUserData();
   }, []);
+
   return !loading ? (
     <>
       <div className="card">

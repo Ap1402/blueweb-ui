@@ -16,6 +16,7 @@ import VerTodosLosReportes from "./pages/admin/VerTodosLosReportes";
 
 import VerFactibilidadSolicitudes from "./pages/admin/VerFactibilidadSolicitudes";
 import VerMensajesContacto from "./pages/admin/VerMensajesContacto";
+import VerPagos from "./pages/admin/VerPagos";
 import CrearCliente from "./pages/admin/CrearCliente";
 import PrivateRoute from "./helpers/PrivateRoute";
 import PrivateSupportRoute from "./helpers/PrivateSupportRoute";
@@ -23,12 +24,14 @@ import CrearUsuario from "./pages/admin/CrearUsuario";
 import ScrollToTop from "./helpers/ScrollToTop";
 import CrearReporteCliente from "./pages/client/CrearReporteCliente";
 import MisReportes from "./pages/client/MisReportes";
+import VerReportesPago from "./pages/client/VerReportesPago";
 import PerfilCliente from "./pages/client/PerfilCliente";
 import ActualizarDatos from "./pages/client/ActualizarDatos";
 import HistorialPago from "./pages/client/HistorialPago";
 import CreateStatus from "./pages/admin/Configuración/CrearEstado";
 import VerUsuarios from "./pages/admin/VerUsuarios";
 import EditarClienteInfo from "./pages/admin/EditarClienteInfo";
+import CrearReportePago from "./pages/client/CrearReportePago";
 
 const theme = {
   colors: {
@@ -106,6 +109,12 @@ function App() {
                   exact
                   component={VerUsuarios}
                 />
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/pagos/"
+                  exact
+                  component={VerPagos}
+                />
               </Switch>
             </Route>
 
@@ -138,6 +147,18 @@ function App() {
               layout={ClientPanelLayout}
               path="/clients/misReportes"
               component={MisReportes}
+              exact
+            />
+            <PrivateRoute
+              layout={ClientPanelLayout}
+              path="/clients/reportar-pago"
+              component={CrearReportePago}
+              exact
+            />
+            <PrivateRoute
+              layout={ClientPanelLayout}
+              path="/clients/mis-reportes-pago"
+              component={VerReportesPago}
               exact
             />
 

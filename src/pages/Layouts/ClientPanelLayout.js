@@ -145,6 +145,11 @@ const ClientPanelLayout = ({ children }) => {
                   </Link>
                 </div>
               </li>
+              <li className="nav-item">
+                <Link to="/clients/reportar-pago" className="nav-link" href="#">
+                  Reportar pago
+                </Link>
+              </li>
             </ul>
             <div className="navbar-nav ml-md-auto">
               <button
