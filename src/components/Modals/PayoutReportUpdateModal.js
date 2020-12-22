@@ -1,17 +1,18 @@
 import { Modal } from "react-bootstrap";
 import dayjs from "dayjs";
 import styled from "styled-components";
-import UpdatePayoutReportForm from "../Forms/Admin/UpdatePayoutReportForm";
 
 const StyledModalInner = styled.ul`
   list-style: none;
   width: 100%;
+
   strong {
     font-size: 15px;
     color: black;
     width: 100%;
     margin-left: 0;
   }
+
   li {
     display: flex;
     flex-direction: column;
@@ -44,10 +45,7 @@ function PayoutReportInfoModal(props) {
           <strong>Cantidad: </strong>
           {info.amount}
         </li>
-        <li>
-          <strong>Aprobado por: </strong>
-          {info.user ? info.user.username : ""}
-        </li>
+
         <li>
           <strong>Aprobado en: </strong>
           {dayjs(info.approvedAt).format("DD/MM/YY HH:mm")}
@@ -60,18 +58,12 @@ function PayoutReportInfoModal(props) {
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
       <Modal.Header closeButton closeLabel>
         <Modal.Title id="contained-modal-title-vcenter centered">
-          Información del cliente
+          Actualización del reporte de pago
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {props.payoutInfo ? (
-          <>
-            {createInnerElements(props.payoutInfo)}
-            <UpdatePayoutReportForm
-              tableRef={props.tableRef}
-              reportInfo={props.payoutInfo}
-            ></UpdatePayoutReportForm>
-          </>
+          createInnerElements(props.payoutInfo)
         ) : (
           <p>Cargando...</p>
         )}

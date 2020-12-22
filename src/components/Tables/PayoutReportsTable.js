@@ -1,5 +1,4 @@
 import { Paper } from "@material-ui/core";
-import reportService from "../../services/report.service";
 import React, { useEffect, useState } from "react";
 import MaterialTable, { MTableCell } from "material-table";
 import dayjs from "dayjs";
@@ -62,7 +61,7 @@ export const PayoutReportsTable = React.forwardRef(
       {
         title: "Aprobado",
         field: "isApproved",
-        render: (rowData) => (rowData.isApproved ? "Sí" : "Por aprobar"),
+        render: (rowData) => (rowData.isApproved ? "Aprobado" : "Por aprobar"),
       },
       {
         title: "Fecha de registro",
@@ -72,6 +71,10 @@ export const PayoutReportsTable = React.forwardRef(
       {
         title: "Fecha de aprobación",
         field: "approvedAt",
+        render: (rowData) =>
+          rowData.isApproved
+            ? dayjs(rowData.approvedAt).format("DD/MM/YYYY")
+            : "",
       },
     ]);
 

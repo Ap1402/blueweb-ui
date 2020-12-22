@@ -24,6 +24,26 @@ const registerPayout = async (payout) => {
   return result;
 };
 
+const updatePayoutReport = async (payoutData, payoutId) => {
+  const result = await axios
+    .put(API_URL + payoutId, payoutData, {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .then((result) => {
+      return {
+        success: true,
+        message: "Reporte de pago actualizado con éxito",
+        sent: true,
+      };
+    })
+    .catch((err) => {
+      return { success: false, message: err.response.data.message, sent: true };
+    });
+  return result;
+};
+
 const getPayoutReports = async (query, isForClient) => {
   const params = {};
   params.page = query.page;
@@ -63,4 +83,5 @@ const getPayoutReports = async (query, isForClient) => {
 export default {
   registerPayout,
   getPayoutReports,
+  updatePayoutReport,
 };

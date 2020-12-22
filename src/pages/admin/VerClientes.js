@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import ClientInfoModal from "../../components/Modals/ShowClientInfoModal";
 import { ClientsTable } from "../../components/Tables/ClientsTable";
 

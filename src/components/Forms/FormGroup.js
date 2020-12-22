@@ -1,21 +1,20 @@
 import React from "react";
-import { useField} from "formik";
+import { useField } from "formik";
 
-const FormGroup = ({label, ...props}) => {
-    const [field, meta] = useField(props);
+const FormGroup = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
 
   return (
     <div className="form-group">
-        <label htmlFor={props.id || props.name}>{label}</label>
+      <label htmlFor={props.id || props.name}>{label}</label>
 
-        <input className="form-control" {...field} {...props} />
+      <input className="form-control" {...field} {...props} />
 
-        {meta.touched && meta.error ? (
-          <div className="invalid-feedback d-block" >{meta.error}</div>
-        ) : null}
+      {meta.touched && meta.error ? (
+        <div className="invalid-feedback d-block">{meta.error}</div>
+      ) : null}
     </div>
   );
-
 };
 
 export default FormGroup;

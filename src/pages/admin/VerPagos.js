@@ -1,32 +1,6 @@
 import React, { useState } from "react";
-import { Modal } from "react-bootstrap";
-import UpdateUserForm from "../../components/Forms/Admin/UpdateUserForm";
 import PayoutReportInfoModal from "../../components/Modals/PayoutReportInfoModal";
-import UserInfoModal from "../../components/Modals/ShowUserInfoModal";
 import { PayoutReportsTable } from "../../components/Tables/PayoutReportsTable";
-import { UsersTable } from "../../components/Tables/UsersTable";
-
-const UserUpdateModal = (props) => {
-  return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered>
-      <Modal.Header closeButton closeLabel>
-        <Modal.Title id="contained-modal-title-vcenter centered">
-          Actualizar Usuario
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {props.userInfo ? (
-          <UpdateUserForm
-            tableRef={props.tableRef}
-            userInfo={props.userInfo}
-          ></UpdateUserForm>
-        ) : (
-          <p>Cargando...</p>
-        )}
-      </Modal.Body>
-    </Modal>
-  );
-};
 
 const VerPagos = () => {
   const [showData, setShowData] = useState();
@@ -55,10 +29,10 @@ const VerPagos = () => {
                 setUpdateModalShow={setUpdateModal}
                 ref={tableRef}
               ></PayoutReportsTable>
-
               <PayoutReportInfoModal
                 payoutInfo={showData}
                 show={modalShow}
+                tableRef={tableRef}
                 onHide={() => setModalShow(false)}
               ></PayoutReportInfoModal>
             </div>
