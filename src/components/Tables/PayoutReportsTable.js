@@ -24,6 +24,7 @@ export const PayoutReportsTable = React.forwardRef(
     { setModalShow, setUpdateReportModalShow, isForClient, setShowData },
     tableRef
   ) => {
+
     const [isApproved, setIsApproved] = useState(0);
     const onClickHandler = () => {
       setIsApproved(isApproved ? 0 : 1);

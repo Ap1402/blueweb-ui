@@ -35,8 +35,10 @@ const LoginForm = (props) => {
   };
 
   useEffect(() => {
-    props.history.push(requestStatus.redirect);
-  }, [requestStatus.success]);
+    if (requestStatus.sent === true && requestStatus.success) {
+      props.history.push(requestStatus.redirect);
+    }
+  }, [requestStatus.sent, requestStatus.success]);
 
   return (
     <Formik

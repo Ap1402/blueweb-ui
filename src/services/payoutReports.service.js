@@ -70,12 +70,13 @@ const getPayoutReports = async (query, isForClient) => {
     });
     return reports.data;
   } else {
-    const reports = await axios.get(API_URL + "/me", {
+    const reports = await axios.get(API_URL + "me", {
       params: params,
       headers: {
         "x-auth-token": authHeader(),
       },
     });
+    console.log(reports);
     return reports.data;
   }
 };

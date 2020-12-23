@@ -111,7 +111,7 @@ const HeaderStyle = styled.header`
 
 const Header = ({ isAuth }) => {
   const [barClassName, setbarClassName] = useState("");
-  const [modalShow, setModalShow] = useState(false);
+  const [modalLogin, setModalLoginShow] = useState(false);
   const [modalRegister, setModalRegisterShow] = useState(false);
   const [modalLogout, setModalLogoutShow] = useState(false);
 
@@ -125,13 +125,22 @@ const Header = ({ isAuth }) => {
     };
   }, []);
 
+  const onClickHandler = (e, type) => {
+    e.preventDefault();
+    if (type === "register") {
+      setModalRegisterShow(true);
+    } else {
+      setModalLoginShow(true);
+    }
+  };
+
   const createAuthButtons = (isAuth) => {
     if (!isAuth) {
       return (
         <>
           <Button
             className="login"
-            onClick={() => setModalShow(true)}
+            onClick={(e) => onClickHandler(e, "login")}
             variant="contained"
             color="primary"
             disableElevation
@@ -139,15 +148,18 @@ const Header = ({ isAuth }) => {
             Ingresar
           </Button>
           <Button
-            variant="outlined"
+            variant="contained"
             className="register"
-            onClick={() => setModalRegisterShow(true)}
+            onClick={(e) => onClickHandler(e, "register")}
             color="primary"
             disableElevation
           >
             Registro
           </Button>
-          <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
+          <LoginModal
+            show={modalLogin}
+            onHide={() => setModalLoginShow(false)}
+          ></LoginModal>
           <RegisterModal
             show={modalRegister}
             onHide={() => setModalRegisterShow(false)}

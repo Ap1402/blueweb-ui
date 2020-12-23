@@ -30,16 +30,15 @@ const login = async (userData) => {
 };
 
 const logout = async () => {
-  const result = await axios
+  /*   const result = await axios
     .get(API_URL + "logout", {
       headers: {
         "x-auth-token": authHeader(),
       },
     })
     .catch((err) => {
-      localStorage.removeItem("token");
       return err.response;
-    });
+    }); */
   localStorage.removeItem("token");
 };
 

@@ -32,6 +32,7 @@ import CreateStatus from "./pages/admin/Configuración/CrearEstado";
 import VerUsuarios from "./pages/admin/VerUsuarios";
 import EditarClienteInfo from "./pages/admin/EditarClienteInfo";
 import CrearReportePago from "./pages/client/CrearReportePago";
+import MisPagos from "./pages/client/MisPagos";
 
 const theme = {
   colors: {
@@ -117,7 +118,6 @@ function App() {
                 />
               </Switch>
             </Route>
-
             <PrivateRoute
               layout={ClientPanelLayout}
               path="/clients/historial"
@@ -159,6 +159,13 @@ function App() {
               layout={ClientPanelLayout}
               path="/clients/mis-reportes-pago"
               component={VerReportesPago}
+              exact
+            />
+
+            <PrivateRoute
+              layout={ClientPanelLayout}
+              path="/clients/mis-pagos"
+              component={MisPagos}
               exact
             />
 

@@ -1,19 +1,11 @@
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
-import styled from "styled-components";
 import payoutReportsService from "../../../services/payoutReports.service";
 import createAlert from "../../../helpers/createAlert";
 import { useState } from "react";
 import Spinner from "../../Spinner/Spinner";
 import SelectField from "../SelectField";
 import FormGroup from "../FormGroup";
-
-const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 const UpdatePayoutReportForm = (props) => {
   const [requestStatus, setRequestStatus] = useState({
@@ -38,7 +30,13 @@ const UpdatePayoutReportForm = (props) => {
       }}
       validationSchema={Yup.object({
         isApproved: Yup.string().required("Este campo es necesario"),
-        commerceCode: Yup.string().required("Este campo es necesario"),
+        commerceCode: Yup.string().when("isApproved", {
+          is: (value) => value == "1",
+          then: Yup.string().required(
+            "Es necesario ingresar el número de recibo para cambiar el estado del pago a aprobado"
+          ),
+          otherwise: Yup.string(),
+        }),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         const result = await payoutReportsService.updatePayoutReport(

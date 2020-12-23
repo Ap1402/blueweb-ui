@@ -150,6 +150,11 @@ const ClientPanelLayout = ({ children }) => {
                   Reportar pago
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link to="/clients/mis-pagos" className="nav-link" href="#">
+                  Ver mis pagos
+                </Link>
+              </li>
             </ul>
             <div className="navbar-nav ml-md-auto">
               <button
