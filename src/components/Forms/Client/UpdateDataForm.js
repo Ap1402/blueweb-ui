@@ -59,9 +59,13 @@ const UpdatePasswordForm = ({ registerRequest }) => {
         validationSchema={Yup.object({
           email: Yup.string()
             .email("Debe ser un email válido")
-            .required("Este campo es necesario"),
-          phone: Yup.string().required("Este campo es necesario"),
-          password: Yup.string().required("Este campo es necesario"),
+            .required("Es necesario ingresar un correo electrónico"),
+          phone: Yup.string().required(
+            "Es necesario ingresar un número telefónico"
+          ),
+          password: Yup.string().required(
+            "Es necesario que ingrese su contraseña para actualizar estos datos"
+          ),
         })}
         onSubmit={async (values, { setSubmitting }) => {
           const result = await clientsService.updateClientSelf(values);
@@ -89,7 +93,7 @@ const UpdatePasswordForm = ({ registerRequest }) => {
               </div>
               <div className="col-12 ">
                 <FormGroup
-                  label="Contraseña"
+                  label="Contraseña actual"
                   name="password"
                   type="text"
                 ></FormGroup>

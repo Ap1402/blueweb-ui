@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import RegisterForm from "../../components/Forms/Client/RegisterForm";
 
-const CrearUsuario = () => {
+const CrearUsuario = (props) => {
+  console.log(props)
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -10,7 +11,7 @@ const CrearUsuario = () => {
       </div>
 
       <div className="row">
-        <div className="col-lg-10 mb-4 col-12">
+        <div className="col-lg-7 mb-4 col-12 mx-auto">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">
@@ -27,4 +28,4 @@ const CrearUsuario = () => {
   );
 };
 
-export default CrearUsuario;
+export default withRouter(CrearUsuario);

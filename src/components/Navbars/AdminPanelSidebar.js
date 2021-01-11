@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledUl = styled.ul`
   background-color: #243147;
 `;
+
 const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
   return (
     <StyledUl
@@ -141,17 +142,18 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
         </div>
       </li>
       <hr className="sidebar-divider d-none d-md-block" />
-      <div className="sidebar-heading">Reportes</div>
+      <div className="sidebar-heading">Reportes de problemas</div>
 
       <li className="nav-item">
         <Link to="/admin/reportes">
           <a className="nav-link">
             <i className="fas fa-fw fa-table"></i>
-            <span>Todos los reportes</span>
+            <span>Reportes</span>
           </a>
         </Link>
       </li>
       <hr className="sidebar-divider d-none d-md-block" />
+      <div className="sidebar-heading">Pagos reportados</div>
 
       <li className="nav-item">
         <Link to="/admin/pagos">
@@ -170,6 +172,15 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
           <a className="nav-link">
             <i className="fas fa-fw fa-table"></i>
             <span>Estados y categorias de reporte</span>
+          </a>
+        </Link>
+      </li>
+
+      <li className="nav-item">
+        <Link to="/admin/pagos/cuentas">
+          <a className="nav-link">
+            <i className="fas fa-fw fa-money-check-alt"></i>
+            <span>Cuentas de banco</span>
           </a>
         </Link>
       </li>

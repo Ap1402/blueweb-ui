@@ -8,7 +8,7 @@ import payoutReportsService from "../../services/payoutReports.service";
 
 const StyledButton = styled(Button)`
   ${(props) =>
-    props.isActive
+    props.isactive
       ? `
       background-color: ${props.theme.colors.darkerBlue} !important;
       border-color: ${props.theme.colors.darkerBlue} !important;
@@ -19,12 +19,12 @@ const StyledButton = styled(Button)`
       `}
   margin: 0 10px 10px 10px;
 `;
+
 export const PayoutReportsTable = React.forwardRef(
   (
     { setModalShow, setUpdateReportModalShow, isForClient, setShowData },
     tableRef
   ) => {
-
     const [isApproved, setIsApproved] = useState(0);
     const onClickHandler = () => {
       setIsApproved(isApproved ? 0 : 1);
@@ -77,12 +77,20 @@ export const PayoutReportsTable = React.forwardRef(
             ? dayjs(rowData.approvedAt).format("DD/MM/YYYY")
             : "",
       },
+      {
+        title: "Banco destino",
+        filtering: false,
+        field: "bankDestiny.bankName",
+        render: (rowData) =>
+          rowData.bankDestiny ? rowData.bankDestiny.bankName : "",
+        sorting: false,
+      },
     ]);
 
     return (
       <>
-        <StyledButton onClick={() => onClickHandler()} isActive={isApproved}>
-          {isApproved ? "Buscar no aprobados" : "Buscar aprobados"}
+        <StyledButton onClick={() => onClickHandler()} isactive={isApproved}>
+          {isApproved ? "Buscar pagos no aprobados" : "Buscar pagos aprobados"}
         </StyledButton>
 
         <MaterialTable
@@ -90,7 +98,7 @@ export const PayoutReportsTable = React.forwardRef(
             Container: (props) => <Paper {...props} elevation={0} />,
             Cell: (props) => <MTableCell {...props} align="center" />,
           }}
-          title={isApproved ? "Reportes aprobados" : "Reportes no aprobados"}
+          title={isApproved ? "Pagos aprobados" : "Pagos no aprobados"}
           tableRef={tableRef}
           localization={{
             pagination: {

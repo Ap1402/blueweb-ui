@@ -66,7 +66,7 @@ const isAuthenticated = async () => {
     return result;
   }
 };
-
+ 
 export default {
   login,
   logout,

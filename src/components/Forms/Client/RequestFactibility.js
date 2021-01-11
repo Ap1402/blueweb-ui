@@ -28,12 +28,12 @@ const RequestFactibility = ({ registerRequest }) => {
         requesterEmail: "",
       }}
       validationSchema={Yup.object({
-        coordenades: Yup.string().required("Este campo es necesario"),
-        requesterName: Yup.string().required("Este campo es necesario"),
-        requesterPhone: Yup.string().required("Este campo es necesario"),
+        coordenades: Yup.string().required("Es necesario designar unas coordenadas, seleccione su ubicación en el mapa"),
+        requesterName: Yup.string().required("Es necesario el nombre del solicitante"),
+        requesterPhone: Yup.string().required("Es necesario su número telefónico para ponernos en contacto con usted"),
         requesterEmail: Yup.string()
           .email("Debe ser un email válido")
-          .required("Este campo es necesario"),
+          .required("Es necesario su correo electrónico para ponernos en contacto con usted"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         await registerRequest(values);

@@ -33,6 +33,9 @@ import VerUsuarios from "./pages/admin/VerUsuarios";
 import EditarClienteInfo from "./pages/admin/EditarClienteInfo";
 import CrearReportePago from "./pages/client/CrearReportePago";
 import MisPagos from "./pages/client/MisPagos";
+import CreatePayoutReport from "./components/Forms/Client/CreatePayoutReport";
+import CreateDestinationAccount from "./components/Forms/Admin/CreateDestinationAccount";
+import AddBankAccountsPage from "./pages/admin/Configuración/AddBankAccounts";
 
 const theme = {
   colors: {
@@ -115,6 +118,12 @@ function App() {
                   path="/admin/pagos/"
                   exact
                   component={VerPagos}
+                />
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/pagos/cuentas"
+                  exact
+                  component={AddBankAccountsPage}
                 />
               </Switch>
             </Route>

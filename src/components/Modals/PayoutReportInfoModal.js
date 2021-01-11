@@ -34,7 +34,7 @@ function PayoutReportInfoModal(props) {
         </li>
         <li>
           <strong>Banco receptor: </strong>
-          {info.bankDestiny}
+          {info.bankDestiny.bankName}
         </li>
         <li>
           <strong>Propietario de la cuenta emisora: </strong>

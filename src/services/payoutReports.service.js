@@ -24,6 +24,26 @@ const registerPayout = async (payout) => {
   return result;
 };
 
+const createDestinationBank = async (payout) => {
+  const result = await axios
+    .post(API_URL+'accounts/create', payout, {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .then((result) => {
+      return {
+        success: true,
+        message: "Cuenta de banco registrada correctamente",
+        sent: true,
+      };
+    })
+    .catch((err) => {
+      return { success: false, message: err.response.data.message, sent: true };
+    });
+  return result;
+};
+
 const updatePayoutReport = async (payoutData, payoutId) => {
   const result = await axios
     .put(API_URL + payoutId, payoutData, {
@@ -68,6 +88,7 @@ const getPayoutReports = async (query, isForClient) => {
         "x-auth-token": authHeader(),
       },
     });
+
     return reports.data;
   } else {
     const reports = await axios.get(API_URL + "me", {
@@ -81,8 +102,35 @@ const getPayoutReports = async (query, isForClient) => {
   }
 };
 
+const getDestinationBanks = async () => {
+  /*  const params = {};
+  params.page = query.page;
+  params.size = query.size;
+
+  if (query.clientDni) {
+    params.dni = query.clientDni;
+  }
+  if (query.orderBy) {
+    params.orderBy = query.orderBy;
+  }
+  if (query.order) {
+    params.order = query.order;
+  }
+
+  params.isApproved = query.isApproved ? query.isApproved : 0;
+ */
+  const destinationBanks = await axios.get(API_URL + "accounts", {
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  });
+  return destinationBanks.data;
+};
+
 export default {
   registerPayout,
   getPayoutReports,
   updatePayoutReport,
+  getDestinationBanks,
+  createDestinationBank,
 };

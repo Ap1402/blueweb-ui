@@ -7,7 +7,7 @@ const VerPagos = () => {
   const [modalShow, setModalShow] = useState();
   const [updateModal, setUpdateModal] = useState();
   const tableRef = React.useRef();
-
+  
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -15,7 +15,7 @@ const VerPagos = () => {
       </div>
 
       <div className="row">
-        <div className="col-lg-10 mb-4 col-12">
+        <div className=" mb-4 col-12">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">
