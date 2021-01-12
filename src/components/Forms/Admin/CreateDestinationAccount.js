@@ -5,22 +5,22 @@ import * as Yup from "yup";
 import createAlert from "../../../helpers/createAlert";
 import SelectField from "../SelectField";
 import payoutReportsService from "../../../services/payoutReports.service";
+import PropTypes from "prop-types";
 
-const CreateDestinationAccount = ({ addCategoryStatus }) => {
+const CreateDestinationAccount = ({ currentValues, tableRef }) => {
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
     sent: false,
   });
-
   return (
     <Formik
       initialValues={{
-        bankName: "",
-        number: "",
-        international: "",
-        ownerRif: "",
-        email: "",
+        bankName: currentValues ? currentValues.bankName : "",
+        number: currentValues.number ? currentValues.number : "",
+        international: currentValues.international ? "1" : "0",
+        ownerRif: currentValues.ownerRif ? currentValues.ownerRif : "",
+        email: currentValues.email ? currentValues.email : "",
       }}
       validationSchema={Yup.object({
         bankName: Yup.string().required("Este campo es necesario"),
@@ -30,8 +30,13 @@ const CreateDestinationAccount = ({ addCategoryStatus }) => {
         email: Yup.string().email().required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
-        const result = await payoutReportsService.createDestinationBank(values);
-        console.log(result);
+        var result;
+        if (currentValues.id) {
+          result = await payoutReportsService.createDestinationBank(values);
+        } else {
+          result = await payoutReportsService.createDestinationBank(values);
+        }
+        tableRef.current && tableRef.current.onQueryChange();
         setRequestStatus(result);
         setSubmitting(false);
       }}
@@ -73,7 +78,7 @@ const CreateDestinationAccount = ({ addCategoryStatus }) => {
                 className=" btn-primary btn "
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Por favor espere" : "Enviar"}
+                {isSubmitting ? "Por favor espere" : "Guardar"}
               </button>
             </div>
           </div>
@@ -81,6 +86,15 @@ const CreateDestinationAccount = ({ addCategoryStatus }) => {
       )}
     </Formik>
   );
+};
+
+CreateDestinationAccount.propTypes = {
+  currentValues: PropTypes.object.isRequired,
+  tableRef: PropTypes.object.isRequired,
+};
+
+CreateDestinationAccount.defaultProps = {
+  currentValues: {},
 };
 
 export default CreateDestinationAccount;

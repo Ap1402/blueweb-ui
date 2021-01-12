@@ -26,7 +26,7 @@ const registerPayout = async (payout) => {
 
 const createDestinationBank = async (payout) => {
   const result = await axios
-    .post(API_URL+'accounts/create', payout, {
+    .post(API_URL + "accounts/create", payout, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -97,15 +97,15 @@ const getPayoutReports = async (query, isForClient) => {
         "x-auth-token": authHeader(),
       },
     });
-    console.log(reports);
     return reports.data;
   }
 };
 
-const getDestinationBanks = async () => {
-  /*  const params = {};
+const getDestinationBanks = async (query) => {
+  const params = {};
   params.page = query.page;
   params.size = query.size;
+  /*  
 
   if (query.clientDni) {
     params.dni = query.clientDni;
@@ -120,6 +120,7 @@ const getDestinationBanks = async () => {
   params.isApproved = query.isApproved ? query.isApproved : 0;
  */
   const destinationBanks = await axios.get(API_URL + "accounts", {
+    params: params,
     headers: {
       "x-auth-token": authHeader(),
     },

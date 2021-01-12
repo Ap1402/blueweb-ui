@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import RegisterForm from "../../components/Forms/Client/RegisterForm";
 
 const CrearUsuario = (props) => {
-  console.log(props)
   return (
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">

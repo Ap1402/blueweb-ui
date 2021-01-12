@@ -1,18 +1,18 @@
 import MaterialTable, { MTableCell } from "material-table";
 import { Paper } from "@material-ui/core";
 import React from "react";
-import userService from "../../services/user.service";
 import dayjs from "dayjs";
+import payoutReportsService from "../../../services/payoutReports.service";
 
-export const BankAccounstTable = React.forwardRef(
-  ({ setShowData, setModalShow, setUpdateModalShow }, ref) => {
+export const BankAccountsTable = React.forwardRef(
+  ({ setShowData, setFormShow }, ref) => {
     return (
       <MaterialTable
         components={{
           Container: (props) => <Paper {...props} elevation={0} />,
           Cell: (props) => <MTableCell {...props} align="center" />,
         }}
-        title="Usuarios registrados"
+        title="Cuentas de banco registradas"
         tableRef={ref}
         localization={{
           pagination: {
@@ -38,23 +38,16 @@ export const BankAccounstTable = React.forwardRef(
         }}
         columns={[
           {
-            title: "Código",
-            field: "id",
+            title: "Nombre del banco",
+            field: "bankName",
           },
           {
-            title: "Usuario",
-            field: "username",
+            title: "Número de cuenta",
+            field: "number",
           },
           {
-            title: "Cédula del cliente",
-            field: "client.dni",
-            render: (rowData) =>
-              rowData.client.identification + " - " + rowData.client.dni,
-          },
-          {
-            title: "Fecha de registro",
-            field: "createdAt",
-            render: (rowData) => dayjs(rowData.createdAt).format("DD/MM/YYYY"),
+            title: "Rif asociado",
+            field: "ownerRif",
           },
         ]}
         options={{
@@ -63,13 +56,14 @@ export const BankAccounstTable = React.forwardRef(
             color: "#FFF",
             padding: "20px",
           },
+          search: false,
           rowStyle: {
             backgroundColor: "#EEE",
           },
         }}
         data={(query) =>
           new Promise(async (resolve, reject) => {
-            const result = await userService.getAllUsers({
+            const result = await payoutReportsService.getDestinationBanks({
               page: query.page,
               size: query.pageSize,
             });
@@ -92,16 +86,7 @@ export const BankAccounstTable = React.forwardRef(
             tooltip: "Ver información",
             onClick: (event, rowData) => {
               setShowData(rowData);
-              setModalShow(true);
-            },
-          },
-
-          {
-            icon: "edit",
-            tooltip: "Editar Información",
-            onClick: (event, rowData) => {
-              setShowData(rowData);
-              setUpdateModalShow(true);
+              setFormShow(true);
             },
           },
         ]}

@@ -26,8 +26,11 @@ const CreatePayoutReport = () => {
 
   useEffect(() => {
     const getDestinationBank = async () => {
-      const result = await payoutReportsService.getDestinationBanks();
-      setDestinationBanks(result);
+      const result = await payoutReportsService.getDestinationBanks({
+        page: 0,
+        size: 10000,
+      });
+      setDestinationBanks(result.data);
       setLoading(false);
     };
     getDestinationBank();

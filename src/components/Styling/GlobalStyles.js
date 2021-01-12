@@ -46,5 +46,8 @@ export const GlobalStyles = createGlobalStyle`
     cursor:pointer;
 }
   }
+  .ReactCollapse--collapse {
+  transition: height 500ms;
+}
   
   `;
