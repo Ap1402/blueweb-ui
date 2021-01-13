@@ -11,29 +11,29 @@ import servicios from "./pages/landing/Servicios";
 import AdminPanelLayout from "./pages/Layouts/AdminPanelLayout";
 import ClientPanelLayout from "./pages/Layouts/ClientPanelLayout";
 
-import VerClientes from "./pages/admin/VerClientes";
-import VerTodosLosReportes from "./pages/admin/VerTodosLosReportes";
+import VerClientes from "./pages/admin/ShowClients";
+import VerTodosLosReportes from "./pages/admin/ShowReports";
 
-import VerFactibilidadSolicitudes from "./pages/admin/VerFactibilidadSolicitudes";
-import VerMensajesContacto from "./pages/admin/VerMensajesContacto";
-import VerPagos from "./pages/admin/VerPagos";
-import CrearCliente from "./pages/admin/CrearCliente";
+import VerFactibilidadSolicitudes from "./pages/admin/ShowFactilityRequests";
+import VerMensajesContacto from "./pages/admin/ShowContactMessages";
+import VerPagos from "./pages/admin/ShowPayouts";
+import CrearCliente from "./pages/admin/CreateClient";
 import PrivateRoute from "./helpers/PrivateRoute";
 import PrivateSupportRoute from "./helpers/PrivateSupportRoute";
-import CrearUsuario from "./pages/admin/CrearUsuario";
+import CrearUsuario from "./pages/admin/CreateUser";
 import ScrollToTop from "./helpers/ScrollToTop";
-import CrearReporteCliente from "./pages/client/CrearReporteCliente";
-import MisReportes from "./pages/client/MisReportes";
-import VerReportesPago from "./pages/client/VerReportesPago";
-import PerfilCliente from "./pages/client/PerfilCliente";
-import ActualizarDatos from "./pages/client/ActualizarDatos";
-import HistorialPago from "./pages/client/HistorialPago";
-import CreateStatus from "./pages/admin/Configuración/CrearEstado";
-import VerUsuarios from "./pages/admin/VerUsuarios";
-import EditarClienteInfo from "./pages/admin/EditarClienteInfo";
-import CrearReportePago from "./pages/client/CrearReportePago";
-import MisPagos from "./pages/client/MisPagos";
-import AddBankAccountsPage from "./pages/admin/Configuración/AddBankAccounts";
+import CrearReporteCliente from "./pages/client/CreatReportPage";
+import MisReportes from "./pages/client/ShowMyReports";
+import VerReportesPago from "./pages/client/ShowPayoutReports";
+import PerfilCliente from "./pages/client/ClientProfile";
+import ActualizarDatos from "./pages/client/UpdateData";
+import HistorialPago from "./pages/client/PayoutHistory";
+import CreateStatus from "./pages/admin/Configuration/CreateStatusAndCategories";
+import VerUsuarios from "./pages/admin/ShowUsers";
+import EditarClienteInfo from "./pages/admin/EditClientInfo";
+import CrearReportePago from "./pages/client/CreatePayoutReportForClient";
+import MisPagos from "./pages/client/ShowMyPayouts";
+import AddBankAccountsPage from "./pages/admin/Configuration/AddBankAccounts";
 
 const theme = {
   colors: {

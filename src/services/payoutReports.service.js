@@ -64,6 +64,54 @@ const updatePayoutReport = async (payoutData, payoutId) => {
   return result;
 };
 
+const updateDestinationAccount = async (accountData, accountId) => {
+  const result = await axios
+    .put(API_URL + "accounts/" + accountId, accountData, {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .then((result) => {
+      return {
+        success: true,
+        message: "Información de cuenta actualizada con éxito",
+        sent: true,
+      };
+    })
+    .catch((err) => {
+      return { success: false, message: err.response.data.message, sent: true };
+    });
+  return result;
+};
+
+const deactivateDestinationAccount = async (accountId) => {
+  const result = await axios
+    .delete(API_URL + "accounts/" + accountId, {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    })
+    .then((result) => {
+      if (result) {
+        return {
+          success: true,
+          message: "Cuenta desactivada con éxito",
+          sent: true,
+        };
+      } else {
+        return {
+          success: false,
+          message: "Hubo un problema desactivando esta cuenta",
+          sent: true,
+        };
+      }
+    })
+    .catch((err) => {
+      return { success: false, message: err.response.data.message, sent: true };
+    });
+  return result;
+};
+
 const getPayoutReports = async (query, isForClient) => {
   const params = {};
   params.page = query.page;
@@ -134,4 +182,6 @@ export default {
   updatePayoutReport,
   getDestinationBanks,
   createDestinationBank,
+  updateDestinationAccount,
+  deactivateDestinationAccount,
 };

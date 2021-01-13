@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import payoutReportsService from "../../../services/payoutReports.service";
 
 export const BankAccountsTable = React.forwardRef(
-  ({ setShowData, setFormShow }, ref) => {
+  ({ setShowData, setFormShow, deactivateAccount }, ref) => {
     return (
       <MaterialTable
         components={{
@@ -87,6 +87,14 @@ export const BankAccountsTable = React.forwardRef(
             onClick: (event, rowData) => {
               setShowData(rowData);
               setFormShow(true);
+            },
+          },
+          {
+            icon: "delete",
+            tooltip: "Desactivar Cuenta",
+            onClick: (event, rowData) => {
+              deactivateAccount(rowData.id);
+              ref.current && ref.current.onQueryChange();
             },
           },
         ]}

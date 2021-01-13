@@ -16,10 +16,11 @@ const CreateDestinationAccount = ({ currentValues, tableRef }) => {
   return (
     <Formik
       initialValues={{
-        bankName: currentValues ? currentValues.bankName : "",
+        bankName: currentValues.bankName ? currentValues.bankName : "",
         number: currentValues.number ? currentValues.number : "",
         international: currentValues.international ? "1" : "0",
         ownerRif: currentValues.ownerRif ? currentValues.ownerRif : "",
+        ownerName: currentValues.ownerName ? currentValues.ownerName : "",
         email: currentValues.email ? currentValues.email : "",
       }}
       validationSchema={Yup.object({
@@ -28,11 +29,15 @@ const CreateDestinationAccount = ({ currentValues, tableRef }) => {
         international: Yup.number().required("Este campo es necesario"),
         ownerRif: Yup.string().required("Este campo es necesario"),
         email: Yup.string().email().required("Este campo es necesario"),
+        ownerName: Yup.string().required("Este campo es necesario"),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         var result;
         if (currentValues.id) {
-          result = await payoutReportsService.createDestinationBank(values);
+          result = await payoutReportsService.updateDestinationAccount(
+            values,
+            currentValues.id
+          );
         } else {
           result = await payoutReportsService.createDestinationBank(values);
         }
@@ -40,6 +45,7 @@ const CreateDestinationAccount = ({ currentValues, tableRef }) => {
         setRequestStatus(result);
         setSubmitting(false);
       }}
+      enableReinitialize={true}
     >
       {({ isSubmitting, values }) => (
         <Form className="mx-2">
