@@ -70,11 +70,11 @@ const LandingPageLayout = ({ children }) => {
     s1.charset = "UTF-8";
     s1.setAttribute("crossorigin", "*");
     s0.parentNode.insertBefore(s1, s0);
-    s1.onload = ()=>{
+    s1.onload = () => {
       var Tawk_API = Tawk_API || {};
-      console.log('hola')
-      console.log(Tawk_API)
-    }
+      console.log("hola");
+      console.log(Tawk_API);
+    };
   }, []);
 
   if (!loading) {
@@ -82,12 +82,20 @@ const LandingPageLayout = ({ children }) => {
       <>
         <Helmet>
           <title>Blue Web</title>
-          <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-            integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-            crossOrigin="anonymous"
-          />
+          <link rel="stylesheet" href="css/bootstrap.min.css" />
+          <link rel="stylesheet" href="fonts/line-icons.css" />
+
+          <link rel="stylesheet" href="css/owl.carousel.min.css" />
+          <link rel="stylesheet" href="css/owl.theme.css" />
+
+          <link rel="stylesheet" href="css/magnific-popup.css" />
+          <link rel="stylesheet" href="css/nivo-lightbox.css" />
+
+          <link rel="stylesheet" href="css/animate.css" />
+
+          <link rel="stylesheet" href="css/main.css" />
+
+          <link rel="stylesheet" href="css/responsive.css"></link>
 
           <link rel="icon" href="/favicon.ico" />
           <meta charSet="utf-8" />
@@ -102,6 +110,17 @@ const LandingPageLayout = ({ children }) => {
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""
           ></script>
+          <script src="js/jquery-min.js"></script>
+          <script src="js/popper.min.js"></script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="js/owl.carousel.min.js"></script>
+          <script src="js/wow.js"></script>
+          <script src="js/jquery.nav.js"></script>
+          <script src="js/scrolling-nav.js"></script>
+          <script src="js/jquery.easing.min.js"></script>
+          <script src="js/jquery.counterup.min.js"></script>
+          <script src="js/waypoints.min.js"></script>
+          <script src="js/main.js"></script>
         </Helmet>
         <Header isAuth={isAuth}></Header>
         {children}

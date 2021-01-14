@@ -1,235 +1,89 @@
 import React from "react";
 import styled from "styled-components";
 
-const HeroBannerStyled = styled.section`
-  width: 100%;
+const StyledButton = styled.a`
+  background-color: ${(props) => props.theme.colors.blue};
   position: relative;
-  box-sizing: border-box;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 500px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  height: 100vh;
-  background-image: url("/images/Banner-2.jpg");
-
-  &:before {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(57, 49, 49, 0.75);
-    z-index: 1;
-    content: "";
-  }
-`;
-
-const StyledBannerInner = styled.div`
-  position: absolute;
-  z-index: 2;
-  width: 100%;
-  left: 0;
-  padding: 0 30px;
-  box-sizing: border-box;
-  top: 50%;
-  color: #ffffff;
-  text-align: center;
-  margin-top: -110px;
-
-  h1 {
-    font-size: 44px;
-    color: #ffffff;
-    line-height: 1.5;
-    font-weight: bold;
-
-    letter-spacing: 0;
-    margin-bottom: 16px;
-  }
-  h2 {
-    font-size: 20px;
-    line-height: 1.6;
-    letter-spacing: 0;
-    font-weight: 500;
-    margin: 0 auto 10px;
-  }
-  a {
-    padding: 10px 30px;
-    margin: 72px auto 25px;
-    line-height: 30px;
-    border-radius: 6px;
-    font-size: 20px;
-    box-sizing: border-box;
-    background: transparent;
-    display: inline-block;
-    color: white;
-    border: solid 2px white;
-    font-weight: 500;
-    transition: 0.3s;
-    text-align: center;
-    &:hover {
-      cursor: pointer;
-      color: black;
-      text-decoration: none;
-      background-color: white;
-    }
-  }
-
-  @media (max-width: 720px) {
-    padding: 0 8%;
-    top: 30%;
-    h2 {
-      font-size: 20px;
-    }
-    h1 {
-      font-size: 36px;
-    }
-    a {
-      margin: 20px 20px;
-    }
-  }
-`;
-
-/*
-const width = "100%",
-  height = "450px";
-
-const Container = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  height: 100%;
-  width: ${width};
-`;
-
-const Children = styled.div`
-  width: ${width};
-  position: relative;
-  height: ${height};
-  background-color: black;
-  overflow: hidden;
-
-  h1 {
-    position: absolute;
-    left: 10%;
-    top: 25%;
-    color: white;
-    font-size: 30px;
-    font-weight: 500;
-  }
-  h2 {
-    position: absolute;
-    left: 10%;
-    top: 25%;
-    color: white;
-    font-size: 30px;
-    font-weight: 500;
-  }
-  button {
-    padding: 20px;
+  z-index: 1;
+  text-transform: uppercase;
+  &:hover {
     background-color: white;
-    color: black;
-    position: absolute;
-    left: 10%;
-    top: 40%;
-    width: 200px;
-    font-size: 20px;
-    font-weight: 500;
-    border: 0;
-  }
-  .first-image {
-    height: 100%;
-    position: absolute;
-    top: 5%;
-    right: 7%;
-    border-radius: 100px;
-  }
-  .second-image {
-    height: 40%;
-    position: absolute;
-    top: 30%;
-    right: 25%;
+    border: solid 1px ${(props) => props.theme.colors.blue};
   }
 `;
 
-const Arrow = styled.div`
-  z-index: 2;
-  line-height: ${height};
-  text-align: center;
-  position: absolute;
-  top: 20%;
-  width: 10%;
-  color: white;
-  font-size: 3em;
-  cursor: pointer;
-  user-select: none;
-
-  ${(props) =>
-    props.right
-      ? css`
-          left: 15%;
-        `
-      : css`
-          left: 10%;
-        `}
+const StyledButtonBorder = styled.a`
+  background-color: white;
+  position: relative;
+  color: ${(props) => props.theme.colors.blue} !important;
+  z-index: 1;
+  text-transform: uppercase;
+  border: solid 1px ${(props) => props.theme.colors.blue} !important;
+  &:hover {
+    background-color: ${(props) => props.theme.colors.blue};
+    color: white !important;
+  }
+`;
+const StyledImage = styled.img`
+  height: 600px;
+  margin-top: -100px;
 `;
 
-const Dot = styled.span`
-  font-size: 1.5em;
-  cursor: pointer;
-  text-shadow: 1px 1px 1px #fff;
-  user-select: none;
+const StyledContents = styled.div`
+  h2 {
+    color: #222222;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 60px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 15px;
+  }
 `;
-
-const Dots = styled.span`
-  position: absolute;
-  bottom: 5%;
-  text-align: center;
-  width: ${width};
-  z-index: 2;
-`;
-
-const CarouselUI = ({ position, total, handleClick, children }) => (
-  <Container>
-    <Children>
-      {children}
-      <Arrow onClick={handleClick} data-position={position - 1}>
-        {"<"}
-      </Arrow>
-      <Arrow right onClick={handleClick} data-position={position + 1}>
-        {">"}
-      </Arrow>
-    </Children>
-    <Dots>
-      {Array(...Array(total)).map((val, index) => (
-        <Dot key={index} onClick={handleClick} data-position={index}>
-          {index === position ? "● " : "○ "}
-        </Dot>
-      ))}
-    </Dots>
-  </Container>
-);
-
-const Carousel = makeCarousel(CarouselUI);
-
-const AlternativeCarousel = ({ children }) => {
-  return <Carousel>{children}</Carousel>;
-}; */
 
 const HeroBanner = () => {
   return (
-    <HeroBannerStyled>
-      <StyledBannerInner>
-        <h1>Built for Internet Service</h1>
-        <h2>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua quis.
-        </h2>
-        <a href="/start">Contactar</a>
-      </StyledBannerInner>
-    </HeroBannerStyled>
+    <div id="hero-area" className="hero-area-bg">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
+            <StyledContents className="contents">
+              <h2>Built for internet service</h2>
+              <p>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum."
+              </p>
+              <div className="header-button">
+                <StyledButton
+                  rel="nofollow"
+                  href="https://rebrand.ly/fusion-gg"
+                  className="btn"
+                >
+                  Ir a soporte
+                </StyledButton>
+                <StyledButtonBorder
+                  href="https://www.youtube.com/watch?v=r44RKWyfcFw"
+                  className="btn"
+                >
+                  Solicitar servicio
+                </StyledButtonBorder>
+              </div>
+            </StyledContents>
+          </div>
+          <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+            <div className="intro-img">
+              <StyledImage src="/images/landingPage/HeroBanner.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -103,71 +103,650 @@ const Home = () => {
   return (
     <>
       <HeroBanner></HeroBanner>
-      <SupportBanner></SupportBanner>
-      <ThreeComponents></ThreeComponents>
-      <Ventajas></Ventajas>
-            <ClientsCarousel></ClientsCarousel>
-      
-{/*       <Testimonials></Testimonials>
- */}      {/* <StyledBackgroundColorWrapper backgroundColor="white">
-        <div class="custom-shape-divider-top-1604333882">
-          <svg
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-              opacity=".25"
-              class="shape-fill"
-            ></path>
-            <path
-              d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
-              opacity=".5"
-              class="shape-fill"
-            ></path>
-            <path
-              d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
-              class="shape-fill"
-            ></path>
-          </svg>
+      <body>
+        <section id="services" class="section-padding">
+          <div class="container">
+            <div class="section-header text-center">
+              <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">
+                Our Services
+              </h2>
+              <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-lg-4 col-xs-12">
+                <div
+                  class="services-item wow fadeInRight"
+                  data-wow-delay="0.3s"
+                >
+                  <div class="icon">
+                    <i class="lni-cog"></i>
+                  </div>
+                  <div class="services-content">
+                    <h3>
+                      <a href="#">Easy To Used</a>
+                    </h3>
+                    <p>
+                      Ut maximus enim dolor. Aenean auctor risus eget tincidunt
+                      lobortis. Donec tincidunt bibendum gravida.{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 col-xs-12">
+                <div
+                  class="services-item wow fadeInRight"
+                  data-wow-delay="0.6s"
+                >
+                  <div class="icon">
+                    <i class="lni-stats-up"></i>
+                  </div>
+                  <div class="services-content">
+                    <h3>
+                      <a href="#">Awesome Design</a>
+                    </h3>
+                    <p>
+                      Ut maximus enim dolor. Aenean auctor risus eget tincidunt
+                      lobortis. Donec tincidunt bibendum gravida.{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 col-xs-12">
+                <div
+                  class="services-item wow fadeInRight"
+                  data-wow-delay="0.9s"
+                >
+                  <div class="icon">
+                    <i class="lni-users"></i>
+                  </div>
+                  <div class="services-content">
+                    <h3>
+                      <a href="#">Easy To Customize</a>
+                    </h3>
+                    <p>
+                      Ut maximus enim dolor. Aenean auctor risus eget tincidunt
+                      lobortis. Donec tincidunt bibendum gravida.{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 col-xs-12">
+                <div
+                  class="services-item wow fadeInRight"
+                  data-wow-delay="1.2s"
+                >
+                  <div class="icon">
+                    <i class="lni-layers"></i>
+                  </div>
+                  <div class="services-content">
+                    <h3>
+                      <a href="#">UI/UX Design</a>
+                    </h3>
+                    <p>
+                      Ut maximus enim dolor. Aenean auctor risus eget tincidunt
+                      lobortis. Donec tincidunt bibendum gravida.{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 col-xs-12">
+                <div
+                  class="services-item wow fadeInRight"
+                  data-wow-delay="1.5s"
+                >
+                  <div class="icon">
+                    <i class="lni-mobile"></i>
+                  </div>
+                  <div class="services-content">
+                    <h3>
+                      <a href="#">App Development</a>
+                    </h3>
+                    <p>
+                      Ut maximus enim dolor. Aenean auctor risus eget tincidunt
+                      lobortis. Donec tincidunt bibendum gravida.{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-lg-4 col-xs-12">
+                <div
+                  class="services-item wow fadeInRight"
+                  data-wow-delay="1.8s"
+                >
+                  <div class="icon">
+                    <i class="lni-rocket"></i>
+                  </div>
+                  <div class="services-content">
+                    <h3>
+                      <a href="#">User Friendly interface</a>
+                    </h3>
+                    <p>
+                      Ut maximus enim dolor. Aenean auctor risus eget tincidunt
+                      lobortis. Donec tincidunt bibendum gravida.{" "}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="about-area section-padding bg-gray">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 col-md-12 col-xs-12 info">
+                <div class="about-wrapper wow fadeInLeft" data-wow-delay="0.3s">
+                  <div>
+                    <div class="site-heading">
+                      <p class="mb-3">Manage Statistics</p>
+                      <h2 class="section-title">
+                        Detailed Statistics of your Company
+                      </h2>
+                    </div>
+                    <div class="content">
+                      <p>
+                        Praesent imperdiet, tellus et euismod euismod, risus
+                        lorem euismod erat, at finibus neque odio quis metus.
+                        Donec vulputate arcu quam. Morbi quis tincidunt ligula.
+                        Sed rutrum tincidunt pretium. Mauris auctor, purus a
+                        pulvinar fermentum, odio dui vehicula lorem, nec
+                        pharetra justo risus quis mi. Ut ac ex sagittis, viverra
+                        nisl vel, rhoncus odio.
+                      </p>
+                      <a href="#" class="btn btn-common mt-3">
+                        Read More
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-lg-6 col-md-12 col-xs-12 wow fadeInRight"
+                data-wow-delay="0.3s"
+              >
+                <img class="img-fluid" src="/img/about/img-1.png" alt="" />
+              </div>
+            </div>
+          </div>
         </div>
-        <h1>¿Tienes alguna duda?</h1>
-        <h2>Aquí puedes encontrar la respuesta</h2>
-        <Container>
-          <Row className="grid">
-            <Col sm={12} md={4}>
-              <Link to="/contacto">
-                <div className="cuadrado">
-                  <i class="fas fa-headset"></i>
-                  <h4>Contáctanos</h4>
-                  <h5>Envíanos tu duda</h5>
+
+        <section id="features" class="section-padding">
+          <div class="container">
+            <div class="section-header text-center">
+              <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">
+                Awesome Features
+              </h2>
+              <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="content-left">
+                  <div class="box-item wow fadeInLeft" data-wow-delay="0.3s">
+                    <span class="icon">
+                      <i class="lni-rocket"></i>
+                    </span>
+                    <div class="text">
+                      <h4>Bootstrap 4 Based</h4>
+                      <p>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="box-item wow fadeInLeft" data-wow-delay="0.6s">
+                    <span class="icon">
+                      <i class="lni-laptop-phone"></i>
+                    </span>
+                    <div class="text">
+                      <h4>Fully Responsive</h4>
+                      <p>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="box-item wow fadeInLeft" data-wow-delay="0.9s">
+                    <span class="icon">
+                      <i class="lni-cog"></i>
+                    </span>
+                    <div class="text">
+                      <h4>HTML5, CSS3 & SASS</h4>
+                      <p>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </Link>
-            </Col>
-            <Col sm={12} md={4}>
-              <Link to="/contacto">
-                <div className="cuadrado">
-                  <i class="far fa-comment-dots"></i>
-                  <h4>Habla con un agente</h4>
-                  <h5>Chatea ahora</h5>
+              </div>
+              <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="show-box wow fadeInUp" data-wow-delay="0.3s">
+                  <img src="/img/feature/intro-mobile.png" alt="" />
                 </div>
-              </Link>
-            </Col>
-            <Col sm={12} md={4}>
-              <Link to="/planes">
-                <div className="cuadrado">
-                  <i class="fas fa-network-wired"></i>
-                  <h4>Nuestros planes</h4>
-                  <h5>Consulta nuestros planes</h5>
+              </div>
+              <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="content-right">
+                  <div class="box-item wow fadeInRight" data-wow-delay="0.3s">
+                    <span class="icon">
+                      <i class="lni-leaf"></i>
+                    </span>
+                    <div class="text">
+                      <h4>Modern Design</h4>
+                      <p>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry
+                      </p>
+                    </div>
+                  </div>
+                  <div class="box-item wow fadeInRight" data-wow-delay="0.6s">
+                    <span class="icon">
+                      <i class="lni-layers"></i>
+                    </span>
+                    <div class="text">
+                      <h4>Multi-purpose Template</h4>
+                      <p>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="box-item wow fadeInRight" data-wow-delay="0.9s">
+                    <span class="icon">
+                      <i class="lni-leaf"></i>
+                    </span>
+                    <div class="text">
+                      <h4>Working Contact Form</h4>
+                      <p>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </Link>
-            </Col>
-          </Row>
-        </Container>
-      </StyledBackgroundColorWrapper> */}
-      <ContactUs></ContactUs>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="cta" class="section-padding">
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-lg-6 col-md-6 col-xs-12 wow fadeInLeft"
+                data-wow-delay="0.3s"
+              >
+                <div class="cta-text">
+                  <h4>You're Using Free Lite Version</h4>
+                  <h5>
+                    Please purchase full version of the template to get all
+                    features and facilities
+                  </h5>
+                </div>
+              </div>
+              <div
+                class="col-lg-6 col-md-6 col-xs-12 text-right wow fadeInRight"
+                data-wow-delay="0.3s"
+              >
+                <a
+                  rel="nofollow"
+                  href="https://rebrand.ly/fusion-gg"
+                  class="btn btn-common"
+                >
+                  Purchase Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing" class="section-padding">
+          <div class="container">
+            <div class="section-header text-center">
+              <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">
+                Pricing
+              </h2>
+              <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="table wow fadeInLeft" data-wow-delay="1.2s">
+                  <div class="icon-box">
+                    <i class="lni-package"></i>
+                  </div>
+                  <div class="pricing-header">
+                    <p class="price-value">
+                      $10<span> /mo</span>
+                    </p>
+                  </div>
+                  <div class="title">
+                    <h3>Pro</h3>
+                  </div>
+                  <ul class="description">
+                    <li>1 user</li>
+                    <li>10 GB storage</li>
+                    <li>Email support</li>
+                    <li>Lifetime updates</li>
+                  </ul>
+                  <button class="btn btn-common">Purchase Now</button>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-xs-12 active">
+                <div
+                  class="table wow fadeInUp"
+                  id="active-tb"
+                  data-wow-delay="1.2s"
+                >
+                  <div class="icon-box">
+                    <i class="lni-drop"></i>
+                  </div>
+                  <div class="pricing-header">
+                    <p class="price-value">
+                      $35<span> /mo</span>
+                    </p>
+                  </div>
+                  <div class="title">
+                    <h3>Plus</h3>
+                  </div>
+                  <ul class="description">
+                    <li>10 user</li>
+                    <li>30 GB storage</li>
+                    <li>Priority email support</li>
+                    <li>Lifetime updates</li>
+                  </ul>
+                  <button class="btn btn-common">Purchase Now</button>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-xs-12">
+                <div class="table wow fadeInRight" data-wow-delay="1.2s">
+                  <div class="icon-box">
+                    <i class="lni-star"></i>
+                  </div>
+                  <div class="pricing-header">
+                    <p class="price-value">
+                      $150<span> /mo</span>
+                    </p>
+                  </div>
+                  <div class="title">
+                    <h3>Premium</h3>
+                  </div>
+                  <ul class="description">
+                    <li>Unlimited users</li>
+                    <li>Unlimited storage</li>
+                    <li>24/7 support</li>
+                    <li>Lifetime updates</li>
+                  </ul>
+                  <button class="btn btn-common">Purchase Now</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="testimonial" class="testimonial section-padding">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div
+                  id="testimonials"
+                  class="owl-carousel wow fadeInUp"
+                  data-wow-delay="1.2s"
+                >
+                  <div class="item">
+                    <div class="testimonial-item">
+                      <div class="img-thumb">
+                        <img src="/img/testimonial/img1.jpg" alt="" />
+                      </div>
+                      <div class="info">
+                        <h2>
+                          <a href="#">David Smith</a>
+                        </h2>
+                        <h3>
+                          <a href="#">Creative Head</a>
+                        </h3>
+                      </div>
+                      <div class="content">
+                        <p class="description">
+                          Praesent cursus nulla non arcu tempor, ut egestas elit
+                          tempus. In ac ex fermentum, gravida felis nec,
+                          tincidunt ligula.
+                        </p>
+                        <div class="star-icon mt-3">
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-half"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="testimonial-item">
+                      <div class="img-thumb">
+                        <img src="/img/testimonial/img2.jpg" alt="" />
+                      </div>
+                      <div class="info">
+                        <h2>
+                          <a href="#">Domeni GEsson</a>
+                        </h2>
+                        <h3>
+                          <a href="#">Awesome Technology co.</a>
+                        </h3>
+                      </div>
+                      <div class="content">
+                        <p class="description">
+                          Praesent cursus nulla non arcu tempor, ut egestas elit
+                          tempus. In ac ex fermentum, gravida felis nec,
+                          tincidunt ligula.
+                        </p>
+                        <div class="star-icon mt-3">
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-half"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-half"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="testimonial-item">
+                      <div class="img-thumb">
+                        <img src="/img/testimonial/img3.jpg" alt="" />
+                      </div>
+                      <div class="info">
+                        <h2>
+                          <a href="#">Dommini Albert</a>
+                        </h2>
+                        <h3>
+                          <a href="#">Nesnal Design co.</a>
+                        </h3>
+                      </div>
+                      <div class="content">
+                        <p class="description">
+                          Praesent cursus nulla non arcu tempor, ut egestas elit
+                          tempus. In ac ex fermentum, gravida felis nec,
+                          tincidunt ligula.
+                        </p>
+                        <div class="star-icon mt-3">
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-half"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="testimonial-item">
+                      <div class="img-thumb">
+                        <img src="/img/testimonial/img4.jpg" alt="" />
+                      </div>
+                      <div class="info">
+                        <h2>
+                          <a href="#">Fernanda Anaya</a>
+                        </h2>
+                        <h3>
+                          <a href="#">Developer</a>
+                        </h3>
+                      </div>
+                      <div class="content">
+                        <p class="description">
+                          Praesent cursus nulla non arcu tempor, ut egestas elit
+                          tempus. In ac ex fermentum, gravida felis nec,
+                          tincidunt ligula.
+                        </p>
+                        <div class="star-icon mt-3">
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-filled"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-half"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-half"></i>
+                          </span>
+                          <span>
+                            <i class="lni-star-half"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="cta" class="section-padding">
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-lg-6 col-md-6 col-xs-12 wow fadeInLeft"
+                data-wow-delay="0.3s"
+              >
+                <div class="cta-text">
+                  <h4>Get 30 days free trial</h4>
+                  <p>
+                    Praesent imperdiet, tellus et euismod euismod, risus lorem
+                    euismod erat, at finibus neque odio quis metus. Donec
+                    vulputate arcu quam.{" "}
+                  </p>
+                </div>
+              </div>
+              <div
+                class="col-lg-6 col-md-6 col-xs-12 text-right wow fadeInRight"
+                data-wow-delay="0.3s"
+              >
+                <a href="#" class="btn btn-common">
+                  Register Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="section-padding bg-gray">
+          <div class="container">
+            <div class="section-header text-center">
+              <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">
+                Countact Us
+              </h2>
+              <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
+            </div>
+            <div
+              class="row contact-form-area wow fadeInUp"
+              data-wow-delay="0.3s"
+            >
+              <div class="col-lg-7 col-md-12 col-sm-12">
+                <section id="cta" class="section-padding">
+                  <div class="container">
+                    <div class="row">
+                      <div
+                        class="col-lg-6 col-md-6 col-xs-12 wow fadeInLeft"
+                        data-wow-delay="0.3s"
+                      >
+                        <div class="cta-text">
+                          <h4>You're Using Free Lite Version</h4>
+                          <h5>
+                            Please purchase full version of the template to get
+                            all features and facilities
+                          </h5>
+                        </div>
+                      </div>
+                      <div
+                        class="col-lg-6 col-md-6 col-xs-12 text-right wow fadeInRight"
+                        data-wow-delay="0.3s"
+                      >
+                        <a
+                          rel="nofollow"
+                          href="https://rebrand.ly/fusion-gg"
+                          class="btn btn-common"
+                        >
+                          Purchase Now
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="col-lg-5 col-md-12 col-xs-12">
+                <div class="map">
+                  <object
+                    style={{ border: 0, height: "280px", width: "100%" }}
+                    data="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d34015.943594576835!2d-106.43242624069771!3d31.677719472407432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86e75d90e99d597b%3A0x6cd3eb9a9fcd23f1!2sCourtyard+by+Marriott+Ciudad+Juarez!5e0!3m2!1sen!2sbd!4v1533791187584"
+                  ></object>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <a href="#" class="back-to-top">
+          <i class="lni-arrow-up"></i>
+        </a>
+      </body>
     </>
   );
 };
