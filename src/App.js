@@ -2,12 +2,12 @@ import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./components/Styling/GlobalStyles";
-import Contacto from "./pages/landing/Contacto";
-import LandingPageLayout from "./pages/Layouts/LandingPageLayout";
+import Contacto from "./pages/Landing/Contact";
+import LandingPageLayout from "./pages/Layouts/LandingPageLayout/LandingPageLayout";
 import Home from "./pages/Home";
-import Factibilidad from "./pages/landing/Factibilidad";
-import Nosotros from "./pages/landing/Nosotros";
-import servicios from "./pages/landing/Servicios";
+import Factibilidad from "./pages/Landing/Factibility";
+import Nosotros from "./pages/Landing/AboutUs";
+import servicios from "./pages/Landing/Services";
 import AdminPanelLayout from "./pages/Layouts/AdminPanelLayout";
 import ClientPanelLayout from "./pages/Layouts/ClientPanelLayout";
 
@@ -34,6 +34,7 @@ import EditarClienteInfo from "./pages/admin/EditClientInfo";
 import CrearReportePago from "./pages/client/CreatePayoutReportForClient";
 import MisPagos from "./pages/client/ShowMyPayouts";
 import AddBankAccountsPage from "./pages/admin/Configuration/AddBankAccounts";
+import "./bootstrap.min.css";
 
 const theme = {
   colors: {

@@ -23,10 +23,10 @@ body {
   overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1.header,
+h2.header,
+h3.header,
+h4.header {
   font-size: 38px;
   color: #222222;
   font-weight: 700;
@@ -48,7 +48,7 @@ a a:focus {
   outline: none;
 }
 
-p {
+p.paragraph {
   font-weight: 400;
   font-family: "Open Sans", sans-serif;
   margin: 0px;
@@ -114,7 +114,7 @@ a:not([href]):not([tabindex]) {
   background: rgba(61, 96, 244, 0.3);
 }
 
-.btn {
+.btn.btn-landing {
   font-size: 14px;
   padding: 10px 30px;
   cursor: pointer;
@@ -128,21 +128,21 @@ a:not([href]):not([tabindex]) {
   display: inline-block;
 }
 
-.btn:focus,
-.btn:active {
+.btn.btn-landing:focus,
+.btn.btn-landing:active {
   box-shadow: none;
   outline: none;
   color: #fff;
 }
 
-.btn-common {
+.btn.btn-common {
   background-color: var(--blue);
   position: relative;
   z-index: 1;
   text-transform: uppercase;
 }
 
-.btn-common:hover {
+.btn.btn-common:hover {
   color: var(--blue);
   background: transparent;
   border: 1px dotted var(--blue);
@@ -152,7 +152,7 @@ a:not([href]):not([tabindex]) {
   -webkit-transition: all 0.2s ease-in-out;
 }
 
-.btn-border {
+.btn.btn-border {
   color: var(--blue);
   background-color: transparent;
   border: 1px solid var(--blue);
@@ -160,13 +160,13 @@ a:not([href]):not([tabindex]) {
   text-transform: uppercase;
 }
 
-.btn-border:hover {
+.btn.btn-border:hover {
   color: #fff;
   border-color: var(--blue);
   background-color: var(--blue);
 }
 
-.btn-border:focus {
+.btn.btn-border:focus {
   color: #fff;
   border-color: var(--blue);
   background-color: var(--blue);
@@ -528,7 +528,7 @@ hr {
 
 .top-nav-collapse {
   background: #fff;
-  z-index: 999999;
+  z-index: 200;
   padding: 5px !important;
   top: 0px !important;
   box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.06);
@@ -649,10 +649,6 @@ hr {
   padding: 10px 0;
 }
 
-.navbar li.active a.nav-link {
-  color: #preset;
-}
-
 .dropdown-toggle::after {
   display: none;
 }
@@ -708,7 +704,6 @@ hr {
   color: #333;
   border-bottom: 1px solid #f1f1f1;
   text-decoration: none;
-  display: inline-block;
   float: left;
   clear: both;
   position: relative;
@@ -751,16 +746,6 @@ hr {
 /* ==========================================================================
 3. Hero Area
 ========================================================================== */
-#hero-area {
-  background-image: url(../img/hero-area.svg);
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 650px;
-  position: relative;
-  overflow: hidden;
-  padding: 150px 0 80px;
-}
 
 #hero-area .contents .header-button {
   margin-top: 20px;
@@ -1001,7 +986,7 @@ hr {
 }
 
 #pricing .active {
-  z-index: 99999;
+  z-index: 100;
 }
 
 .testimonial {
@@ -1275,7 +1260,7 @@ textarea {
 /*cta
 */
 #cta {
-  background: ;
+  background: "";
 }
 
 /* Footer Area Start */
@@ -1334,7 +1319,6 @@ textarea {
   vertical-align: middle;
   height: 36px;
   text-align: center;
-  display: inline-block;
   float: left;
   margin-right: 5px;
   line-height: 32px;

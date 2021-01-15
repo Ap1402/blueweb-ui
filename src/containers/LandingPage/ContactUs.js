@@ -14,7 +14,7 @@ const StyledContactUs = styled.section`
   -ms-user-select: none;
   user-select: none;
   z-index: 0;
-  background-image: url("/images/Banner-2.png");
+  background-image: url("/images/Background-services2.jpg");
 
   &:before {
     position: absolute;
@@ -101,10 +101,12 @@ const StyledContactUs = styled.section`
 
 const ContactUs = () => {
   return (
-    <StyledContactUs>
-      <div className="inner">
-        <h1>¿Necesitas saber más?</h1>
-        <h5>
+    <StyledContactUs className="contact">
+      <div className="inner" data-wow-delay="0.3s">
+        <h1 className="header wow fadeInRight" data-wow-delay="0.3s">
+          ¿Necesitas saber más?
+        </h1>
+        <h5 className="header wow fadeInUp" data-wow-delay="0.4s">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua quis.
         </h5>

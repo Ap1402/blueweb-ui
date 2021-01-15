@@ -1,29 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const StyledButton = styled.a`
-  background-color: ${(props) => props.theme.colors.blue};
-  position: relative;
-  z-index: 1;
-  text-transform: uppercase;
-  &:hover {
-    background-color: white;
-    border: solid 1px ${(props) => props.theme.colors.blue};
-  }
-`;
-
-const StyledButtonBorder = styled.a`
-  background-color: white;
-  position: relative;
-  color: ${(props) => props.theme.colors.blue} !important;
-  z-index: 1;
-  text-transform: uppercase;
-  border: solid 1px ${(props) => props.theme.colors.blue} !important;
-  &:hover {
-    background-color: ${(props) => props.theme.colors.blue};
-    color: white !important;
-  }
-`;
 const StyledImage = styled.img`
   height: 600px;
   margin-top: -100px;
@@ -42,15 +20,26 @@ const StyledContents = styled.div`
   }
 `;
 
+const StyledHero = styled.div`
+  background-image: url("/img/hero-area.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 650px;
+  position: relative;
+  overflow: hidden;
+  padding: 150px 0 80px;
+`;
+
 const HeroBanner = () => {
   return (
-    <div id="hero-area" className="hero-area-bg">
+    <StyledHero id="hero-area" className="hero-area-bg">
       <div className="container">
         <div className="row">
           <div className="col-lg-7 col-md-12 col-sm-12 col-xs-12">
             <StyledContents className="contents">
-              <h2>Built for internet service</h2>
-              <p>
+              <h2 className="header">Texto de ejemplo</h2>
+              <p className="paragraph">
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -60,19 +49,19 @@ const HeroBanner = () => {
                 sunt in culpa qui officia deserunt mollit anim id est laborum."
               </p>
               <div className="header-button">
-                <StyledButton
+                <Link
+                  to="/contacto"
                   rel="nofollow"
-                  href="https://rebrand.ly/fusion-gg"
-                  className="btn"
+                  className="btn btn-landing btn-common"
                 >
-                  Ir a soporte
-                </StyledButton>
-                <StyledButtonBorder
-                  href="https://www.youtube.com/watch?v=r44RKWyfcFw"
-                  className="btn"
+                  Recibir soporte
+                </Link>
+                <Link
+                  to="/contacto/factibilidad"
+                  className="btn btn-landing btn-border"
                 >
                   Solicitar servicio
-                </StyledButtonBorder>
+                </Link>
               </div>
             </StyledContents>
           </div>
@@ -83,7 +72,7 @@ const HeroBanner = () => {
           </div>
         </div>
       </div>
-    </div>
+    </StyledHero>
   );
 };
 

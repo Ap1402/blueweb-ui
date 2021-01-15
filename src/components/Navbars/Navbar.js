@@ -7,7 +7,7 @@ const ImgStyledDiv = styled.div`
     align-self: flex-start;
     padding: 5px 0 5px 50px;
     height: 55px;
-    z-index: 10000;
+    z-index: 10;
   }
 `;
 
@@ -25,10 +25,11 @@ const Navbar = (props) => {
   return (
     <StyledNav className="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
       <div className="container">
-        <ImgStyledDiv>
-          <img src="/images/Logo.png" alt="BlueWeb"></img>
-        </ImgStyledDiv>
-        <Link to="/" href="/"></Link>
+        <Link to="/" href="/">
+          <ImgStyledDiv>
+            <img src="/images/Logo.png" alt="BlueWeb"></img>
+          </ImgStyledDiv>
+        </Link>
 
         <button
           className="navbar-toggler"

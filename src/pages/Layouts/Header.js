@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbars/Navbar";
 import styled from "styled-components";
-import Button from "@material-ui/core/Button";
 import LoginModal from "../../components/Modals/LoginModal";
 import RegisterModal from "../../components/Modals/RegisterModal";
 import ClientLogoutModal from "../../components/Modals/ClientLogoutModal";
@@ -95,22 +94,22 @@ const Header = ({ isAuth }) => {
       return (
         <>
           <li className="nav-item ">
-            <Button
-              className="btn"
+            <button
+              className="btn btn-landing btn-border"
               onClick={(e) => onClickHandler(e, "login")}
               variant="contained"
             >
               Ingresar
-            </Button>
+            </button>
           </li>
           <li className="nav-item ">
-            <Button
+            <button
               variant="contained"
-              className="btn"
+              className="btn btn-landing btn-common"
               onClick={(e) => onClickHandler(e, "register")}
             >
               Registro
-            </Button>
+            </button>
           </li>
 
           <LoginModal
@@ -126,15 +125,17 @@ const Header = ({ isAuth }) => {
     } else {
       return (
         <>
-          <Button
-            variant="outlined"
-            className="register"
-            color="primary"
-            disableElevation
-            onClick={() => setModalLogoutShow(true)}
-          >
-            Salir
-          </Button>
+          <li className="nav-item ">
+            <button
+              variant="outlined"
+              className="btn btn-landing btn-common"
+              color="primary"
+              disableElevation
+              onClick={() => setModalLogoutShow(true)}
+            >
+              Salir
+            </button>
+          </li>
           <ClientLogoutModal
             show={modalLogout}
             onHide={() => setModalLogoutShow(false)}

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../Header";
+import Footer from "../Footer";
 import { Helmet } from "react-helmet";
-import Spinner from "../../components/Spinner/Spinner";
-import authService from "../../services/auth.service";
+import Spinner from "../../../components/Spinner/Spinner";
+import authService from "../../../services/auth.service";
+import "./main.css";
 
 //Component for go to top arrow
 const ScrollToTop = () => {
@@ -72,17 +73,16 @@ const LandingPageLayout = ({ children }) => {
     s0.parentNode.insertBefore(s1, s0);
     s1.onload = () => {
       var Tawk_API = Tawk_API || {};
-      console.log("hola");
-      console.log(Tawk_API);
     };
   }, []);
 
   if (!loading) {
     return (
       <>
-        <Helmet>
+        <Helmet defer={false}>
           <title>Blue Web</title>
-          <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+          <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="fonts/line-icons.css" />
 
           <link rel="stylesheet" href="css/owl.carousel.min.css" />
@@ -93,11 +93,7 @@ const LandingPageLayout = ({ children }) => {
 
           <link rel="stylesheet" href="css/animate.css" />
 
-          <link rel="stylesheet" href="css/main.css" />
-
           <link rel="stylesheet" href="css/responsive.css"></link>
-
-          <link rel="icon" href="/favicon.ico" />
           <meta charSet="utf-8" />
           <link
             rel="stylesheet"

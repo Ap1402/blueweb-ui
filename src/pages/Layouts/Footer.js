@@ -1,14 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledFooter = styled.footer`
-  width: 100%;
-  background-color: #ededed;
-  margin: 0;
-  padding: 3rem;
-  color: black;
-`;
-
 const StyledDivForFooter = styled.img`
   height: 100%;
   width: 90%;
@@ -23,7 +15,7 @@ const Footer = () => {
             <div className="widget">
               <h3 className="footer-logo">
                 <StyledDivForFooter
-                  src="/images/blue-web.png"
+                  src="/images/icons/Logo-blueweb-letters.png"
                   alt="BlueWeb"
                 ></StyledDivForFooter>
               </h3>

@@ -3,13 +3,17 @@ import styled from "styled-components";
 import Carousel from "react-elastic-carousel";
 
 const StyledContainer = styled.section`
+  background: #f3f9fd;
+  padding: 10px 0;
+  text-align: center;
   width: 100%;
-  height: 350px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
+
   h1 {
     position: absolute;
     top: 10%;
@@ -19,26 +23,36 @@ const StyledContainer = styled.section`
 `;
 
 const StyledContainerDiv = styled.div`
-  width: 70%;
+  width: 80%;
   justify-content: center;
   align-items: center;
+  margin-right: auto;
+  margin-left: auto;
 `;
 const StyledImg = styled.img`
-  height: 90px;
+  height: 65px;
+  filter: grayscale(100);
+  -webkit-filter: grayscale(100);
+  &:hover {
+    filter: none;
+    -webkit-filter: none;
+  }
+  outline: none;
 `;
 
 const ClientsCarousel = () => {
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 6 },
-    { width: 850, itemsToShow: 6 },
+    { width: 550, itemsToShow: 3 },
+    { width: 975, itemsToShow: 4 },
     { width: 1150, itemsToShow: 6 },
     { width: 1450, itemsToShow: 6 },
     { width: 1750, itemsToShow: 7 },
   ];
   return (
     <StyledContainer>
-      <h1>Empresas que nos recomiendan</h1>
+      {/*       <Titles>Nuestros clientes</Titles>
+       */}
       <StyledContainerDiv>
         <Carousel
           breakPoints={breakPoints}
