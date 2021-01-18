@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledImage = styled.img`
-  height: 600px;
-  margin-top: -100px;
+  max-width: auto;
+  height: auto;
 `;
 
 const StyledContents = styled.div`
@@ -21,14 +21,25 @@ const StyledContents = styled.div`
 `;
 
 const StyledHero = styled.div`
-  background-image: url("/img/hero-area.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
   min-height: 650px;
   position: relative;
   overflow: hidden;
+  max-width: 100vmax;
   padding: 150px 0 80px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 650px;
+    background-image: url("/img/hero-area.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: sepia(100%) hue-rotate(190deg) saturate(500%);
+  }
 `;
 
 const HeroBanner = () => {
@@ -67,7 +78,11 @@ const HeroBanner = () => {
           </div>
           <div className="col-lg-5 col-md-12 col-sm-12 col-xs-12">
             <div className="intro-img">
-              <StyledImage src="/images/landingPage/HeroBanner.png" alt="" />
+              <StyledImage
+                className="img-fluid"
+                src="/images/landingPage/HeroBanner.png"
+                alt=""
+              />
             </div>
           </div>
         </div>

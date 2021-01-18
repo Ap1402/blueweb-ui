@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledDivForFooter = styled.img`
@@ -86,21 +87,21 @@ const Footer = () => {
             <h3 className="footer-titel">Contact</h3>
             <ul className="address">
               <li>
-                <a href="#">
+                <Link to="/contacto" href="#">
                   <i className="lni-map-marker"></i> AV.74 Entre Calle 105 Y Av
                   75 Al lado de Toyoclub, Avenida Intercomunal Don Julio
                   Centeno, San Diego 2006, Carabobo
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#">
+                <Link to="/contacto" href="#">
                   <i className="lni-phone-handset"></i> P: +84 846 250 592
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#">
+                <Link to="/contacto" href="#">
                   <i className="lni-envelope"></i> E: contact@uideck.com
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -112,11 +113,11 @@ const Footer = () => {
             <div className="col-md-12">
               <div className="copyright-content">
                 <p>
-                  Copyright © 2020
-                  <a rel="nofollow" href="https://uideck.com">
-                    UIdeck
+                  Copyright © 2021
+                  <a rel="nofollow" href="https://www.bluewebca.com">
+                    {" "}
+                    Blueweb C.A
                   </a>
-                  All Right Reserved
                 </p>
               </div>
             </div>

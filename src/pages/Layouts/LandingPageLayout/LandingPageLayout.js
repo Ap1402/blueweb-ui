@@ -5,6 +5,10 @@ import { Helmet } from "react-helmet";
 import Spinner from "../../../components/Spinner/Spinner";
 import authService from "../../../services/auth.service";
 import "./main.css";
+import "./css/magnific-popup.css";
+import "./css/nivo-lightbox.css";
+import "./css/animate.css";
+import "./css/responsive.css";
 
 //Component for go to top arrow
 const ScrollToTop = () => {
@@ -64,48 +68,61 @@ const LandingPageLayout = ({ children }) => {
 
   //Adding live chat script
   useEffect(() => {
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_LoadStart = new Date();
+    var tawk = document.getElementById("tawkId");
+
+    if (tawk) {
+      // Prevent TawkTo to create root script if it already exists
+      return window.Tawk_API;
+    }
+
     var s1 = document.createElement("script"),
       s0 = document.getElementsByTagName("script")[0];
     s1.async = true;
+    s1.id = "tawkId";
     s1.src = "https://embed.tawk.to/5fa03ec3520b4b7986a09206/default";
     s1.charset = "UTF-8";
     s1.setAttribute("crossorigin", "*");
     s0.parentNode.insertBefore(s1, s0);
     s1.onload = () => {
-      var Tawk_API = Tawk_API || {};
+      var Tawk_API = window.Tawk_API || {};
+
+      Tawk_API.onPrechatSubmit = function (data) {
+        console.log(data);
+      };
+      Tawk_API.onOfflineSubmit = function (data) {
+        console.log(data);
+      };
+
+      /*  Tawk_API.onLoaded = () => {
+        if (Tawk_API.isChatMaximized()) {
+          console.log("maximizado");
+        }
+        Tawk_API.onPrechatSubmit = function (data) {
+          console.log(data);
+        };
+      }; */
     };
   }, []);
 
   if (!loading) {
     return (
       <>
-        <Helmet defer={false}>
-          <title>Blue Web</title>
+        <Helmet>
+          <title>Blueweb</title>
 
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="fonts/line-icons.css" />
-
-          <link rel="stylesheet" href="css/owl.carousel.min.css" />
-          <link rel="stylesheet" href="css/owl.theme.css" />
-
-          <link rel="stylesheet" href="css/magnific-popup.css" />
-          <link rel="stylesheet" href="css/nivo-lightbox.css" />
-
-          <link rel="stylesheet" href="css/animate.css" />
-
-          <link rel="stylesheet" href="css/responsive.css"></link>
           <meta charSet="utf-8" />
+
           <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
             integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
             crossorigin=""
           />
-          <script
-            src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-            crossorigin=""
-          ></script>
+
           <script src="js/jquery-min.js"></script>
           <script src="js/popper.min.js"></script>
           <script src="js/bootstrap.min.js"></script>

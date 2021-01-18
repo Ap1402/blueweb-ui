@@ -1,9 +1,10 @@
-import Slide  from "react-reveal/Slide";
+import Slide from "react-reveal/Slide";
 import styled from "styled-components";
 import ParallaxBackground from "../../components/ParallaxBackground/ParallaxBackground";
 import PreFooter from "../../containers/LandingPage/PreFooter";
 import PreFooterItems from "../../components/IconsWithDescription/IconWithDescription";
-import FactibilidadFormContainer from '../../containers/Clientpanel/FactibilidadFormContainer';
+import FactibilidadFormContainer from "../../containers/Clientpanel/FactibilidadFormContainer";
+import useScript from "../../helpers/useScriptHook";
 
 const StyledBanner = styled.div`
   width: 100%;
@@ -22,7 +23,6 @@ const StyledBanner = styled.div`
 `;
 
 const Factibilidad = () => {
-
   return (
     <>
       <ParallaxBackground imageSrc="/images/Background-contact.jpg">
@@ -32,7 +32,7 @@ const Factibilidad = () => {
       </ParallaxBackground>
 
       <Slide right cascade>
-      <FactibilidadFormContainer></FactibilidadFormContainer>
+        <FactibilidadFormContainer></FactibilidadFormContainer>
       </Slide>
 
       <PreFooter>
@@ -41,6 +41,5 @@ const Factibilidad = () => {
     </>
   );
 };
-
 
 export default Factibilidad;

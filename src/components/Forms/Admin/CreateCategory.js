@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import FormGroup from "../FormGroup";
 import * as Yup from "yup";
 import createAlert from "../../../helpers/createAlert";
-import reportService from "../../../services/report.service";
 import SelectField from "../SelectField";
 
 const CreateCategory = ({ addCategoryStatus }) => {

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 import ClientLogoutModal from "../../components/Modals/ClientLogoutModal";
 import clientsService from "../../services/clients.service";
+import "../../bootstrap.min.css";
 
 const StyledDiv = styled.div`
   background-color: #2052b0;
@@ -26,6 +27,12 @@ const StyledDiv = styled.div`
         font-size: 20px;
       }
     }
+  }
+`;
+
+const StyledA = styled.a`
+  img {
+    width: 300px;
   }
 `;
 
@@ -60,18 +67,18 @@ const ClientPanelLayout = ({ children }) => {
             href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
             rel="stylesheet"
           />
-
           <link rel="icon" href="/favicon.ico" />
           <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js" />
         </Helmet>
 
         <nav className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-          <a className="navbar-brand " href="#">
+          <StyledA className="navbar-brand navbar-image" href="#">
             <img
+              className="image-navbar"
               src="/images/icons/Logo-blueweb-letters.png"
               style={{ height: "25px" }}
             ></img>
-          </a>
+          </StyledA>
           <button
             className="navbar-toggler"
             type="button"

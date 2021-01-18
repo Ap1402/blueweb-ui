@@ -43,7 +43,7 @@ const AddBankAccountsPage = () => {
                     <i
                       className="fas fa-times float-right"
                       onClick={(e) => handleButtons(e, "close")}
-                      style={{ fontSize: "20px" }}
+                      style={{ fontSize: "20px", color: "red" }}
                     ></i>
                   </div>
                   <div className="card-body">
@@ -65,9 +65,9 @@ const AddBankAccountsPage = () => {
               <div className="row">
                 <div className="col-12 mx-auto">
                   {createAlert(requestStatus)}
-                <Button onClick={(e) => handleButtons(e, "open")}>
-                  Agregar nueva cuenta
-                </Button>
+                  <Button onClick={(e) => handleButtons(e, "open")}>
+                    Agregar nueva cuenta
+                  </Button>
                   <BankAccountsTable
                     ref={tableRef}
                     setFormShow={setFormShow}

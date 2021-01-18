@@ -8,7 +8,7 @@ import ClientLogoutModal from "../../components/Modals/ClientLogoutModal";
 const HeaderStyle = styled.header`
   position: relative;
   width: 100%;
-  z-index: 9999999;
+  z-index: 1000;
 
   .bar {
     color: white;
@@ -64,6 +64,13 @@ const HeaderStyle = styled.header`
   }
 `;
 
+const StyledButton = styled.button`
+  margin-top: 10px;
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
+`;
+
 const Header = ({ isAuth }) => {
   const [barClassName, setbarClassName] = useState("");
   const [modalLogin, setModalLoginShow] = useState(false);
@@ -94,22 +101,22 @@ const Header = ({ isAuth }) => {
       return (
         <>
           <li className="nav-item ">
-            <button
+            <StyledButton
               className="btn btn-landing btn-border"
               onClick={(e) => onClickHandler(e, "login")}
               variant="contained"
             >
               Ingresar
-            </button>
+            </StyledButton>
           </li>
           <li className="nav-item ">
-            <button
+            <StyledButton
               variant="contained"
               className="btn btn-landing btn-common"
               onClick={(e) => onClickHandler(e, "register")}
             >
               Registro
-            </button>
+            </StyledButton>
           </li>
 
           <LoginModal
@@ -126,7 +133,7 @@ const Header = ({ isAuth }) => {
       return (
         <>
           <li className="nav-item ">
-            <button
+            <StyledButton
               variant="outlined"
               className="btn btn-landing btn-common"
               color="primary"
@@ -134,7 +141,7 @@ const Header = ({ isAuth }) => {
               onClick={() => setModalLogoutShow(true)}
             >
               Salir
-            </button>
+            </StyledButton>
           </li>
           <ClientLogoutModal
             show={modalLogout}

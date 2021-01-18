@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import Factibilidad from "./pages/Landing/Factibility";
 import Nosotros from "./pages/Landing/AboutUs";
 import servicios from "./pages/Landing/Services";
-import AdminPanelLayout from "./pages/Layouts/AdminPanelLayout";
+import AdminPanelLayout from "./pages/Layouts/AdminPanelLayout/AdminPanelLayout";
 import ClientPanelLayout from "./pages/Layouts/ClientPanelLayout";
 
 import VerClientes from "./pages/admin/ShowClients";
@@ -35,6 +35,7 @@ import CrearReportePago from "./pages/client/CreatePayoutReportForClient";
 import MisPagos from "./pages/client/ShowMyPayouts";
 import AddBankAccountsPage from "./pages/admin/Configuration/AddBankAccounts";
 import "./bootstrap.min.css";
+import 'jquery/dist/jquery.min.js'
 
 const theme = {
   colors: {

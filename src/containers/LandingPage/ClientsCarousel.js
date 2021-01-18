@@ -31,11 +31,13 @@ const StyledContainerDiv = styled.div`
 `;
 const StyledImg = styled.img`
   height: 65px;
-  filter: grayscale(100);
-  -webkit-filter: grayscale(100);
+  opacity: 0.5;
+  filter: grayscale(1);
+  /* filter: grayscale(100);
+  -webkit-filter: grayscale(100); */
   &:hover {
-    filter: none;
-    -webkit-filter: none;
+    opacity: 1;
+    filter: grayscale(0);
   }
   outline: none;
 `;

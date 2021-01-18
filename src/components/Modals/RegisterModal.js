@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
-import createAlert from "../../helpers/createAlert";
-import authService from "../../services/auth.service";
 import RegisterForm from "../Forms/Client/RegisterForm";
 
 const RegisterModal = (props) => {

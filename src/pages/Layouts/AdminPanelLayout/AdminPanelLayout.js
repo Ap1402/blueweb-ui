@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import ClientTopBar from "../../components/Navbars/AdminPanelTopbar";
-import LogoutModal from "../../components/Modals/LogoutModal";
-import ClientPanelSidebar from "../../components/Navbars/AdminPanelSidebar";
+import ClientTopBar from "../../../components/Navbars/AdminPanelTopbar";
+import LogoutModal from "../../../components/Modals/LogoutModal";
+import ClientPanelSidebar from "../../../components/Navbars/AdminPanelSidebar";
 import { Helmet } from "react-helmet";
-import authHeader from "../../helpers/getAuthToken";
-import Spinner from "../../components/Spinner/Spinner";
-import messagesService from "../../services/messages.service";
-import factibilityService from "../../services/factibility.service";
+import Spinner from "../../../components/Spinner/Spinner";
+import messagesService from "../../../services/messages.service";
+import factibilityService from "../../../services/factibility.service";
+import "./css/sb-admin-2.min.css";
 
 const AdminPanelLayout = ({ children }) => {
   const [data, setData] = useState({});
@@ -17,7 +17,7 @@ const AdminPanelLayout = ({ children }) => {
     const getData = async () => {
       try {
         // Getting pending messages number to show it in sidebar
-        const pendingMessages = await messagesService.getPendingMessagesCount()
+        const pendingMessages = await messagesService.getPendingMessagesCount();
 
         // Getting pending requests number to show it in sidebar
         const pendingFactibilityRequests = await factibilityService.pendingFactibilityRequestsCount();
@@ -38,7 +38,6 @@ const AdminPanelLayout = ({ children }) => {
         <Helmet>
           <title>BlueWeb Admin Panel</title>
           <meta charSet="utf-8" />
-          <link href="/css/sb-admin-2.min.css" rel="stylesheet" />
           <script src="/vendor/jquery-easing/jquery.easing.min.js" />
           <script src="/js/sb-admin-2.min.js" />
           <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js" />
@@ -67,11 +66,7 @@ const AdminPanelLayout = ({ children }) => {
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
               <ClientTopBar userInfo={{ name: "Username" }} />
-              <div className="container-fluid mx-auto">
-
-              {children}
-              </div>
-
+              <div className="container-fluid mx-auto">{children}</div>
             </div>
           </div>
         </div>

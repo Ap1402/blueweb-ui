@@ -4,6 +4,7 @@ import ContactForm from "../../components/Forms/Client/ContactForm";
 import ParallaxBackground from "../../components/ParallaxBackground/ParallaxBackground";
 import PreFooter from "../../containers/LandingPage/PreFooter";
 import PreFooterItems from "../../containers/LandingPage/PreFooterItems";
+import useScript from "../../helpers/useScriptHook";
 
 const StyledContacto = styled.div`
   width: 80%;
