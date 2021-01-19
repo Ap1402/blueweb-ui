@@ -4,11 +4,12 @@ import Footer from "../Footer";
 import { Helmet } from "react-helmet";
 import Spinner from "../../../components/Spinner/Spinner";
 import authService from "../../../services/auth.service";
-import "./main.css";
-import "./css/magnific-popup.css";
-import "./css/nivo-lightbox.css";
-import "./css/animate.css";
-import "./css/responsive.css";
+import "./css/main.scss";
+import "./css/magnific-popup.scss";
+import "./css/nivo-lightbox.scss";
+import "./css/animate.scss";
+import "./css/responsive.scss";
+import messagesService from "../../../services/messages.service";
 
 //Component for go to top arrow
 const ScrollToTop = () => {
@@ -89,10 +90,10 @@ const LandingPageLayout = ({ children }) => {
       var Tawk_API = window.Tawk_API || {};
 
       Tawk_API.onPrechatSubmit = function (data) {
-        console.log(data);
+        messagesService.saveChatPreform(data, 1);
       };
       Tawk_API.onOfflineSubmit = function (data) {
-        console.log(data);
+        messagesService.saveChatPreform(data, 0);
       };
 
       /*  Tawk_API.onLoaded = () => {
@@ -135,10 +136,12 @@ const LandingPageLayout = ({ children }) => {
           <script src="js/waypoints.min.js"></script>
           <script src="js/main.js"></script>
         </Helmet>
-        <Header isAuth={isAuth}></Header>
-        {children}
-        <ScrollToTop></ScrollToTop>
-        <Footer></Footer>
+        <div className="landingPageStyle nivo-lighbox-landing magnific-popup animate-landing landingPage-responsive">
+          <Header isAuth={isAuth}></Header>
+          {children}
+          <ScrollToTop></ScrollToTop>
+          <Footer></Footer>
+        </div>
       </>
     );
   } else {

@@ -34,8 +34,9 @@ import EditarClienteInfo from "./pages/admin/EditClientInfo";
 import CrearReportePago from "./pages/client/CreatePayoutReportForClient";
 import MisPagos from "./pages/client/ShowMyPayouts";
 import AddBankAccountsPage from "./pages/admin/Configuration/AddBankAccounts";
+import ShowChatForms from "./pages/admin/ShowChatForms";
 import "./bootstrap.min.css";
-import 'jquery/dist/jquery.min.js'
+import "jquery/dist/jquery.min.js";
 
 const theme = {
   colors: {
@@ -106,6 +107,12 @@ function App() {
                   path="/admin/usuarios/crear/"
                   exact
                   component={CrearUsuario}
+                />
+                <PrivateSupportRoute
+                  layout={AdminPanelLayout}
+                  path="/admin/formularios-chat/"
+                  exact
+                  component={ShowChatForms}
                 />
                 <PrivateSupportRoute
                   layout={AdminPanelLayout}

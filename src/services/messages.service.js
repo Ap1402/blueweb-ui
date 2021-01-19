@@ -17,6 +17,44 @@ const createContactMessage = async (requestData) => {
   };
 };
 
+const saveChatPreform = async (preformData, sentOnline) => {
+  preformData.sentWhileOnline = sentOnline;
+  const preformDataToSend = {};
+
+  await preformData.questions.forEach((data, index) => {
+    var backendKey;
+    if (data.label === "Teléfono") {
+      backendKey = "phone";
+    }
+    if (data.label === "Razón") {
+      backendKey = "reason";
+    }
+    if (data.label === "Mensaje") {
+      backendKey = "message";
+    }
+    if (data.label === "Correo electrónico") {
+      backendKey = "email";
+    }
+    if (data.label === "Nombre") {
+      backendKey = "name";
+    }
+
+    if (data.label === "Enviado desde") {
+      backendKey = "sentFrom";
+    }
+    preformDataToSend[backendKey] = data.answer;
+  });
+  preformDataToSend.sentWhileOnline = sentOnline;
+  const result = await Axios.post(
+    API_URL + "/chatPreform",
+    preformDataToSend
+  ).catch((err) => {
+    return;
+  });
+
+  return;
+};
+
 const getMessages = async (query) => {
   const result = await Axios.get(API_URL, {
     params: {
@@ -24,6 +62,23 @@ const getMessages = async (query) => {
       size: query.size,
       wasAnswered: query.wasAnswered,
       dni: query.dni,
+    },
+    headers: {
+      "x-auth-token": authHeader(),
+    },
+  }).catch((err) => {
+    return err.response;
+  });
+  return result;
+};
+
+const getChatDataPreform = async (query) => {
+  const result = await Axios.get(API_URL + "/chatPreform", {
+    params: {
+      page: query.page,
+      size: query.size,
+      wasAnswered: query.wasAnswered,
+      sentWhileOnline: query.sentWhileOnline,
     },
     headers: {
       "x-auth-token": authHeader(),
@@ -58,4 +113,6 @@ export default {
   createContactMessage,
   getMessages,
   getReasons,
+  saveChatPreform,
+  getChatDataPreform,
 };

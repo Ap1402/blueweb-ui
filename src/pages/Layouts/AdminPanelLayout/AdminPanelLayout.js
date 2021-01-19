@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 import Spinner from "../../../components/Spinner/Spinner";
 import messagesService from "../../../services/messages.service";
 import factibilityService from "../../../services/factibility.service";
-import "./css/sb-admin-2.min.css";
+import "./css/sb-admin-2.min.scss";
 
 const AdminPanelLayout = ({ children }) => {
   const [data, setData] = useState({});
@@ -57,16 +57,17 @@ const AdminPanelLayout = ({ children }) => {
           />
           <link rel="icon" href="/favicon.ico" />
         </Helmet>
-
-        <div id="wrapper">
-          <ClientPanelSidebar
-            pendingMessages={data.pendingMessages}
-            pendingRequests={data.pendingFactibilityRequests}
-          />
-          <div id="content-wrapper" className="d-flex flex-column">
-            <div id="content">
-              <ClientTopBar userInfo={{ name: "Username" }} />
-              <div className="container-fluid mx-auto">{children}</div>
+        <div className="sb-admin">
+          <div id="wrapper">
+            <ClientPanelSidebar
+              pendingMessages={data.pendingMessages}
+              pendingRequests={data.pendingFactibilityRequests}
+            />
+            <div id="content-wrapper" className="d-flex flex-column">
+              <div id="content">
+                <ClientTopBar userInfo={{ name: "Username" }} />
+                <div className="container-fluid mx-auto">{children}</div>
+              </div>
             </div>
           </div>
         </div>

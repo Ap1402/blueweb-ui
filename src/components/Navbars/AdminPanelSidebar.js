@@ -107,6 +107,20 @@ const ClientPanelSidebar = ({ pendingMessages, pendingRequests }) => {
             </span>
           </a>
         </Link>
+
+        <Link to="/admin/formularios-chat/">
+          <a className="nav-link">
+            <i className="fas fa-fw fa-table"></i>
+            <span>
+              Formularios de chat
+              {/*  {pendingMessages !== 0 && (
+                <span className="badge badge-danger badge-counter">
+                  {pendingMessages}
+                </span>
+              )} */}
+            </span>
+          </a>
+        </Link>
       </li>
       <hr className="sidebar-divider d-none d-md-block" />
 

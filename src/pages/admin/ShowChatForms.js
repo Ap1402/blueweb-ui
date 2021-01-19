@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import SeeContactMessageInfo from "../../components/Modals/SeeContactMessageInfo";
+import styled from "styled-components";
 import { MessageTable } from "../../components/Tables/MessageTable";
+import { ChatPreformDataTable } from "../../components/Tables/ChatPreformDataTable";
 
-const VerMensajesContacto = () => {
+const ShowChatForms = () => {
   const [modalShow, setModalShow] = useState(false);
 
   const [showData, setShowData] = useState();
@@ -19,15 +21,15 @@ const VerMensajesContacto = () => {
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">
-                Mensajes por atender
+                Formularios de chat
               </h6>
             </div>
             <div className="card-body">
-              <MessageTable
+              <ChatPreformDataTable
                 setShowData={setShowData}
                 setModalShow={setModalShow}
                 ref={tableRef}
-              ></MessageTable>
+              ></ChatPreformDataTable>
 
               <SeeContactMessageInfo
                 data={showData}
@@ -42,4 +44,4 @@ const VerMensajesContacto = () => {
   );
 };
 
-export default VerMensajesContacto;
+export default ShowChatForms;

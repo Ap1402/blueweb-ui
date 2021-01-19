@@ -1,14 +1,11 @@
 import HeroBanner from "../containers/LandingPage/HeroBanner";
 import styled from "styled-components";
-import SupportBanner from "../containers/LandingPage/SupportBanner";
-import Ventajas from "../containers/LandingPage/Ventajas";
-import ThreeComponents from "../containers/LandingPage/ThreeComponents";
 import ContactUs from "../containers/LandingPage/ContactUs";
 import ClientsCarousel from "../containers/LandingPage/ClientsCarousel";
 import Plans from "../containers/LandingPage/Plans";
 import Titles from "../components/Titles/Titles";
 
-const StyledBackgroundColorWrapper = styled.div`
+/* const StyledBackgroundColorWrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -100,7 +97,7 @@ const StyledBackgroundColorWrapper = styled.div`
     }
   }
 `;
-
+ */
 const Home = () => {
   return (
     <>

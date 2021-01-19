@@ -23,7 +23,7 @@ const EditarClienteInfo = () => {
         <h1 className="h3 mb-0 text-gray-800">Panel de control</h1>
       </div>
       <div className="row">
-        <div className="col-lg-10 mx-auto mb-4 col-12">
+        <div className="mx-auto mb-4 col-12">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">

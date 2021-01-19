@@ -18,7 +18,7 @@ const VerReportesPendientes = () => {
       </div>
 
       <div className="row">
-        <div className="col-lg-12 mb-4 col-12">
+        <div className="mb-4 col-12">
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">

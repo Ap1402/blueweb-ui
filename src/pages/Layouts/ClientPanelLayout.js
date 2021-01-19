@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 import ClientLogoutModal from "../../components/Modals/ClientLogoutModal";
 import clientsService from "../../services/clients.service";
-import "../../bootstrap.min.css";
 
 const StyledDiv = styled.div`
   background-color: #2052b0;
