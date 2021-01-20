@@ -1,12 +1,11 @@
-import axios from "axios";
+import { axios } from "../helpers/AxiosInstance";
 import authHeader from "../helpers/getAuthToken";
-import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl() + "/users";
+const API_ENDPOINT = "users/";
 
 const register = async (userData) => {
   const result = await axios
-    .post(API_URL, userData)
+    .post(API_ENDPOINT, userData)
     .then((data) => {
       return { success: true, message: data.response.data, sent: true };
     })
@@ -18,7 +17,7 @@ const register = async (userData) => {
 
 const getCurrentUserInfo = async () => {
   try {
-    const result = await axios.get(API_URL + "/me", {
+    const result = await axios.get(API_ENDPOINT + "me", {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -31,7 +30,7 @@ const getCurrentUserInfo = async () => {
 
 const getAllUsers = async () => {
   try {
-    const result = await axios.get(API_URL, {
+    const result = await axios.get(API_ENDPOINT, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -44,7 +43,7 @@ const getAllUsers = async () => {
 
 const updateUser = async (values, userId) => {
   const result = await axios
-    .put(API_URL + "/" + userId, values, {
+    .put(API_ENDPOINT +  userId, values, {
       headers: {
         "x-auth-token": authHeader(),
       },

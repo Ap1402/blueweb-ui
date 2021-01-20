@@ -1,12 +1,11 @@
-import axios from "axios";
+import { axios } from "../helpers/AxiosInstance";
 import authHeader from "../helpers/getAuthToken";
-import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl() + "/clients/";
+const API_ENDPOINT = "clients/";
 
 const registerClient = async (client) => {
   const result = await axios
-    .post(API_URL, client, {
+    .post(API_ENDPOINT, client, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -26,7 +25,7 @@ const registerClient = async (client) => {
 
 const updateClient = async (clientData, clientId) => {
   const result = await axios
-    .put(API_URL + clientId, clientData, {
+    .put(API_ENDPOINT + clientId, clientData, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -47,7 +46,7 @@ const updateClient = async (clientData, clientId) => {
 
 const getClients = async (query) => {
   const result = await axios
-    .get(API_URL, {
+    .get(API_ENDPOINT, {
       params: {
         page: query.page,
         size: query.size,
@@ -65,7 +64,7 @@ const getClients = async (query) => {
 
 const getCurrentLoggedClient = async (query) => {
   const result = await axios
-    .get(API_URL + "me", {
+    .get(API_ENDPOINT + "me", {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -78,7 +77,7 @@ const getCurrentLoggedClient = async (query) => {
 
 const getClientById = async (id) => {
   const result = await axios
-    .get(API_URL + id, {
+    .get(API_ENDPOINT + id, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -91,7 +90,7 @@ const getClientById = async (id) => {
 
 const updateClientSelf = async (values) => {
   const result = await axios
-    .put(API_URL + "me", values, {
+    .put(API_ENDPOINT + "me", values, {
       headers: {
         "x-auth-token": authHeader(),
       },

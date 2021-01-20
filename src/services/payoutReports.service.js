@@ -1,12 +1,11 @@
-import axios from "axios";
+import { axios } from "../helpers/AxiosInstance";
 import authHeader from "../helpers/getAuthToken";
-import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl() + "/payout-reports/";
+const API_ENDPOINT = "payout-reports/";
 
 const registerPayout = async (payout) => {
   const result = await axios
-    .post(API_URL, payout, {
+    .post(API_ENDPOINT, payout, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -26,7 +25,7 @@ const registerPayout = async (payout) => {
 
 const createDestinationBank = async (payout) => {
   const result = await axios
-    .post(API_URL + "accounts/create", payout, {
+    .post(API_ENDPOINT + "accounts/create", payout, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -46,7 +45,7 @@ const createDestinationBank = async (payout) => {
 
 const updatePayoutReport = async (payoutData, payoutId) => {
   const result = await axios
-    .put(API_URL + payoutId, payoutData, {
+    .put(API_ENDPOINT + payoutId, payoutData, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -66,7 +65,7 @@ const updatePayoutReport = async (payoutData, payoutId) => {
 
 const updateDestinationAccount = async (accountData, accountId) => {
   const result = await axios
-    .put(API_URL + "accounts/" + accountId, accountData, {
+    .put(API_ENDPOINT + "accounts/" + accountId, accountData, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -86,7 +85,7 @@ const updateDestinationAccount = async (accountData, accountId) => {
 
 const deactivateDestinationAccount = async (accountId) => {
   const result = await axios
-    .delete(API_URL + "accounts/" + accountId, {
+    .delete(API_ENDPOINT + "accounts/" + accountId, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -130,7 +129,7 @@ const getPayoutReports = async (query, isForClient) => {
   params.isApproved = query.isApproved ? query.isApproved : 0;
 
   if (!isForClient) {
-    const reports = await axios.get(API_URL, {
+    const reports = await axios.get(API_ENDPOINT, {
       params: params,
       headers: {
         "x-auth-token": authHeader(),
@@ -139,7 +138,7 @@ const getPayoutReports = async (query, isForClient) => {
 
     return reports.data;
   } else {
-    const reports = await axios.get(API_URL + "me", {
+    const reports = await axios.get(API_ENDPOINT + "me", {
       params: params,
       headers: {
         "x-auth-token": authHeader(),
@@ -167,7 +166,7 @@ const getDestinationBanks = async (query) => {
 
   params.isApproved = query.isApproved ? query.isApproved : 0;
  */
-  const destinationBanks = await axios.get(API_URL + "accounts", {
+  const destinationBanks = await axios.get(API_ENDPOINT + "accounts", {
     params: params,
     headers: {
       "x-auth-token": authHeader(),

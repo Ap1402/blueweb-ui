@@ -1,15 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Arvo:700|Open+Sans");
-:root {
-  --blue: #1e90ff;
-  --white: #ffffff;
-}
 
 .landingPageStyle {
+  :root {
+    --blue: #1e90ff;
+    --white: #ffffff;
+  }
+
   html {
     overflow-x: hidden;
   }
 
   body {
+    color: #abacae;
     background: #fff;
     font-size: 14px;
     font-weight: 400;
@@ -18,7 +20,6 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-font-smoothing: subpixel-antialiased;
-    color: #abacae;
     line-height: 25px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -83,7 +84,10 @@
     line-height: 26px;
   }
 
-  .section-title {
+  h1.section-title,
+  h2.section-title,
+  h3.section-title,
+  h4.section-title {
     font-size: 30px;
     color: #222222;
     display: inline-block;

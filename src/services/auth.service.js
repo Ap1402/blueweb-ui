@@ -1,12 +1,11 @@
-import axios from "axios";
+import { axios } from "../helpers/AxiosInstance";
 import authHeader from "../helpers/getAuthToken";
-import getEnvUrl from "../helpers/GetEnvUrl";
 import setAuthToken from "../helpers/setAuthToken";
 
-const API_URL = getEnvUrl() + "/auth/";
+const API_ENDPOINT = "auth/";
 
 const login = async (userData) => {
-  const result = await axios.post(API_URL + "login", userData).catch((err) => {
+  const result = await axios.post(API_ENDPOINT + "login", userData).catch((err) => {
     return err.response;
   });
 
@@ -44,7 +43,7 @@ const logout = async () => {
 
 const isAuthenticated = async () => {
   const result = await axios
-    .get(API_URL + "validateToken", {
+    .get(API_ENDPOINT + "validateToken", {
       headers: {
         "x-auth-token": authHeader(),
       },

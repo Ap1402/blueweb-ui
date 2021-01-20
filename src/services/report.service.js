@@ -1,13 +1,12 @@
-import axios from "axios";
+import { axios } from "../helpers/AxiosInstance";
 import authHeader from "../helpers/getAuthToken";
-import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl() + "/reports";
+const API_ENDPOINT = "reports/";
 
 const registerReport = async (message, categoryId) => {
   const result = await axios
     .post(
-      API_URL,
+      API_ENDPOINT,
       {
         message,
         categoryId,
@@ -35,7 +34,7 @@ const registerReport = async (message, categoryId) => {
 };
 
 const getCategories = async () => {
-  const categories = await axios.get(API_URL + "/categories", {
+  const categories = await axios.get(API_ENDPOINT + "categories", {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -44,7 +43,7 @@ const getCategories = async () => {
 };
 
 const getCommentsById = async (reportId) => {
-  const comments = await axios.get(API_URL + "/comments/" + reportId, {
+  const comments = await axios.get(API_ENDPOINT + "comments/" + reportId, {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -53,7 +52,7 @@ const getCommentsById = async (reportId) => {
 };
 
 const getAllCategories = async () => {
-  const categories = await axios.get(API_URL + "/categories/all", {
+  const categories = await axios.get(API_ENDPOINT + "categories/all", {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -62,7 +61,7 @@ const getAllCategories = async () => {
 };
 
 const getAllStatuses = async () => {
-  const statuses = await axios.get(API_URL + "/statuses/all", {
+  const statuses = await axios.get(API_ENDPOINT + "statuses/all", {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -71,7 +70,7 @@ const getAllStatuses = async () => {
 };
 
 const getStatuses = async () => {
-  const statuses = await axios.get(API_URL + "/statuses", {
+  const statuses = await axios.get(API_ENDPOINT + "statuses", {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -105,7 +104,7 @@ const getReports = async (query, isForClient) => {
   params.completed = query.wasCompleted ? query.wasCompleted : 0;
 
   if (!isForClient) {
-    const reports = await axios.get(API_URL, {
+    const reports = await axios.get(API_ENDPOINT, {
       params: params,
       headers: {
         "x-auth-token": authHeader(),
@@ -113,7 +112,7 @@ const getReports = async (query, isForClient) => {
     });
     return reports.data;
   } else {
-    const reports = await axios.get(API_URL + "/me", {
+    const reports = await axios.get(API_ENDPOINT + "me", {
       params: params,
       headers: {
         "x-auth-token": authHeader(),
@@ -130,7 +129,7 @@ const getMyReports = async (query) => {
   if (query.status) {
     params.status = query.status;
   }
-  const reports = await axios.get(API_URL + "/me", {
+  const reports = await axios.get(API_ENDPOINT + "me", {
     params: params,
     headers: {
       "x-auth-token": authHeader(),
@@ -141,7 +140,7 @@ const getMyReports = async (query) => {
 };
 
 const getReportById = async (reportId) => {
-  const report = await axios.get(API_URL + "/" + reportId, {
+  const report = await axios.get(API_ENDPOINT + reportId, {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -160,7 +159,7 @@ const updateReport = async (
 ) => {
   const result = await axios
     .put(
-      API_URL + "/" + reportId,
+      API_ENDPOINT + reportId,
       {
         statusId,
         categoryId,
@@ -192,7 +191,7 @@ const updateReport = async (
 const createCategory = async (name, defaultPriorityLevel) => {
   const result = await axios
     .post(
-      API_URL + "/categories",
+      API_ENDPOINT + "categories",
       {
         name,
         defaultPriorityLevel,
@@ -220,7 +219,7 @@ const createCategory = async (name, defaultPriorityLevel) => {
 const createStatus = async (name) => {
   const result = await axios
     .post(
-      API_URL + "/statuses",
+      API_ENDPOINT + "statuses",
       {
         name,
       },
@@ -245,7 +244,7 @@ const createStatus = async (name) => {
 };
 
 const deleteStatus = async (statusId) => {
-  const result = await axios.delete(API_URL + "/statuses/" + statusId, {
+  const result = await axios.delete(API_ENDPOINT + "statuses/" + statusId, {
     headers: {
       "x-auth-token": authHeader(),
     },
@@ -254,11 +253,14 @@ const deleteStatus = async (statusId) => {
 };
 
 const deleteCategory = async (categoryId) => {
-  const result = await axios.delete(API_URL + "/categories/" + categoryId, {
-    headers: {
-      "x-auth-token": authHeader(),
-    },
-  });
+  const result = await axios.delete(
+    API_ENDPOINT + "categories/" + categoryId,
+    {
+      headers: {
+        "x-auth-token": authHeader(),
+      },
+    }
+  );
   return result.data;
 };
 

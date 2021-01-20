@@ -1,103 +1,10 @@
 import HeroBanner from "../containers/LandingPage/HeroBanner";
-import styled from "styled-components";
 import ContactUs from "../containers/LandingPage/ContactUs";
 import ClientsCarousel from "../containers/LandingPage/ClientsCarousel";
 import Plans from "../containers/LandingPage/Plans";
 import Titles from "../components/Titles/Titles";
+import Fade from "react-reveal/Fade";
 
-/* const StyledBackgroundColorWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-content: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  position: relative;
-
-  .custom-shape-divider-top-1604333882 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-  }
-
-  .custom-shape-divider-top-1604333882 svg {
-    position: relative;
-    display: block;
-    width: calc(300% + 1.3px);
-    height: 147px;
-  }
-
-  .custom-shape-divider-top-1604333882 .shape-fill {
-    fill: #276ef1;
-  }
-  a {
-    text-decoration: none;
-    color: black;
-  }
-  background-color: ${({ backgroundColor, theme }) =>
-    backgroundColor ? backgroundColor : theme.colors.blue};
-  h1,
-  h2 {
-    color: black;
-  }
-  h1 {
-    font-size: 30px;
-    font-weight: 600;
-    margin-top: 150px;
-  }
-  h2 {
-    font-size: 15px;
-    font-weight: 300;
-    margin-bottom: 20px;
-  }
-  .cuadrado {
-    & {
-      vertical-align: middle;
-      -webkit-transform: perspective(1px) translateZ(0);
-      transform: perspective(1px) translateZ(0);
-      box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-      -webkit-transition-duration: 0.3s;
-      transition-duration: 0.3s;
-      -webkit-transition-property: box-shadow, transform;
-      transition-property: box-shadow, transform;
-    }
-    &:hover,
-    &:focus,
-    &:active {
-      box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
-      -webkit-transform: scale(1.1);
-      transform: scale(1.1);
-      cursor: pointer;
-      background-color: #454655;
-    }
-
-    background-color: #004bc6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    border-radius: 10px;
-    margin: 10px;
-    color: white;
-    i {
-      color: white;
-      font-size: 50px;
-    }
-    h4 {
-      text-align: center;
-      margin-top: 10px;
-    }
-    h5 {
-      text-align: center;
-      font-size: 14px;
-    }
-  }
-`;
- */
 const Home = () => {
   return (
     <>
@@ -106,67 +13,66 @@ const Home = () => {
         <section id="services" className="section-padding">
           <div className="container">
             <div className="section-header text-center">
-              <Titles>Our Services</Titles>
+              <Fade big>
+                <Titles>Our Services</Titles>
+              </Fade>
             </div>
             <div className="row">
               <div className="col-md-6 col-lg-4 col-xs-12">
-                <div
-                  className="services-item wow fadeInRight"
-                  data-wow-delay="0.3s"
-                >
-                  <div className="icon">
-                    <i className="lni-cog"></i>
+                <Fade big delay={400}>
+                  <div className="services-item">
+                    <div className="icon">
+                      <i className="lni-cog"></i>
+                    </div>
+                    <div className="services-content">
+                      <h3 className="header">
+                        <a href="#">Easy To Used</a>
+                      </h3>
+                      <p>
+                        Ut maximus enim dolor. Aenean auctor risus eget
+                        tincidunt lobortis. Donec tincidunt bibendum gravida.
+                      </p>
+                    </div>
                   </div>
-                  <div className="services-content">
-                    <h3>
-                      <a href="#">Easy To Used</a>
-                    </h3>
-                    <p>
-                      Ut maximus enim dolor. Aenean auctor risus eget tincidunt
-                      lobortis. Donec tincidunt bibendum gravida.
-                    </p>
-                  </div>
-                </div>
+                </Fade>
               </div>
 
               <div className="col-md-6 col-lg-4 col-xs-12">
-                <div
-                  className="services-item wow fadeInRight"
-                  data-wow-delay="0.6s"
-                >
-                  <div className="icon">
-                    <i className="lni-stats-up"></i>
+                <Fade big delay={500}>
+                  <div className="services-item">
+                    <div className="icon">
+                      <i className="lni-stats-up"></i>
+                    </div>
+                    <div className="services-content">
+                      <h3 className="header">
+                        <a href="#">Awesome Design</a>
+                      </h3>
+                      <p>
+                        Ut maximus enim dolor. Aenean auctor risus eget
+                        tincidunt lobortis. Donec tincidunt bibendum gravida.
+                      </p>
+                    </div>
                   </div>
-                  <div className="services-content">
-                    <h3>
-                      <a href="#">Awesome Design</a>
-                    </h3>
-                    <p>
-                      Ut maximus enim dolor. Aenean auctor risus eget tincidunt
-                      lobortis. Donec tincidunt bibendum gravida.
-                    </p>
-                  </div>
-                </div>
+                </Fade>
               </div>
 
               <div className="col-md-6 col-lg-4 col-xs-12">
-                <div
-                  className="services-item wow fadeInRight"
-                  data-wow-delay="0.9s"
-                >
-                  <div className="icon">
-                    <i className="lni-users"></i>
+                <Fade big delay={600}>
+                  <div className="services-item">
+                    <div className="icon">
+                      <i className="lni-users"></i>
+                    </div>
+                    <div className="services-content">
+                      <h3 className="header">
+                        <a href="#">Easy To Customize</a>
+                      </h3>
+                      <p>
+                        Ut maximus enim dolor. Aenean auctor risus eget
+                        tincidunt lobortis. Donec tincidunt bibendum gravida.{" "}
+                      </p>
+                    </div>
                   </div>
-                  <div className="services-content">
-                    <h3>
-                      <a href="#">Easy To Customize</a>
-                    </h3>
-                    <p>
-                      Ut maximus enim dolor. Aenean auctor risus eget tincidunt
-                      lobortis. Donec tincidunt bibendum gravida.{" "}
-                    </p>
-                  </div>
-                </div>
+                </Fade>
               </div>
             </div>
           </div>
@@ -176,14 +82,11 @@ const Home = () => {
           <div className="container">
             <div className="row">
               <div className="col-lg-6 col-md-12 col-xs-12 info">
-                <div
-                  className="about-wrapper wow fadeInLeft"
-                  data-wow-delay="0.3s"
-                >
+                <div className="about-wrapper wow fadeInLeft">
                   <div>
                     <div className="site-heading">
                       <p className="mb-3">Manage Statistics</p>
-                      <h2 className="section-title">
+                      <h2 className="header section-title">
                         Detailed Statistics of your Company
                       </h2>
                     </div>
@@ -234,7 +137,7 @@ const Home = () => {
                       <i className="lni-rocket"></i>
                     </span>
                     <div className="text">
-                      <h4>Bootstrap 4 Based</h4>
+                      <h4 className="header">Bootstrap 4 Based</h4>
                       <p>
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry.
@@ -249,7 +152,7 @@ const Home = () => {
                       <i className="lni-laptop-phone"></i>
                     </span>
                     <div className="text">
-                      <h4>Fully Responsive</h4>
+                      <h4 className="header">Fully Responsive</h4>
                       <p>
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry.
@@ -264,7 +167,7 @@ const Home = () => {
                       <i className="lni-cog"></i>
                     </span>
                     <div className="text">
-                      <h4>HTML5, CSS3 & SASS</h4>
+                      <h4 className="header">HTML5, CSS3 & SASS</h4>
                       <p>
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry
@@ -288,7 +191,7 @@ const Home = () => {
                       <i className="lni-leaf"></i>
                     </span>
                     <div className="text">
-                      <h4>Modern Design</h4>
+                      <h4 className="header">Modern Design</h4>
                       <p>
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry
@@ -303,7 +206,7 @@ const Home = () => {
                       <i className="lni-layers"></i>
                     </span>
                     <div className="text">
-                      <h4>Multi-purpose Template</h4>
+                      <h4 className="header">Multi-purpose Template</h4>
                       <p>
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry.
@@ -318,7 +221,7 @@ const Home = () => {
                       <i className="lni-leaf"></i>
                     </span>
                     <div className="text">
-                      <h4>Working Contact Form</h4>
+                      <h4 className="header">Working Contact Form</h4>
                       <p>
                         Lorem Ipsum is simply dummy text of the printing and
                         typesetting industry.

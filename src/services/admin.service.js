@@ -1,12 +1,11 @@
-import axios from "axios";
+import { axios } from "../helpers/AxiosInstance";
 import authHeader from "../helpers/getAuthToken";
-import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl()+"/clients/";
+const API_ENDPOINT = "clients/";
 
 const registerClient = async (client) => {
   const result = await axios
-    .post(API_URL, client, {
+    .post(API_ENDPOINT, client, {
       headers: {
         "x-auth-token": authHeader(),
       },
@@ -26,7 +25,7 @@ const registerClient = async (client) => {
 
 const getClients = async (query) => {
   const result = await axios
-    .get(API_URL, {
+    .get(API_ENDPOINT, {
       params: {
         page: query.page,
         size: query.size,

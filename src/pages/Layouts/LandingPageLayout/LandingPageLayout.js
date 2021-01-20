@@ -7,7 +7,6 @@ import authService from "../../../services/auth.service";
 import "./css/main.scss";
 import "./css/magnific-popup.scss";
 import "./css/nivo-lightbox.scss";
-import "./css/animate.scss";
 import "./css/responsive.scss";
 import messagesService from "../../../services/messages.service";
 
@@ -124,7 +123,6 @@ const LandingPageLayout = ({ children }) => {
             crossorigin=""
           />
 
-          <script src="js/jquery-min.js"></script>
           <script src="js/popper.min.js"></script>
           <script src="js/bootstrap.min.js"></script>
           <script src="js/owl.carousel.min.js"></script>
@@ -136,7 +134,7 @@ const LandingPageLayout = ({ children }) => {
           <script src="js/waypoints.min.js"></script>
           <script src="js/main.js"></script>
         </Helmet>
-        <div className="landingPageStyle nivo-lighbox-landing magnific-popup animate-landing landingPage-responsive">
+        <div className="landingPageStyle nivo-lighbox-landing magnific-popup landingPage-responsive">
           <Header isAuth={isAuth}></Header>
           {children}
           <ScrollToTop></ScrollToTop>

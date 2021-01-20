@@ -6,7 +6,7 @@ const ImgStyledDiv = styled.div`
   img {
     align-self: flex-start;
     padding: 5px 0 5px 50px;
-    height: 55px;
+    height: 30px;
     z-index: 10;
   }
 `;
@@ -27,7 +27,7 @@ const Navbar = (props) => {
       <div className="container">
         <Link to="/" href="/">
           <ImgStyledDiv>
-            <img src="/images/Logo.png" alt="BlueWeb"></img>
+            <img src="/images/icons/Logo-blueweb-letters.png" alt="BlueWeb"></img>
           </ImgStyledDiv>
         </Link>
 

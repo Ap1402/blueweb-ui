@@ -1,11 +1,10 @@
-import Axios from "axios";
+import { axios } from "../helpers/AxiosInstance";
 import authHeader from "../helpers/getAuthToken";
-import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl() + "/contact-messages";
+const API_ENDPOINT = "contact-messages/";
 
 const createContactMessage = async (requestData) => {
-  const result = await Axios.post(API_URL, requestData).catch((err) => {
+  const result = await axios.post(API_ENDPOINT, requestData).catch((err) => {
     return { success: false, message: result.response.data, sent: true };
   });
 
@@ -45,8 +44,8 @@ const saveChatPreform = async (preformData, sentOnline) => {
     preformDataToSend[backendKey] = data.answer;
   });
   preformDataToSend.sentWhileOnline = sentOnline;
-  const result = await Axios.post(
-    API_URL + "/chatPreform",
+  const result = await axios.post(
+    API_ENDPOINT + "chatPreform",
     preformDataToSend
   ).catch((err) => {
     return;
@@ -56,7 +55,7 @@ const saveChatPreform = async (preformData, sentOnline) => {
 };
 
 const getMessages = async (query) => {
-  const result = await Axios.get(API_URL, {
+  const result = await axios.get(API_ENDPOINT, {
     params: {
       page: query.page,
       size: query.size,
@@ -73,7 +72,7 @@ const getMessages = async (query) => {
 };
 
 const getChatDataPreform = async (query) => {
-  const result = await Axios.get(API_URL + "/chatPreform", {
+  const result = await axios.get(API_ENDPOINT + "chatPreform", {
     params: {
       page: query.page,
       size: query.size,
@@ -90,14 +89,14 @@ const getChatDataPreform = async (query) => {
 };
 
 const getReasons = async () => {
-  const result = await Axios.get(API_URL + "/reasons").catch((err) => {
+  const result = await axios.get(API_ENDPOINT + "reasons").catch((err) => {
     return err.response;
   });
   return result.data;
 };
 
 const getPendingMessagesCount = async () => {
-  const result = await Axios.get(API_URL + "/count", {
+  const result = await axios.get(API_ENDPOINT + "count", {
     headers: {
       "x-auth-token": authHeader(),
     },

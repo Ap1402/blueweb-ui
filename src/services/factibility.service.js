@@ -1,13 +1,12 @@
-import axios from "axios";
+import { axios } from "../helpers/AxiosInstance";
 import authHeader from "../helpers/getAuthToken";
-import getEnvUrl from "../helpers/GetEnvUrl";
 
-const API_URL = getEnvUrl() + "/factibility-requests";
+const API_ENDPOINT = "factibility-requests/";
 
 //Access Admin
 const getFactibilityRequests = async (query) => {
   const result = await axios
-    .get(API_URL, {
+    .get(API_ENDPOINT, {
       params: {
         page: query.page,
         size: query.size,
@@ -25,7 +24,7 @@ const getFactibilityRequests = async (query) => {
 
 const createFactibilityRequest = async (request) => {
   const result = await axios
-    .post(API_URL, request)
+    .post(API_ENDPOINT, request)
     .then((result) => {
       return {
         success: true,
@@ -44,7 +43,7 @@ const createFactibilityRequest = async (request) => {
 
 const updateFactibilityRequest = async (request, factibilityId) => {
   const result = await axios
-    .put(API_URL + "/" + factibilityId, request)
+    .put(API_ENDPOINT + factibilityId, request)
     .then((result) => {
       return {
         success: true,
@@ -62,7 +61,7 @@ const updateFactibilityRequest = async (request, factibilityId) => {
 
 const pendingFactibilityRequestsCount = async () => {
   const result = await axios
-    .get(API_URL + "/count", {
+    .get(API_ENDPOINT + "count", {
       headers: {
         "x-auth-token": authHeader(),
       },
