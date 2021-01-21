@@ -5,7 +5,7 @@ import styled from "styled-components";
 import authService from "../../../services/auth.service";
 import createAlert from "../../../helpers/createAlert";
 import { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
+import { Redirect, useHistory, withRouter } from "react-router-dom";
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -15,6 +15,8 @@ const StyledForm = styled(Form)`
 `;
 
 const LoginForm = (props) => {
+  const history = useHistory();
+
   const [requestStatus, setRequestStatus] = useState({
     message: "",
     success: false,
@@ -36,7 +38,8 @@ const LoginForm = (props) => {
 
   useEffect(() => {
     if (requestStatus.sent === true && requestStatus.success) {
-      props.history.push(requestStatus.redirect);
+      history.push(requestStatus.redirect);
+      history.go();
     }
   }, [requestStatus.sent, requestStatus.success]);
 
@@ -91,4 +94,4 @@ const LoginForm = (props) => {
   );
 };
 
-export default withRouter(LoginForm);
+export default LoginForm;

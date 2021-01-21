@@ -19,7 +19,7 @@ function PrivateRoute({
       setLoading(false);
     };
     getData();
-  }, []);
+  });
 
   return (
     <Route

@@ -65,9 +65,12 @@ const HeaderStyle = styled.header`
 `;
 
 const StyledButton = styled.button`
-  margin-top: 10px;
-  @media (min-width: 768px) {
-    margin-top: 0;
+  &&& {
+    margin-top: 10px;
+    padding: 8px 20px;
+    @media (min-width: 768px) {
+      margin-top: 0;
+    }
   }
 `;
 

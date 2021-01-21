@@ -21,7 +21,7 @@ function PrivateSupportRoute({
       setLoading(false);
     };
     getData();
-  }, []);
+  });
 
   return (
     <Route
